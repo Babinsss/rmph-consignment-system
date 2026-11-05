@@ -1,0 +1,178 @@
+[
+  {
+    "name": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "code": "SUP-MHJ",
+    "payment_terms": "30 days post-consumption",
+    "address": "Roxas City / Iloilo",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "mhj@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "A-Z MARKET ENTERPRISE DEVELOPERS INC.",
+    "code": "SUP-AZMARKET",
+    "payment_terms": "30 days post-consumption",
+    "address": "Metro Manila / Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "azmarket@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "BEROVAN MARKETING INC.",
+    "code": "SUP-BEROVAN",
+    "payment_terms": "30 days post-consumption",
+    "address": "Cebu / Iloilo / Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "berovan@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "NEGROS MEDICAL TRADING",
+    "code": "SUP-NEGROSMED",
+    "payment_terms": "30 days post-consumption",
+    "address": "Bacolod / Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "negrosmed@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "JOSMEF ENTERPRISES",
+    "code": "SUP-JOSMEF",
+    "payment_terms": "30 days post-consumption",
+    "address": "Quezon City / Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "josmef@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "code": "SUP-TANNPHARMA",
+    "payment_terms": "30 days post-consumption",
+    "address": "Roxas City, Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "tannpharma@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "P.T. CERNA CORPORATION",
+    "code": "SUP-PTCERNA",
+    "payment_terms": "30 days post-consumption",
+    "address": "Cebu / Panay",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "ptcerna@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "code": "SUP-GREENMEDS",
+    "payment_terms": "30 days post-consumption",
+    "address": "Iloilo City / Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "greenmeds@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "B-SHINE PHARMA",
+    "code": "SUP-BSHINE",
+    "payment_terms": "30 days post-consumption",
+    "address": "Roxas City, Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "bshine@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "PINNACLE SUPPLIES AND SERVICES UNLI. INC",
+    "code": "SUP-PINNACLE",
+    "payment_terms": "30 days post-consumption",
+    "address": "Metro Manila / Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "pinnacle@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "AGUA VISIONS TRADING",
+    "code": "SUP-AGUAVISION",
+    "payment_terms": "30 days post-consumption",
+    "address": "Iloilo City / Capiz",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "aguavision@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "MDRX ENTERPRISE",
+    "code": "SUP-MDRX",
+    "payment_terms": "30 days post-consumption",
+    "address": "Western Visayas",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "mdrx@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "DYNASTY PHARMACEUTICALS",
+    "code": "SUP-DYNASTY",
+    "payment_terms": "30 days post-consumption",
+    "address": "Metro Manila",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "dynasty@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "CBROS PHARMA",
+    "code": "SUP-CBROS",
+    "payment_terms": "30 days post-consumption",
+    "address": "Western Visayas",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "cbros@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "EURO-MED LABORATORIES PHIL., INC",
+    "code": "SUP-EUROMED",
+    "payment_terms": "30 days post-consumption",
+    "address": "Manila / Panay",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "euromed@consignor.ph",
+    "is_active": true
+  },
+  {
+    "name": "QUALIMEDIC MARKETING",
+    "code": "SUP-QUALIMEDIC",
+    "payment_terms": "30 days post-consumption",
+    "address": "Western Visayas",
+    "consignment_type": "medical_supplies",
+    "contact_person": "Consignment Sales Representative",
+    "phone": "(036) 621-0000",
+    "email": "qualimedic@consignor.ph",
+    "is_active": true
+  }
+]

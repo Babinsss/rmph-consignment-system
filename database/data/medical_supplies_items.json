@@ -1,0 +1,3062 @@
+[
+  {
+    "item_code": "HECSM-RMH-CU01",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 7",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 20.0,
+    "selling_price": 26.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU02",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 7.5",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 20.0,
+    "selling_price": 26.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU03",
+    "name": "SYRINGE W/ NEEDLE 1CC, G-26 X 1 5/8\", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 2.5,
+    "selling_price": 3.75,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU04",
+    "name": "SYRINGE W/ NEEDLE 3CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 2.8,
+    "selling_price": 4.2,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU05",
+    "name": "SYRINGE W/ NEEDLE 5CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 2.8,
+    "selling_price": 4.2,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU06",
+    "name": "SYRINGE W/ NEEDLE 10CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 4.0,
+    "selling_price": 6.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU07",
+    "name": "ISOPROPYL ALCOHOL 70% SPRAY (250ML)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 68.0,
+    "selling_price": 102.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU08",
+    "name": "SYRINGE W/ NEEDLE 50CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 30.0,
+    "selling_price": 39.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU09",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 6.5",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 20.0,
+    "selling_price": 26.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU010",
+    "name": "DIALYZER, (SYNTHETIC HOLLOW FIBER) HIGH FLUX WITH EFFECTIVE SURFACE AREA OF MORE THAN 1.4 M2 AND MAX TMP OF 500MMHG",
+    "consignor": "A-Z MARKET ENTERPRISE DEVELOPERS INC.",
+    "category": "Hemodialysis Consumables",
+    "uom": "piece",
+    "unit_cost": 830.0,
+    "selling_price": 1950.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU011",
+    "name": "DISPOSABLE UNDER PADS",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 80.0,
+    "selling_price": 104.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU012",
+    "name": "POLYGLACTIN 910, ANTIBACTERIAL SUTURE, SIZE 4-0 CUTITNG NEEDLE (VICRYL 4-0 CUTTING)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 435.0,
+    "selling_price": 565.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU013",
+    "name": "RESCUSCITATOR BAG, DISP., ADULT",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 958.4,
+    "selling_price": 1245.92,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU014",
+    "name": "RESCUSCITATOR BAG, DISP., NEONATE",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 958.4,
+    "selling_price": 1245.92,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU015",
+    "name": "RESCUSCITATOR BAG, DISP., PEDIA",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 958.4,
+    "selling_price": 1245.92,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU016",
+    "name": "ASEPTO SYRINGE, 60CC BULB IRRIGATION SYRINGE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 55.0,
+    "selling_price": 71.5,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU017",
+    "name": "SILK 0 STRANDS",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Sutures & Wound Closure",
+    "uom": "piece",
+    "unit_cost": 175.0,
+    "selling_price": 227.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU018",
+    "name": "SILK 2-0 CUTTING NEEDLE",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 190.0,
+    "selling_price": 247.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU019",
+    "name": "SYNTHETIC MONOFILAMENT, NON-ABSORBABLE SUTURE SIZE 3-0 PS NEEDLE (ETHILON 3/0 CUTTING)",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 290.0,
+    "selling_price": 377.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU020",
+    "name": "POLYPROPYLENE SUTURE SIZE 4-0, ROUND NEEDLE (PROLENE 4-0 ROUND)",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 650.0,
+    "selling_price": 845.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU021",
+    "name": "SILK 4-0 ROUND, NEEDLE",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 190.0,
+    "selling_price": 247.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU022",
+    "name": "SILK 3-0 CUTTING NEEDLE",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 190.0,
+    "selling_price": 247.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU023",
+    "name": "SILK 4-0 CUTTING NEEDLE",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 198.0,
+    "selling_price": 257.4,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU024",
+    "name": "COTTON APPLICATOR, STERILE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 3.0,
+    "selling_price": 3.9,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU025",
+    "name": "FOLEY CATHETER FR.16",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU026",
+    "name": "FOLEY CATHETER FR. 18",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU027",
+    "name": "NASOGASTRIC TUBE FR. 5, LENGTH: 60CM TO 125CM, CALIBRATED",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 39.0,
+    "selling_price": 50.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU028",
+    "name": "NASOGASTRIC TUBE FR. 8, LENGTH: 60CM TO 125CM, CALIBRATED",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 39.0,
+    "selling_price": 50.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU029",
+    "name": "NASOGASTRIC TUBE FR. 14, LENGTH: 120CM TO 125CM, CALIBRATED",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 39.0,
+    "selling_price": 50.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU030",
+    "name": "NASOGASTRIC TUBE FR. 16, LENGTH: 120CM TO 125CM, CALIBRATED",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 39.0,
+    "selling_price": 50.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU031",
+    "name": "SUCTION CATHETER FR. 14",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU032",
+    "name": "SUCTION CATHETER FR. 16",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU033",
+    "name": "SILK 0, ROUND NEEDLE",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 365.0,
+    "selling_price": 475.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU034",
+    "name": "SILK 3-0, NON-NEEDLE (SILK 3-0 STRANDS)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 230.0,
+    "selling_price": 299.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU035",
+    "name": "SILK 3-0, ROUND NEEDLE",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 210.0,
+    "selling_price": 273.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU036",
+    "name": "PROLENE 2-0 ROUND",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Sutures & Wound Closure",
+    "uom": "piece",
+    "unit_cost": 410.0,
+    "selling_price": 533.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU037",
+    "name": "BOUFFANT CAP STRIP TYPE, SIZE 24 (OR CAP)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2.5,
+    "selling_price": 3.25,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU038",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 6.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU039",
+    "name": "4X4 GAUZE PAD, STERILE",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Bandages & Dressings",
+    "uom": "piece",
+    "unit_cost": 5.0,
+    "selling_price": 6.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU040",
+    "name": "HEPLOCK, 0.16ML, STERILE, LUER ACCESS",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 60.0,
+    "selling_price": 78.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU041",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 7",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU042",
+    "name": "SYNTHETIC MONOFILAMENT, NON-ABSORBABLE SUTURE SIZE 3-0 PS NEEDLE (ETHILON 3/0 CUTTING)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 280.0,
+    "selling_price": 364.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU043",
+    "name": "POLYGLECAPRONE 25 ANTIBACTERIAL SUTURE, SIZE 4-0, CUTTING NEEDLE (MONOCRYL 4/0 CUTTING)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 730.0,
+    "selling_price": 949.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU044",
+    "name": "PROLENE 4-0 ROUND",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Sutures & Wound Closure",
+    "uom": "piece",
+    "unit_cost": 1260.0,
+    "selling_price": 1638.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU045",
+    "name": "SILK 2-0 ROUND",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Sutures & Wound Closure",
+    "uom": "piece",
+    "unit_cost": 230.0,
+    "selling_price": 299.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU046",
+    "name": "DIAPER  ADULT, LARGE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 24.25,
+    "selling_price": 31.53,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU047",
+    "name": "SYNTHETIC, BRAIDED, ABSORBABLE SUTURE, SIZE 2-0, CT-1 NEEDLE (VICRYL 2-0 ROUND)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 620.0,
+    "selling_price": 806.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU048",
+    "name": "SYNTHETIC, BRAIDED, ABSORBABLE SUTURE, SIZE 2-0, NON-NEEDLE (SILK 2-0 STRANDS)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 250.0,
+    "selling_price": 325.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU049",
+    "name": "DIAPER  ADULT, LARGE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 28.0,
+    "selling_price": 36.4,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU050",
+    "name": "SILK 0, ROUN D NEEDLE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 140.0,
+    "selling_price": 182.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU051",
+    "name": "SILK2-0, ROUN D NEEDLE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 112.0,
+    "selling_price": 145.6,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU052",
+    "name": "SILK 3-0, ROUN D NEEDLE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 112.0,
+    "selling_price": 145.6,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU053",
+    "name": "SILK 4-0, ROUN D NEEDLE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 112.0,
+    "selling_price": 145.6,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU054",
+    "name": "SILK 2-0, CUTTING NEEDLE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 112.0,
+    "selling_price": 145.6,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU055",
+    "name": "SILK 3-0, CUTTING NEEDLE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 112.0,
+    "selling_price": 145.6,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU056",
+    "name": "SILK 4-0, CUTTING NEEDLE",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 126.0,
+    "selling_price": 163.8,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU057",
+    "name": "POLYGLECAPRONE 25 ANTIBACTERIAL SUTURE, SIZE 4-0, CUTTING NEEDLE (MONOLUS  4/0 CUTTING)",
+    "consignor": "P.T. CERNA CORPORATION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 420.0,
+    "selling_price": 546.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU058",
+    "name": "ELASTIC BANDAGE, #6",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 68.0,
+    "selling_price": 88.4,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU059",
+    "name": "PAPER TAPE (MICROPORE) (HYPOALLERGENIC), 1\"",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 68.0,
+    "selling_price": 88.4,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU060",
+    "name": "PATIENT IDENTIFICATION BRACELET, ADULT (WHITE)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.0,
+    "selling_price": 5.2,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU061",
+    "name": "NASAL CANNULA, ADULT",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 34.85,
+    "selling_price": 45.31,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU062",
+    "name": "NASAL CANNULA, PEDIA",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 34.85,
+    "selling_price": 45.31,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU063",
+    "name": "SYRINGE W/ NEEDLE 1CC, G-26 X 1 5/8\", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 3.8,
+    "selling_price": 4.94,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU064",
+    "name": "IV CANNULA G. 22",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 19.17,
+    "selling_price": 24.92,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU065",
+    "name": "GLOVES, EXAMINATION, NON-STERILE, POWDER FREE, LATEX SURGICAL GLOVES, SMALL",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 2.99,
+    "selling_price": 3.89,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU066",
+    "name": "GLOVES, EXAMINATION, NON-STERILE, POWDER FREE, LATEX SURGICAL GLOVES, MEDIUM",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 2.99,
+    "selling_price": 3.89,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU067",
+    "name": "GLOVES, EXAMINATION, NON-STERILE, POWDER FREE, LATEX SURGICAL GLOVES, LARGE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 2.99,
+    "selling_price": 3.89,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU068",
+    "name": "I.V. INFUSION SET 20 DROPS/ML (MACRO)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 24.99,
+    "selling_price": 32.49,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU069",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, ADULT 7\" TUBE, LATEX FREE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU070",
+    "name": "CBG PACK",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 35.0,
+    "selling_price": 100.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU071",
+    "name": "ENDOTRACHEAL TUBE, #4.5",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 100.0,
+    "selling_price": 130.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU072",
+    "name": "ENDOTRACHEAL TUBE, #7.0",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 100.0,
+    "selling_price": 130.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU073",
+    "name": "ECG ELECTRODE SENSOR STANDARD CENTER CONNECTOR, STERILE WITH HIGHLY CONDUCTIVE GEL (ADULT)",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 18.0,
+    "selling_price": 23.4,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU074",
+    "name": "GLOVES, EXAMINATION, NON-STERILE, POWDER FREE, LATEX SURGICAL GLOVES, MEDIUM",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 2.1,
+    "selling_price": 3.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU075",
+    "name": "COTTON APPLICATOR, STERILE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2.8,
+    "selling_price": 3.64,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU076",
+    "name": "SUCTION CATHETER FR. 5",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 35.5,
+    "selling_price": 46.15,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU077",
+    "name": "SUCTION CATHETER FR. 14",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 35.5,
+    "selling_price": 46.15,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU078",
+    "name": "SUCTION CATHETER FR. 16",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 35.5,
+    "selling_price": 46.15,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU079",
+    "name": "ENDOTRACHEAL TUBE, #2.5",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 49.0,
+    "selling_price": 63.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU080",
+    "name": "ENDOTRACHEAL TUBE, #3.0",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 49.0,
+    "selling_price": 63.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU081",
+    "name": "ENDOTRACHEAL TUBE, #4.0",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 49.0,
+    "selling_price": 63.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU082",
+    "name": "ENDOTRACHEAL TUBE, #6.0",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 49.0,
+    "selling_price": 63.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU083",
+    "name": "SURGICAL BLADE NO. 22",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 3.25,
+    "selling_price": 4.23,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU084",
+    "name": "DISPOSABLE RAZOR/ SHAVER",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 8.45,
+    "selling_price": 10.99,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU085",
+    "name": "NASAL CANNULA, ADULT",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 19.5,
+    "selling_price": 25.35,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU086",
+    "name": "NASAL CANNULA, PEDIA",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 19.5,
+    "selling_price": 25.35,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU087",
+    "name": "NASAL CANNULA,  NEONATE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 19.5,
+    "selling_price": 25.35,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU088",
+    "name": "SURGICAL PLASTIC TAPE 1\" X 10 YARDS",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU089",
+    "name": "SURGICAL PLASTIC TAPE 1/2\" X 10 YARDS",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU090",
+    "name": "MEASURE VOLUME FLUID ADMINISTRATION SET (SOLUSET)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 80.0,
+    "selling_price": 104.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU091",
+    "name": "OXYGEN MASK W/ REBREATHER BAG AND TUBING, ADULT",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 90.0,
+    "selling_price": 117.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU092",
+    "name": "OXYGEN MASK W/ REBREATHER BAG AND TUBING, PEDIA",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 90.0,
+    "selling_price": 117.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU093",
+    "name": "SUCTION CATHETER FR. 8",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU094",
+    "name": "COTTON BALLS",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 20.0,
+    "selling_price": 26.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU095",
+    "name": "GAUZE PACK (4X8X8-12PLY)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "piece",
+    "unit_cost": 99.5,
+    "selling_price": 129.35,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU096",
+    "name": "GAUZE PACK SPONGE (8X36X12PLY 28X24)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "piece",
+    "unit_cost": 169.75,
+    "selling_price": 220.68,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU097",
+    "name": "GAUZE SPONGE (8X12X12PLY 28X24)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "piece",
+    "unit_cost": 100.0,
+    "selling_price": 130.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU098",
+    "name": "SURGICAL BLADE NO. 11",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 3.25,
+    "selling_price": 4.23,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU099",
+    "name": "PATIENT IDENTIFICATION BRACELET, ADULT (WHITE)",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.55,
+    "selling_price": 6.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU100",
+    "name": "OXYGEN FACEMASK, ADULT",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 38.5,
+    "selling_price": 50.05,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU101",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, PEDIA 7\" TUBE, LATEX FREE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 42.25,
+    "selling_price": 54.93,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU102",
+    "name": "I.V. INFUSION SET 20 DROPS/ML (MACRO )",
+    "consignor": "B-SHINE PHARMA",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 24.5,
+    "selling_price": 31.85,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU103",
+    "name": "IV CANNULA G. 22",
+    "consignor": "B-SHINE PHARMA",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU104",
+    "name": "LUBRICATING JELLY 5GMS",
+    "consignor": "B-SHINE PHARMA",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.75,
+    "selling_price": 7.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU105",
+    "name": "UMBILICAL CORD CLAMP",
+    "consignor": "B-SHINE PHARMA",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.85,
+    "selling_price": 7.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU106",
+    "name": "OXYGEN FACEMASK, ADULT",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 64.85,
+    "selling_price": 84.31,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU107",
+    "name": "OXYGEN FACEMASK, PEDIA",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 64.99,
+    "selling_price": 84.49,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU108",
+    "name": "LUBRICATING JELLY 5GMS",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 6.7,
+    "selling_price": 8.71,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU109",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, ADULT 7\" TUBE, LATEX FREE",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 53.91,
+    "selling_price": 70.08,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU110",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, PEDIA 7\" TUBE, LATEX FREE",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 53.91,
+    "selling_price": 70.08,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU111",
+    "name": "UMBILICAL CORD CLAMP",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.5,
+    "selling_price": 6.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU112",
+    "name": "GLOVES, EXAMINATION, NON-STERILE, POWDER FREE, LATEX SURGICAL GLOVES, LARGE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 2.1,
+    "selling_price": 3.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU113",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, ADULT 7\" TUBE, LATEX FREE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 42.25,
+    "selling_price": 54.93,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU114",
+    "name": "FACE MASK EARLOOP",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 2.0,
+    "selling_price": 2.6,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU115",
+    "name": "NASAL CANNULA, NEONATE",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU116",
+    "name": "MEASURE VOLUME FLUID ADMINISTRATION SET (SOLUSET)",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 60.0,
+    "selling_price": 78.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU117",
+    "name": "SUCTION CATHETER FR. 8",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 35.5,
+    "selling_price": 46.15,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU118",
+    "name": "FACE MASK EARLOOP",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 1.25,
+    "selling_price": 1.63,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU119",
+    "name": "I.V. INFUSION SET 20 DROPS/ML (MACRO )",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU120",
+    "name": "MEASURE VOLUME FLUID ADMINISTRATION SET (SOLUSET)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 80.0,
+    "selling_price": 104.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU121",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, ADULT 7\" TUBE, LATEX FREE",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU122",
+    "name": "BONE WAX 2.5GM  TABS W31C",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 225.0,
+    "selling_price": 292.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU123",
+    "name": "ELECTROSURGICAL CONTROL PENCIL, DISPOSABLE (CAUTERY PENCIL), STERILE",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 140.0,
+    "selling_price": 182.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU124",
+    "name": "SYNTHETIC, MONOFILAMENT, NON-ABSORBABLE HERNIA MESH SIZE 3\"X6\" (8CM X 15CM)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2500.0,
+    "selling_price": 3250.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU125",
+    "name": "SURGICEL SNOW 2\" X 4\" (5.1CM X 10.2 CM)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2311.32,
+    "selling_price": 3004.71,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU126",
+    "name": "SURGICEL NU-KNIT, SIZE 3\"X4\" (7.6CM X 10.2CM)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2565.0,
+    "selling_price": 3334.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU127",
+    "name": "ENDOTRACHEAL TUBE, #2.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU128",
+    "name": "ENDOTRACHEAL TUBE, #3.0",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU129",
+    "name": "ENDOTRACHEAL TUBE, #4.0",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU130",
+    "name": "ENDOTRACHEAL TUBE, #4.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU131",
+    "name": "ENDOTRACHEAL TUBE, #6.0",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU132",
+    "name": "ENDOTRACHEAL TUBE, #7.0",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU133",
+    "name": "ENDOTRACHEAL TUBE, #7.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU134",
+    "name": "SURGICAL BLADE NO. 11",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 10.0,
+    "selling_price": 13.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU135",
+    "name": "SURGICAL BLADE NO. 22",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 10.0,
+    "selling_price": 13.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU136",
+    "name": "OR GAUZE (4X4X8PLY)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU137",
+    "name": "IV CANNULA G.18",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU138",
+    "name": "IV CANNULA G.20",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU139",
+    "name": "IV CANNULA G.22",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU140",
+    "name": "IV CANNULA G.24",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU141",
+    "name": "EPIDURAL CATHETER G.18",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 1408.0,
+    "selling_price": 1830.4,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU142",
+    "name": "SPINAL NEEDLE G.25 X 3 1/2\" (90MM), QUINCKE NEEDLE FOR SPINAL ANESTHESIA AND DIAGNOSTIC LUMBAR PUNCTURE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 135.0,
+    "selling_price": 175.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU143",
+    "name": "I.V. INFUSION SET 20 DROPS/ML (MACRO )",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 13.0,
+    "selling_price": 17.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU144",
+    "name": "URINE BAG W/ HOOK, CAP: 2,000ML",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 31.95,
+    "selling_price": 41.54,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU145",
+    "name": "CADAVER BAG/ BODY BAG W/ ZIPPER, ADULT",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 650.0,
+    "selling_price": 845.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU146",
+    "name": "PENROSE DRAIN  18 X 1/2",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 35.0,
+    "selling_price": 45.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU147",
+    "name": "PENROSE DRAIN  18 X 1/4",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 35.0,
+    "selling_price": 45.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU148",
+    "name": "ELASTIC BANDAGE, #4",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 22.75,
+    "selling_price": 29.58,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU149",
+    "name": "ELASTIC BANDAGE, #6",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 39.0,
+    "selling_price": 50.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU150",
+    "name": "PLASTER TAPE SIZE 1X1, MADE BY RAYON FIBERS, SKIN COLORED THAT HAS A HIGH QUALITY VISCOSE BACKING WHICH HAS A WATER REPELLANT SURFACE, COATED WITH ZINC CAOUTCHOUC RASIN ADHESIVE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 94.6,
+    "selling_price": 122.98,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU151",
+    "name": "ENDOTRACHEAL TUBE, #3.5",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 58.0,
+    "selling_price": 75.4,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU152",
+    "name": "CADAVER BAG/ BODY BAG W/ ZIPPER, ADULT",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 650.0,
+    "selling_price": 845.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU153",
+    "name": "DISPOSABLE NEEDLE G-18",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 2.05,
+    "selling_price": 2.67,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU154",
+    "name": "IV CANNULA G.18",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU155",
+    "name": "IV CANNULA G.20",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU156",
+    "name": "IV CANNULA G.22",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU157",
+    "name": "IV CANNULA G.24",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU158",
+    "name": "DIGITAL THERMOMETER",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 74.5,
+    "selling_price": 96.85,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU159",
+    "name": "LUBRICATING JELLY 5GMS",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 6.5,
+    "selling_price": 8.45,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU160",
+    "name": "SUCTION SET, POOLE DRAIN, 2.0M, 6MM, LATEX FREE, STERILE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 295.0,
+    "selling_price": 383.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU161",
+    "name": "SYRINGE W/ NEEDLE 20CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 19.0,
+    "selling_price": 24.7,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU162",
+    "name": "ENDOTRACHEAL TUBE, #7.5",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 49.0,
+    "selling_price": 63.7,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU163",
+    "name": "PLASTER OF PARIS, 4\", EXTRA-FASTING SETTING",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 161.5,
+    "selling_price": 209.95,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU164",
+    "name": "PLASTER OF PARIS, 6\", EXTRA-FASTING SETTING",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 212.5,
+    "selling_price": 276.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU165",
+    "name": "URINE BAG W/ HOOK, CAP: 2,000ML",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 19.5,
+    "selling_price": 25.35,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU166",
+    "name": "THORACOSTOMY BOTTLE 1.6L",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 900.0,
+    "selling_price": 1170.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU167",
+    "name": "ELASTIC BANDAGE, #4\"",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 30.0,
+    "selling_price": 39.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU168",
+    "name": "PLASTER TAPE SIZE 1X1, MADE BY RAYON FIBERS, SKIN COLORED THAT HAS A HIGH QUALITY VISCOSE BACKING WHICH HAS A WATER REPELLANT SURFACE, COATED WITH ZINC CAOUTCHOUC RASIN ADHESIVE",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 108.0,
+    "selling_price": 140.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU169",
+    "name": "ENDOTRACHEAL TUBE, #3.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 75.0,
+    "selling_price": 97.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU170",
+    "name": "NASOGASTRIC TUBE FR. 18, LENGTH: 120CM TO 125CM, CALIBRATED",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU171",
+    "name": "ELASTIC BANDAGE, #6\"",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 45.0,
+    "selling_price": 58.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU172",
+    "name": "ENDOTRACHEAL TUBE, #5.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 80.0,
+    "selling_price": 104.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU173",
+    "name": "I.V. INFUSION SET 60 DROPS/ML (MICRO )",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 25.0,
+    "selling_price": 32.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU174",
+    "name": "CAUTERY GROUND PAD, ADULT",
+    "consignor": "PINNACLE SUPPLIES AND SERVICES UNLI. INC",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 470.0,
+    "selling_price": 611.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU175",
+    "name": "HPMC 2% PFS IN 3ML",
+    "consignor": "AGUA VISIONS TRADING",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 500.0,
+    "selling_price": 650.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU176",
+    "name": "SODIUM HYALURONATE 1.4% IN 1ML",
+    "consignor": "AGUA VISIONS TRADING",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 1100.0,
+    "selling_price": 1430.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU177",
+    "name": "PMMS ANTERIOR CHAMBER, SINGLE PIECE, OPTIC 6MM, LENGTH 12.50",
+    "consignor": "AGUA VISIONS TRADING",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 400.0,
+    "selling_price": 520.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU178",
+    "name": "CENTURION FLUID MANAGEMENT SYSTEM ACTIVE BASIC",
+    "consignor": "MDRX ENTERPRISE",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 3800.0,
+    "selling_price": 4940.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU179",
+    "name": "ALCON BALANCED STERILE SALINE SOLUTION (BSS) 500ML BAG",
+    "consignor": "MDRX ENTERPRISE",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 830.0,
+    "selling_price": 1079.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU180",
+    "name": "ACRYLIC FOLDABLE ASHEPIC INTRAOCULAR LENS POSTERIOR CHAMBER",
+    "consignor": "MDRX ENTERPRISE",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2295.0,
+    "selling_price": 2983.5,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU181",
+    "name": "OPHTHALMIC KNIVES/SCALPEL, STERILE, 2.75MM ANGLED SLIT KNIVE",
+    "consignor": "MDRX ENTERPRISE",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 800.0,
+    "selling_price": 1040.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU182",
+    "name": "OPHTHALMIC KNIVES/SCALPEL, STERILE, 15 DEGREES 1.2MM ANGLED SLIT KNIVE",
+    "consignor": "MDRX ENTERPRISE",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 800.0,
+    "selling_price": 1040.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU183",
+    "name": "IV CANNULA G.24",
+    "consignor": "DYNASTY PHARMACEUTICALS",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 28.0,
+    "selling_price": 36.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU184",
+    "name": "IV CANNULA G.26",
+    "consignor": "DYNASTY PHARMACEUTICALS",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 28.0,
+    "selling_price": 36.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU185",
+    "name": "SYRINGE W/ NEEDLE 5CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 3.8,
+    "selling_price": 5.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU186",
+    "name": "CBG PACK",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 23.75,
+    "selling_price": 100.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU187",
+    "name": "SUCTION CATHETER FR. 10",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 15.0,
+    "selling_price": 20.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU188",
+    "name": "THORACIC CATHETER FR. 28",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 280.0,
+    "selling_price": 364.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU189",
+    "name": "THORACIC CATHETER FR. 32",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 280.0,
+    "selling_price": 364.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU190",
+    "name": "EXTENSION TUBE (100CM)",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 50.0,
+    "selling_price": 65.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU191",
+    "name": "ABSORBABLE GELATIN HEMOSTAT (SPONGOSTAN)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 490.0,
+    "selling_price": 637.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU192",
+    "name": "POLYGLACTIN 910, ANTIBACTERIAL SUTURE, SIZE 0, 36MM CT-1 ROUND NEEDLE (VICRYL 0)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 500.0,
+    "selling_price": 650.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU193",
+    "name": "ENDOTRACHEAL TUBE, #6.5 WITH CUFF",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 68.5,
+    "selling_price": 89.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU194",
+    "name": "FOLEY CATHETER, F. 14",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 35.0,
+    "selling_price": 46.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU195",
+    "name": "SURGICAL BLADE NO. 20",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 4.2,
+    "selling_price": 5.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU196",
+    "name": "SPECIMEN CUP",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 10.0,
+    "selling_price": 13.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU197",
+    "name": "WADDING SHEET 4X5Y",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 45.0,
+    "selling_price": 59.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU198",
+    "name": "CAUTERY GROUND PAD, ADULT",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 500.0,
+    "selling_price": 650.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU199",
+    "name": "FOLEY CATHETER FR.16",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 33.5,
+    "selling_price": 44.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU200",
+    "name": "PHOTOTHERAPY EYE MASK",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 250.0,
+    "selling_price": 325.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU201",
+    "name": "STAPLER, SKIN 35 COUNT, WIDE, STERILE, DISPOSABLE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 275.0,
+    "selling_price": 358.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU202",
+    "name": "NASOGASTRIC TUBE FR. 10, LENGTH: 120CM TO 125CM, CALIBRATED",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 20.0,
+    "selling_price": 26.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU203",
+    "name": "SPECIMEN CUP",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 10.0,
+    "selling_price": 13.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU204",
+    "name": "ENDOTRACHEAL TUBE, # 6.5 WITH CUFF",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU205",
+    "name": "NASOGASTRIC TUBE FR. 10, LENGTH: 120CM TO 125CM, CALIBRATED",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 30.0,
+    "selling_price": 39.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU206",
+    "name": "SUCTION CATHETER FR. 10",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 30.0,
+    "selling_price": 39.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU207",
+    "name": "IV CANNULA G.26",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 32.0,
+    "selling_price": 42.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU208",
+    "name": "SYRINGE W/ NEEDLE 3CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 2.8,
+    "selling_price": 4.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU209",
+    "name": "CHERRY BALLS",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 205.0,
+    "selling_price": 267.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU210",
+    "name": "IV CANNULA G. 20",
+    "consignor": "B-SHINE PHARMA",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU211",
+    "name": "IV CANNULA G. 18",
+    "consignor": "B-SHINE PHARMA",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU212",
+    "name": "IV CANNULA G. 24",
+    "consignor": "B-SHINE PHARMA",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 23.5,
+    "selling_price": 30.55,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU213",
+    "name": "HEMODIALYSIS BLOOD TUBING SET WITH 2TP, IV SET AND PILLOW",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hemodialysis Consumables",
+    "uom": "piece",
+    "unit_cost": 280.0,
+    "selling_price": 375.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU214",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 7.5",
+    "consignor": "CBROS PHARMA",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 29.0,
+    "selling_price": 38.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU215",
+    "name": "POLYGLECAPRONE 25 ANTIBACTERIAL SUTURE, SIZE 0 WITH ROUND NEEDLE (MONOCRYL 0 ROUND)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 770.0,
+    "selling_price": 1001.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU216",
+    "name": "INSULIN SYRINGE (1CC 30GX 3/8\")",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 15.0,
+    "selling_price": 20.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU217",
+    "name": "POLYGLACTIN 910, ANTIBACTERIAL SUTURE, SIZE 1, ROUND NEEDLE (VICRYL 1  ROUND)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 580.0,
+    "selling_price": 754.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU218",
+    "name": "POLYPROPYLENE SUTURE, SIZE 0, ROUND NEEDLE (PROLENE 0 ROUND)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 630.0,
+    "selling_price": 819.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU219",
+    "name": "POLYGLACTIN 910, ANTIBACTERIAL SUTURE, SIZE 3-0, ROUND NEEDLE (VICRYL 3-0 ROUND)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 425.0,
+    "selling_price": 553.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU220",
+    "name": "POLYGLACTIN 910, ANTIBACTERIAL SUTURE, SIZE 3-0, CUTTING NEEDLE (VICRYL 3-0 CUTTING)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 446.0,
+    "selling_price": 580.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU221",
+    "name": "ANESTHESIA BREATHING CIRCUIT, ADULT",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "set",
+    "unit_cost": 1400.0,
+    "selling_price": 1820.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU222",
+    "name": "ANESTHESIA BREATHING CIRCUIT, PEDIA",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Respiratory & Anesthesia",
+    "uom": "set",
+    "unit_cost": 1350.0,
+    "selling_price": 1755.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU223",
+    "name": "IV CANNULA G.26",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 29.0,
+    "selling_price": 38.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU224",
+    "name": "PAPER TAPE (MICROPORE) (HYPOALLERGENIC), 1\"",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 80.0,
+    "selling_price": 104.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU225",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, PEDIA 7\" TUBE, LATEX FREE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU226",
+    "name": "FOLEY CATHETER, F. 10",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 35.0,
+    "selling_price": 46.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU227",
+    "name": "FOLEY CATHETER, F. 12",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 35.0,
+    "selling_price": 46.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU228",
+    "name": "ENDOTRACHEAL TUBE, #5.5 WITH CUFF",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 108.0,
+    "selling_price": 140.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU229",
+    "name": "RESCUSCITATOR BAG, DISP., NEONATE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 900.0,
+    "selling_price": 1170.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU230",
+    "name": "RESCUSCITATOR BAG, DISP., PEDIA",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 900.0,
+    "selling_price": 1170.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU231",
+    "name": "RESCUSCITATOR BAG, DISP., ADULT",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 900.0,
+    "selling_price": 1170.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU232",
+    "name": "DIALYZER, (SYNTHETIC HOLLOW FIBER) HIGH FLUX WITH EFFECTIVE SURFACE AREA OF MORE THAN 1.4 M2 AND MAX TMP OF 500MMHG",
+    "consignor": "EURO-MED LABORATORIES PHIL., INC",
+    "category": "Hemodialysis Consumables",
+    "uom": "piece",
+    "unit_cost": 849.8,
+    "selling_price": 1950.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU233",
+    "name": "NASAL CANNULA, ADULT",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU234",
+    "name": "NASAL CANNULA, PEDIA",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU235",
+    "name": "OXYGEN FACEMASK, ADULT",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 65.0,
+    "selling_price": 85.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU236",
+    "name": "CADAVER BAG/ BODY BAG W/ ZIPPER, ADULT",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 690.0,
+    "selling_price": 897.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU237",
+    "name": "URINE BAG W/ HOOK, CAP: 2,000ML",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 32.0,
+    "selling_price": 42.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU238",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, ADULT 7\" TUBE, LATEX FREE",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 69.0,
+    "selling_price": 90.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU239",
+    "name": "NEBULIZER KIT WITH AEROSOL MASK, PEDIA 7\" TUBE, LATEX FREE",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 69.0,
+    "selling_price": 90.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU240",
+    "name": "OXYGEN FACEMASK, PEDIA",
+    "consignor": "GREEN MEDICS PHARMA DISTRIBUTION",
+    "category": "Respiratory & Anesthesia",
+    "uom": "piece",
+    "unit_cost": 62.0,
+    "selling_price": 81.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU241",
+    "name": "ENDOTRACHEAL TUBE, #5.0 WITH CUFF",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 51.8,
+    "selling_price": 67.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU242",
+    "name": "ENDOTRACHEAL TUBE, #8.0 WITH CUFF",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 51.8,
+    "selling_price": 67.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU243",
+    "name": "SUCTION CATHETER FR. 12",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 18.5,
+    "selling_price": 24.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU244",
+    "name": "NASOGASTRIC TUBE FR. 18 LENGTH: 120CM TO 125CM, CALIBRATED",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU245",
+    "name": "PROLENE 3-0 ROUND",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Sutures & Wound Closure",
+    "uom": "piece",
+    "unit_cost": 1160.0,
+    "selling_price": 1508.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU246",
+    "name": "SURGICAL BLADE NO. 10",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 5.25,
+    "selling_price": 7.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU247",
+    "name": "SURGICAL BLADE NO. 12",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 5.25,
+    "selling_price": 7.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU248",
+    "name": "SURGICAL BLADE NO. 15",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Surgical Instruments & Blades",
+    "uom": "piece",
+    "unit_cost": 5.25,
+    "selling_price": 7.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU249",
+    "name": "SUCTION BULB (NASAL ASPIRATION) 30ML",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 38.7,
+    "selling_price": 50.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU250",
+    "name": "ELASTIC BANDAGE, #4\"",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 28.0,
+    "selling_price": 36.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU251",
+    "name": "ELASTIC BANDAGE, #6\"",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU252",
+    "name": "ENDOTRACHEAL TUBE, 2.0 WITH CUFF",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 110.0,
+    "selling_price": 143.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU253",
+    "name": "SYRINGE W/ NEEDLE 10CC, G-23 X 1 \", STERILE, LEUR LOCK, DISPOSABLE, FOR REGULAR USE",
+    "consignor": "QUALIMEDIC MARKETING",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 5.95,
+    "selling_price": 8.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU254",
+    "name": "DIGITAL THERMOMETER",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 84.99,
+    "selling_price": 110.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU255",
+    "name": "FOLEY CATHETER FR. 18",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 33.5,
+    "selling_price": 44.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU256",
+    "name": "GLOVES, EXAMINATION, NON-STERILE, POWDER FREE, LATEX SURGICAL GLOVES, MEDIUM",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 2.4,
+    "selling_price": 3.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU257",
+    "name": "GLOVES, EXAMINATION, NON-STERILE, POWDER FREE, LATEX SURGICAL GLOVES, LARGE",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 2.4,
+    "selling_price": 3.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU258",
+    "name": "IV CANNULA G. 20",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 19.17,
+    "selling_price": 25.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU259",
+    "name": "IV CANNULA G. 24",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 21.56,
+    "selling_price": 25.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU260",
+    "name": "IV CANNULA G. 18",
+    "consignor": "NEGROS MEDICAL TRADING",
+    "category": "IV Therapy & Cannulas",
+    "uom": "piece",
+    "unit_cost": 19.17,
+    "selling_price": 25.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU261",
+    "name": "POLYGLECAPRONE 25 ANTIBACTERIAL SUTURE, SIZE 2-0 ROUND NEEDLE (MONOCRYL 2/0 ROUND)",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 650.0,
+    "selling_price": 845.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU262",
+    "name": "MOUTH GUARD #2, GREEN",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU263",
+    "name": "MOUTH GUARD #2, GREEN",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 30.0,
+    "selling_price": 39.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU264",
+    "name": "MONOFILAMENT ABSORBABLE GLYCONATE SUTURE, SIZE 0, 40MM ROUND NEEDLE",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 630.0,
+    "selling_price": 819.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU265",
+    "name": "PEANUT",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 120.0,
+    "selling_price": 156.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU266",
+    "name": "JACKSON PRATT DRAIN 200ML WITH METAL INTRODUCER",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2493.0,
+    "selling_price": 3241.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU267",
+    "name": "HIGH PRESSURE ANGIOGRAPHIC SYRINGE & ACCESSORIES, 200ML/SET",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 1500.0,
+    "selling_price": 1950.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU268",
+    "name": "BLOOD TRANSFUSION SET W/ NEEDLE 18G X 1.5\"",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Syringes & Needles",
+    "uom": "piece",
+    "unit_cost": 105.0,
+    "selling_price": 137.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU269",
+    "name": "INTERNAL JUGULAR VEIN CATHETER, F12, DOUBLE LUMEN CATHETER SEMI-CURVED, WITH 2 SIZES DILATOR",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 4899.95,
+    "selling_price": 6370.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU270",
+    "name": "PIGTAIL CHEST CATHETER SET",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 4485.0,
+    "selling_price": 5830.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU271",
+    "name": "URINE COLLECTOR (WEE BAG)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hospital Patient Care & Sundries",
+    "uom": "piece",
+    "unit_cost": 14.0,
+    "selling_price": 18.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU272",
+    "name": "HEMODIALYSIS ACID CONCENTRATE (AC11), 5 LITERS/ GAL",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Hemodialysis Consumables",
+    "uom": "piece",
+    "unit_cost": 520.0,
+    "selling_price": 780.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU273",
+    "name": "DIALYZER, (SYNTHETIC HOLLOW FIBER) HIGH FLUX WITH EFFECTIVE SURFACE AREA OF MORE THAN 1.4 M2 AND MAX TMP OF 500MMHG",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Hemodialysis Consumables",
+    "uom": "piece",
+    "unit_cost": 900.0,
+    "selling_price": 1950.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU274",
+    "name": "MOUTH GUARD #2, GREEN",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 32.0,
+    "selling_price": 42.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU275",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 7.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 31.0,
+    "selling_price": 40.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU276",
+    "name": "RELOADS STAPLER WIRE 4.8MM FOR LINEAR CUTTER APPLIER 80MM",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 6083.0,
+    "selling_price": 7908.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU277",
+    "name": "RELOADS STAPLER WIRE 4.8MM FOR LINEAR CUTTER APPLIER 60MM",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 6083.0,
+    "selling_price": 7908.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU278",
+    "name": "RELOADS STAPLER WIRE 4.8MM FOR LINEAR CUTTER APPLIER 45MM",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 13000.0,
+    "selling_price": 16900.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU279",
+    "name": "CIRCULAR STAPLER 25MM 3 ROWS",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 16300.0,
+    "selling_price": 21190.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU280",
+    "name": "CIRCULAR STAPLER 29MM 3 ROWS",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 16300.0,
+    "selling_price": 21190.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU281",
+    "name": "CIRCULAR STAPLER 32MM ROWS",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 16300.0,
+    "selling_price": 21190.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU282",
+    "name": "3-WAY FOLEY CATHETER FR. 18",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 180.0,
+    "selling_price": 234.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU283",
+    "name": "3-WAY FOLEY CATHETER FR. 20",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 180.0,
+    "selling_price": 234.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU284",
+    "name": "3-WAY FOLEY CATHETER FR. 22",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Catheters & Tubes",
+    "uom": "piece",
+    "unit_cost": 180.0,
+    "selling_price": 234.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU285",
+    "name": "ARMORED ENDOTRACHEAL TUBE #6.5",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 250.0,
+    "selling_price": 325.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU286",
+    "name": "ARMORED ENDOTRACHEAL TUBE #7.0",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 250.0,
+    "selling_price": 325.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU287",
+    "name": "ARMORED ENDOTRACHEAL TUBE #7.5",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 250.0,
+    "selling_price": 325.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU288",
+    "name": "ARMORED ENDOTRACHEAL TUBE #8.0",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Endotracheal & Respiratory Tubes",
+    "uom": "piece",
+    "unit_cost": 250.0,
+    "selling_price": 325.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU289",
+    "name": "PLASTER TAPE SIZE 2.5CMX5M, 2 INCHES (LEUKOPLAST )",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 270.0,
+    "selling_price": 405.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU290",
+    "name": "PLASTER TAPE SIZE 5CMX5M, 4 INCHES (LEUKOPLAST )",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 490.0,
+    "selling_price": 735.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU291",
+    "name": "PATIENT IDENTIFICATION BRACELET, PEDIA (BLUE)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.0,
+    "selling_price": 5.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU292",
+    "name": "PATIENT IDENTIFICATION BRACELET, PEDIA (PINK)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.5,
+    "selling_price": 6.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU293",
+    "name": "PLASTER TAPE SIZE 1X1, MADE BY RAYON FIBERS, SKIN COLORED THAT HAS A HIGH QUALITY VISCOSE BACKING WHICH HAS A WATER REPELLANT SURFACE, COATED WITH ZINC CAOUTCHOUC RASIN ADHESIVE",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 108.0,
+    "selling_price": 140.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU294",
+    "name": "UMBILICAL CORD CLAMP",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 3.25,
+    "selling_price": 4.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU295",
+    "name": "SUCTION BULB (NASAL ASPIRATION) 30ML",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 100.0,
+    "selling_price": 130.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU296",
+    "name": "FOLDABLE, ASPHERIC, POSTERIOR CHAMBLE IOL WITH INJECTOR, OPTIC SIZE 6MM OVERALL, 12.5MM",
+    "consignor": "AGUA VISIONS TRADING",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 2350.0,
+    "selling_price": 3055.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU297",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 7.0",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 31.0,
+    "selling_price": 40.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU298",
+    "name": "SURGICAL GLOVES, STERILE, SIZE 6.5",
+    "consignor": "BEROVAN MARKETING INC.",
+    "category": "Surgical & Examination Gloves",
+    "uom": "pair",
+    "unit_cost": 31.0,
+    "selling_price": 40.0,
+    "minimum_stock_level": 50
+  },
+  {
+    "item_code": "HECSM-RMH-CU299",
+    "name": "ELASTIC BANDAGE WITH VELCRO, #3",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "Bandages & Dressings",
+    "uom": "roll",
+    "unit_cost": 40.0,
+    "selling_price": 52.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU300",
+    "name": "HEMODIALYSIS BICARBONATE POWDER CONCENTRATE 8.4%, 840G/ PACK",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "Hemodialysis Consumables",
+    "uom": "piece",
+    "unit_cost": 370.0,
+    "selling_price": 555.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU301",
+    "name": "ISOPROPANOL AND BENZALKONIUM CHLORIDE, 50ML (CUTASEPT)",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 1020.0,
+    "selling_price": 1326.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU302",
+    "name": "WADDING SHEET 6X5Y",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 88.0,
+    "selling_price": 115.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU303",
+    "name": "TRYPAN BLUE 0.08% IN 1ML",
+    "consignor": "AGUA VISIONS TRADING",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 400.0,
+    "selling_price": 520.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU304",
+    "name": "CIRCULAR STAPLER 31MM ROWS",
+    "consignor": "JOSMEF ENTERPRISES",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 16300.0,
+    "selling_price": 21190.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU305",
+    "name": "PATIENT IDENTIFICATION BRACELET, PEDIA (BLUE)",
+    "consignor": "TANN PHARMA AND MEDICAL SUPPLIES DISTRIBUTION",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 4.55,
+    "selling_price": 6.0,
+    "minimum_stock_level": 10
+  },
+  {
+    "item_code": "HECSM-RMH-CU306",
+    "name": "WADDING SHEET 4X5Y",
+    "consignor": "MHJ MEDICAL AND LABORATORY SUPPLY",
+    "category": "General Medical Supplies",
+    "uom": "piece",
+    "unit_cost": 70.0,
+    "selling_price": 91.0,
+    "minimum_stock_level": 10
+  }
+]
