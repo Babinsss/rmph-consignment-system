@@ -89,4 +89,28 @@ class UserExperienceAndBrandingTest extends TestCase
             ->assertSee('CSR Ward Staff')
             ->assertSee('Browse Catalog');
     }
+
+    public function test_design_system_page_renders_tokens_and_badges_for_admin(): void
+    {
+        $admin = User::where('email', 'admin@rmph.local')->first();
+        $this->actingAs($admin);
+
+        $response = $this->get('/admin/design-system');
+        $response->assertStatus(200);
+        $response->assertSee('HECS Design System');
+        $response->assertSee('Teal 700 (#0F766E)');
+        $response->assertSee('Unified Badge System');
+        $response->assertSee('Pending');
+        $response->assertSee('Fulfilled');
+        $response->assertSee('Partly Fulfilled');
+        $response->assertSee('Rejected');
+        $response->assertSee('8px Spacing Grid');
+        $response->assertSee('48px Minimum Tap Targets');
+    }
+
+    public function test_design_system_page_is_restricted_from_unauthorized_guests(): void
+    {
+        $response = $this->get('/admin/design-system');
+        $response->assertRedirect('/admin/login');
+    }
 }

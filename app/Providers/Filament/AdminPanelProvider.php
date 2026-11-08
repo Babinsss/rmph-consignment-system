@@ -17,6 +17,7 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -42,9 +43,19 @@ class AdminPanelProvider extends PanelProvider
                 PanelsRenderHook::FOOTER,
                 fn () => view('filament.footer'),
             )
+            ->renderHook(
+                PanelsRenderHook::HEAD_END,
+                fn () => new HtmlString('<link rel="stylesheet" href="'.asset('css/filament/hospital-theme.css').'?v=1.0">'),
+            )
             ->darkMode(false)
+            ->font('Inter')
             ->colors([
                 'primary' => Color::Teal,
+                'gray' => Color::Slate,
+                'danger' => Color::Red,
+                'warning' => Color::Amber,
+                'success' => Color::Emerald,
+                'info' => Color::Sky,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

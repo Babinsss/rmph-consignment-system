@@ -155,3 +155,9 @@ A focused internal inventory system to record consigned Medical Supplies and Dru
   - **Delivery Receiving Overhaul:** Added live reactive summary totals (Total Batches, Total Units, and Total Delivery Value for authorized staff only) with collapsible batch rows and a mandatory confirmation modal before saving.
   - **Color-Blind Accessible Badges (Dual-Coded):** Standardized distinct icons + text labels + high-contrast colors across Request Statuses (Pending, Fulfilled, Partly Fulfilled, Rejected), Expiry warnings (Expired, Expiring Soon < 90d, OK > 90d), Stock Levels (Below Min, Stock OK), and Stock Movement Card flows.
   - **Plain Language & Friendly Empty States:** Added humanized validation error messages and clear empty state cards guiding users on what to do next. Unit costs remain strictly invisible to ward staff.
+- [x] **Stage 1: Design System & Design Tokens** *(Completed & Tested - 64 tests passing, 200 assertions)*
+  - **Design Tokens Created:** Primary Teal 700 (`#0F766E`), semantic soft palettes (Red 50/700, Amber 50/700, Green 50/700, Sky 50/700), Slate neutrals (50–950), Inter font family, 8px spatial grid, 8–12px border radius, and 48px minimum touch targets on ward screens.
+  - **Custom Theme Stylesheet:** Created `public/css/filament/hospital-theme.css` and injected into both panels via `PanelsRenderHook::HEAD_END`.
+  - **Unified Dual-Coded Badges (Real SVG Icons, Zero Emoji):** Standardized badges across request status, expiry, stock levels, and priority using real SVG Heroicons with soft backgrounds and high-contrast text. Removed all emojis from the codebase.
+  - **Design System Showcase Page:** Created live interactive token showcase at `http://rmph-consignment-system.test/admin/design-system` (`App\Filament\Pages\DesignSystem`).
+  - **Automated Test Coverage:** Added automated test cases in `UserExperienceAndBrandingTest.php` ensuring design system page availability and authorization rules. All 64 tests passing.

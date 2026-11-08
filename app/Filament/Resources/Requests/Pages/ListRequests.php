@@ -25,7 +25,8 @@ class ListRequests extends ListRecords
             'all' => Tab::make('All Requisitions')
                 ->badge(Request::count()),
 
-            'urgent' => Tab::make('🚨 Urgent (STAT)')
+            'urgent' => Tab::make('Urgent (STAT)')
+                ->icon('heroicon-m-bolt')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('is_urgent', true))
                 ->badge($pendingUrgentCount > 0 ? (string) $pendingUrgentCount : null)
                 ->badgeColor('danger'),
