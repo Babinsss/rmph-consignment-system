@@ -161,3 +161,16 @@ A focused internal inventory system to record consigned Medical Supplies and Dru
   - **Unified Dual-Coded Badges (Real SVG Icons, Zero Emoji):** Standardized badges across request status, expiry, stock levels, and priority using real SVG Heroicons with soft backgrounds and high-contrast text. Removed all emojis from the codebase.
   - **Design System Showcase Page:** Created live interactive token showcase at `http://rmph-consignment-system.test/admin/design-system` (`App\Filament\Pages\DesignSystem`).
   - **Automated Test Coverage:** Added automated test cases in `UserExperienceAndBrandingTest.php` ensuring design system page availability and authorization rules. All 64 tests passing.
+- [x] **Stage 2: Ward Portal UX & Two-Pane Request Builder** *(Completed & Tested - 69 tests passing, 240 assertions)*
+  - **Persistent Bottom Navigation:** Created `resources/views/filament/portal/bottom-nav.blade.php` with 4 large touch targets (`Home`, `Catalog`, `Requests`, and prominent red `STAT`) with `min-h-[48px]`, active route states, and spacing pad (`h-20`) to prevent any content overlap.
+  - **Streamlined Ward Dashboard:** Refactored `UnitInfoWidget.php` and `unit-info-widget.blade.php` to display strictly:
+    1. Unit Context & Schedule Banner (live status from `RequestWindowService`).
+    2. Two primary action cards: "New Requisition" (Teal) and full-width "STAT Emergency Request" (Red).
+    3. Last 5 Requisitions table with dual-coded badges and friendly empty state.
+  - **Two-Pane Request Builder on Tablet/Desktop:** Built `CreateRequest.php` and `create-request.blade.php`:
+    - *Left Pane:* Live searchable catalog with category filter pills (All Items, Medical Supplies, Drugs and Medicines), item cards with stock on hand, and 48px `+ Add to Request Slip` / in-cart stepper controls.
+    - *Right Pane:* Sticky requisition slip (cart) with large 48px `+` and `−` steppers, remove button, delivery remarks/notes input, live totals (Distinct Items, Total Units), and primary submit button.
+    - *Full-Width Red STAT Card:* Activates on urgent requests with 5 preset clinical reason chips (`Acute Trauma Emergency`, `Critical Low Stock in Ward`, `STAT Bedside Procedure`, `Unexpected Surgical Complication`, `ICU/HDU Rapid Response`), free text clinical justification (min 10 chars), and patient privacy notice.
+    - *Confirmation Modal Screen:* Review dialog before dispatching order to depot, summarizing priority, clinical reason, all items/quantities, and total units.
+    - *Unit Cost Security:* Verified unit cost remains strictly hidden from all ward views, tables, inputs, and summaries.
+  - **Automated Test Coverage:** Added automated test cases in `RequisitionPortalTest.php` and `UserExperienceAndBrandingTest.php` verifying the two-pane view, bottom navigation, Livewire interactions, STAT reason chips, and unit cost invisibility. All 69 tests passing with 240 assertions.

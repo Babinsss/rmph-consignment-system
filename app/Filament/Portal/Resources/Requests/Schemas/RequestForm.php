@@ -10,7 +10,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Get;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\HtmlString;
@@ -67,8 +66,8 @@ class RequestForm
                             ->helperText('State clinical and departmental urgency only. Personal patient identifiers are strictly forbidden.')
                             ->minLength(10)
                             ->rows(3)
-                            ->visible(fn (Get $get) => (bool) $get('is_urgent'))
-                            ->required(fn (Get $get) => (bool) $get('is_urgent'))
+                            ->visible(fn ($get) => (bool) $get('is_urgent'))
+                            ->required(fn ($get) => (bool) $get('is_urgent'))
                             ->validationMessages([
                                 'required' => 'Please provide a clinical justification for this STAT emergency requisition.',
                                 'min' => 'Please enter at least 10 characters explaining the clinical justification.',

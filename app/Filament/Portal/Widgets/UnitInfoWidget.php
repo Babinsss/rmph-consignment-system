@@ -25,6 +25,12 @@ class UnitInfoWidget extends Widget
         $isWindowOpen = $windowService->isRegularWindowOpen($now);
         $scheduleSummary = $windowService->getScheduleSummary();
 
+        $recentRequests = Request::with('lines.item')
+            ->where('unit_id', $user?->unit_id)
+            ->orderBy('request_date', 'desc')
+            ->limit(5)
+            ->get();
+
         return [
             'userName' => $user?->name ?? 'Staff',
             'unitName' => $user?->unit?->name ?? 'Hospital Unit',
@@ -35,6 +41,7 @@ class UnitInfoWidget extends Widget
             'totalItemsCount' => Item::where('is_active', true)->count(),
             'pendingRequestsCount' => Request::where('unit_id', $user?->unit_id)->where('status', RequestStatus::Pending)->count(),
             'totalRequestsCount' => Request::where('unit_id', $user?->unit_id)->count(),
+            'recentRequests' => $recentRequests,
         ];
     }
 }

@@ -43,6 +43,10 @@ class PortalPanelProvider extends PanelProvider
                 fn () => view('filament.footer'),
             )
             ->renderHook(
+                PanelsRenderHook::BODY_END,
+                fn () => view('filament.portal.bottom-nav'),
+            )
+            ->renderHook(
                 PanelsRenderHook::HEAD_END,
                 fn () => new HtmlString('<link rel="stylesheet" href="'.asset('css/filament/hospital-theme.css').'?v=1.0">'),
             )

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Enums\ItemCategory;
 use App\Enums\RequestStatus;
+use App\Filament\Portal\Resources\Requests\Pages\CreateRequest;
 use App\Models\Consignor;
 use App\Models\Item;
 use App\Models\Request;
@@ -16,6 +17,7 @@ use Database\Seeders\UnitSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class RequisitionPortalTest extends TestCase
@@ -240,5 +242,97 @@ class RequisitionPortalTest extends TestCase
 
         $this->assertEquals(RequestStatus::Rejected, $request->fresh()->status);
         $this->assertEquals('Item currently out of stock from distributor.', $request->fresh()->rejection_reason);
+    }
+
+    public function test_ward_staff_can_view_two_pane_create_request_page(): void
+    {
+        $this->actingAs($this->csrStaff);
+
+        $response = $this->get('/portal/requests/create');
+        $response->assertStatus(200);
+        $response->assertSee('New Ward Requisition Slip');
+        $response->assertSee('Requisition Slip');
+        $response->assertSee('Sterile Syringe 3ml');
+        $response->assertSee('Filter:');
+        $response->assertSee('All Consigned Items');
+        $response->assertSee('Medical Supplies');
+        $response->assertSee('Drugs and Medicines');
+
+        // Verify strictly that NO unit cost or financial leak occurs
+        $response->assertDontSee('Unit Cost');
+        $response->assertDontSee('unit_cost');
+        $response->assertDontSee('Total Value');
+        $response->assertDontSee('₱');
+    }
+
+    public function test_ward_staff_can_view_stat_emergency_page_with_preset_chips(): void
+    {
+        $this->actingAs($this->hduStaff);
+
+        $response = $this->get('/portal/requests/create?urgent=1');
+        $response->assertStatus(200);
+        $response->assertSee('STAT Emergency Requisition Slip');
+        $response->assertSee('STAT Emergency Protocol Active');
+        $response->assertSee('Acute Trauma Emergency');
+        $response->assertSee('Critical Low Stock in Ward');
+        $response->assertSee('STAT Bedside Procedure');
+        $response->assertSee('Unexpected Surgical Complication');
+        $response->assertSee('ICU/HDU Rapid Response');
+        $response->assertSee('Privacy Notice:');
+    }
+
+    public function test_ward_staff_can_interact_with_two_pane_request_builder_and_submit(): void
+    {
+        Carbon::setTestNow(Carbon::create(2026, 11, 11, 10, 0, 0, 'Asia/Manila'));
+        $this->actingAs($this->csrStaff);
+
+        Livewire::test(CreateRequest::class)
+            ->call('addToCart', $this->item->id)
+            ->assertSet('cart.'.$this->item->id, 1)
+            ->call('incrementQuantity', $this->item->id)
+            ->assertSet('cart.'.$this->item->id, 2)
+            ->call('openConfirm')
+            ->assertSet('showConfirmModal', true)
+            ->call('submitRequisition')
+            ->assertRedirect(url('/portal/requests'));
+
+        $this->assertDatabaseHas('requests', [
+            'unit_id' => $this->csrUnit->id,
+            'is_urgent' => false,
+            'status' => RequestStatus::Pending,
+        ]);
+
+        $this->assertDatabaseHas('request_lines', [
+            'item_id' => $this->item->id,
+            'quantity_requested' => 2,
+        ]);
+
+        Carbon::setTestNow();
+    }
+
+    public function test_ward_staff_can_submit_stat_requisition_with_preset_reason(): void
+    {
+        Carbon::setTestNow(Carbon::create(2026, 11, 14, 23, 0, 0, 'Asia/Manila'));
+        $this->actingAs($this->hduStaff);
+
+        Livewire::withQueryParams(['urgent' => 1])
+            ->test(CreateRequest::class)
+            ->assertSet('is_urgent', true)
+            ->call('addToCart', $this->item->id)
+            ->call('selectPresetReason', 'Acute Trauma Emergency')
+            ->set('urgent_reason', 'Acute Trauma Emergency: Severe haemorrhage in trauma bay.')
+            ->call('openConfirm')
+            ->assertSet('showConfirmModal', true)
+            ->call('submitRequisition')
+            ->assertRedirect(url('/portal/requests'));
+
+        $this->assertDatabaseHas('requests', [
+            'unit_id' => $this->hduUnit->id,
+            'is_urgent' => true,
+            'urgent_reason' => 'Acute Trauma Emergency: Severe haemorrhage in trauma bay.',
+            'status' => RequestStatus::Pending,
+        ]);
+
+        Carbon::setTestNow();
     }
 }

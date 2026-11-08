@@ -113,4 +113,19 @@ class UserExperienceAndBrandingTest extends TestCase
         $response = $this->get('/admin/design-system');
         $response->assertRedirect('/admin/login');
     }
+
+    public function test_ward_portal_renders_bottom_navigation_bar_with_48px_targets(): void
+    {
+        $csrStaff = User::where('email', 'csr@rmph.local')->first();
+        $this->actingAs($csrStaff);
+
+        $response = $this->get('/portal');
+        $response->assertStatus(200);
+        $response->assertSee('aria-label="Ward Navigation"', false);
+        $response->assertSee('Home');
+        $response->assertSee('Catalog');
+        $response->assertSee('Requests');
+        $response->assertSee('STAT');
+        $response->assertSee('min-h-[48px]', false);
+    }
 }
