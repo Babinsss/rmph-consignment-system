@@ -1,0 +1,131 @@
+<?php
+
+namespace App\Filament\Portal\Resources\Requests\Schemas;
+
+use App\Models\Item;
+use App\Services\RequestWindowService;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Get;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
+use Illuminate\Support\HtmlString;
+
+class RequestForm
+{
+    public static function configure(Schema $schema): Schema
+    {
+        $windowService = app(RequestWindowService::class);
+        $isWindowOpen = $windowService->isRegularWindowOpen();
+        $scheduleSummary = $windowService->getScheduleSummary();
+
+        return $schema
+            ->components([
+                Section::make('Requisition Header')
+                    ->description('Supply request from your hospital unit to Central Storage Depot.')
+                    ->columns(2)
+                    ->components([
+                        Placeholder::make('window_status_banner')
+                            ->columnSpanFull()
+                            ->content(new HtmlString(
+                                $isWindowOpen
+                                    ? '<div class="p-3.5 rounded-xl bg-teal-50 border border-teal-200 text-teal-900 text-xs font-medium flex items-center gap-2.5">'
+                                      .'<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-teal-700 text-white uppercase shrink-0">Schedule Open</span>'
+                                      .'<span>Regular Requisition Window is <strong>OPEN</strong> ('.$scheduleSummary.'). Normal requests will be fulfilled during central depot operating hours.</span>'
+                                      .'</div>'
+                                    : '<div class="p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-xs font-medium flex items-center gap-2.5">'
+                                      .'<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-600 text-white uppercase shrink-0">Window Closed</span>'
+                                      .'<span>Regular Window is <strong>CLOSED</strong>. For emergency clinical needs, switch on <strong>Urgent (STAT) Emergency Requisition</strong> below (accepted 24/7).</span>'
+                                      .'</div>'
+                            )),
+
+                        Placeholder::make('unit_display')
+                            ->label('Requesting Clinical Unit')
+                            ->content(fn () => auth()->user()?->unit?->name ?? 'Hospital Unit'),
+
+                        Placeholder::make('requester_display')
+                            ->label('Requesting Staff Member')
+                            ->content(fn () => auth()->user()?->name ?? 'Staff'),
+
+                        Toggle::make('is_urgent')
+                            ->label('Urgent (STAT) Emergency Requisition')
+                            ->live()
+                            ->default(! $isWindowOpen)
+                            ->onIcon('heroicon-m-bolt')
+                            ->offIcon('heroicon-m-calendar')
+                            ->onColor('danger')
+                            ->helperText('Enable for immediate critical emergency ward needs. Accepted 24/7 and flagged to central stock custodians with highest priority.')
+                            ->columnSpanFull(),
+
+                        Textarea::make('urgent_reason')
+                            ->label('Mandatory Clinical Justification (for Urgent STAT)')
+                            ->placeholder('Describe the clinical emergency (e.g. STAT procedure in HDU, acute trauma care, sudden post-op complication). Strict hospital privacy rule: Do NOT enter patient names, bed numbers, or MRNs.')
+                            ->helperText('State clinical and departmental urgency only. Personal patient identifiers are strictly forbidden.')
+                            ->minLength(10)
+                            ->rows(3)
+                            ->visible(fn (Get $get) => (bool) $get('is_urgent'))
+                            ->required(fn (Get $get) => (bool) $get('is_urgent'))
+                            ->validationMessages([
+                                'required' => 'Please provide a clinical justification for this STAT emergency requisition.',
+                                'min' => 'Please enter at least 10 characters explaining the clinical justification.',
+                            ])
+                            ->columnSpanFull(),
+
+                        Textarea::make('notes')
+                            ->label('Ward Notes / Delivery Remarks (Optional)')
+                            ->placeholder('Any special instructions for the central storage custodian regarding this order...')
+                            ->rows(2)
+                            ->columnSpanFull(),
+                    ]),
+
+                Section::make('Requested Consigned Items')
+                    ->description('Select the medical supplies or medicines needed and quantity.')
+                    ->components([
+                        Repeater::make('lines')
+                            ->label('Requisition Item Lines')
+                            ->relationship('lines')
+                            ->schema([
+                                Select::make('item_id')
+                                    ->label('Consigned Item')
+                                    ->relationship('item', 'description')
+                                    ->getOptionLabelFromRecordUsing(fn (Item $record) => "[{$record->code}] {$record->description} ({$record->unit_of_measure}) • Depot Stock: {$record->current_stock}")
+                                    ->searchable()
+                                    ->preload()
+                                    ->required()
+                                    ->validationMessages([
+                                        'required' => 'Please select an item from the catalog.',
+                                    ])
+                                    ->columnSpan([
+                                        'default' => 12,
+                                        'md' => 8,
+                                    ]),
+
+                                TextInput::make('quantity_requested')
+                                    ->label('Quantity Needed')
+                                    ->numeric()
+                                    ->minValue(1)
+                                    ->required()
+                                    ->placeholder('Qty')
+                                    ->validationMessages([
+                                        'required' => 'Please enter a quantity.',
+                                        'min' => 'Requested quantity must be at least 1.',
+                                    ])
+                                    ->columnSpan([
+                                        'default' => 12,
+                                        'md' => 4,
+                                    ]),
+                            ])
+                            ->columns(12)
+                            ->defaultItems(1)
+                            ->minItems(1)
+                            ->addActionLabel('+ Add Another Consigned Item')
+                            ->itemLabel(fn (array $state): ?string => isset($state['item_id']) ? Item::find($state['item_id'])?->description : 'New Item Line')
+                            ->collapsible(),
+                    ]),
+            ]);
+    }
+}
