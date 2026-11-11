@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\ItemCategory;
+use App\Filament\Resources\Deliveries\Pages\CreateDelivery;
 use App\Models\Batch;
 use App\Models\Consignor;
 use App\Models\Delivery;
@@ -15,6 +16,7 @@ use Database\Seeders\RoleAndPermissionSeeder;
 use Database\Seeders\UnitSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class DeliveriesAndBatchesTest extends TestCase
@@ -224,5 +226,14 @@ class DeliveriesAndBatchesTest extends TestCase
         $this->assertTrue($this->custodian->canViewUnitCosts());
         $this->assertTrue($this->viewer->canViewUnitCosts());
         $this->assertFalse($this->csrStaff->canViewUnitCosts());
+    }
+
+    public function test_delivery_create_form_renders_cleanly_without_type_error(): void
+    {
+        $this->actingAs($this->custodian);
+
+        Livewire::test(CreateDelivery::class)
+            ->assertSuccessful()
+            ->assertSee('Live Delivery Totals');
     }
 }
