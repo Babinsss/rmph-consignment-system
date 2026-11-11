@@ -189,3 +189,26 @@ A focused internal inventory system to record consigned Medical Supplies and Dru
   - **Local-Only Demo Account Selector:** Implemented collapsed `<details>` dropdown ("Use a demo account") active only when `APP_ENV=local`. Auto-populates selected account email without ever printing passwords on the page. Completely omitted in `production`.
   - **Helpline Footer:** Added clean single-line footer via `PanelsRenderHook::FOOTER` (`Roxas Memorial Provincial Hospital • IT Helpdesk: Ext. 104`).
   - **Accessibility & Test Coverage:** All controls meet WCAG 2.2 AA (>= 4.5:1 contrast, 48px touch targets, full keyboard focus, password manager compatibility). Added automated tests covering branding, error messages, and local vs production demo display. 72 tests passing.
+- [x] **Stage 4: Ward Portal Unified Theme, Rebuilt Bottom Nav & Dashboard (/portal)** *(Completed & Tested - 75 tests passing, 259 assertions)*
+  - **Shared Vite Theme:** Consolidated into `resources/css/filament/theme.css` shared by both panels (`/admin` and `/portal`) via `->viteTheme('resources/css/filament/theme.css')`. Solved unstyled classes across portal dashboard, requests, items, and login.
+  - **Ward Portal Login (/portal/login):**
+    - Created `App\Filament\Portal\Auth\Login` extending `Filament\Auth\Pages\Login`.
+    - 56px hospital logo, heading *"Roxas Memorial Provincial Hospital"*, subtitle *"Ward Requisition Portal"*, and helper text *"For CSR, HDU, Dialysis, Pharmacy and Yakap staff"*.
+    - Centered 420px card, soft teal background, extra-large 52px tap targets for tablet/gloved bedside use.
+    - Full-width 52px Teal 700 "Sign in" button, no "Remember me", plain error: *"The email or password is not correct."*
+    - Secondary button: *"Central Operations staff? Open the Operations login"*.
+    - Collapsed "Use a demo account" select active only when `APP_ENV=local`. Zero passwords printed.
+    - Confidentiality preserved: strictly zero unit cost or pricing data anywhere on the page.
+  - **Rebuilt Bottom Navigation:**
+    - Fixed to bottom of screen on mobile and tablet (`fixed bottom-0 left-0 right-0 z-40 lg:hidden`).
+    - 4 large equal targets (Home, Catalog, Requests, STAT) with icon above label, minimum 56px touch height.
+    - Active item highlighted in Teal 700; STAT emergency button in red.
+    - Hidden on desktop (`lg:hidden`). Added 24-unit spacing pad (`h-24 lg:hidden`) so content is never obscured.
+  - **Rebuilt Ward Dashboard:**
+    - Tidy date format (`Wed, 11 Nov 2026`) and removed stray "CSR" prefix.
+    - Clean greeting card with unit name, user name, and schedule status badge (Open / Closed).
+    - Two large action cards side-by-side: "New Requisition" (Teal) and "STAT Emergency Request" (Red).
+    - "Last 5 requisitions" table with spaced columns and dual-coded status badges (word + icon + soft color).
+  - **Requests & Items Full Width:** Configured `getMaxContentWidth()` returning `Width::Full` in `ListRequests.php` and `ListItems.php`, resolving table container width.
+  - **Centered Helpline Footer:** Added generous spacing above footer, preventing overlap with bottom nav.
+  - **Automated Test Coverage:** Added unit and feature tests covering portal login branding, 52px targets, local vs production demo display, and validation failure. All 75 tests passing with 259 assertions.

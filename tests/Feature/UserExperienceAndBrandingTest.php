@@ -72,16 +72,48 @@ class UserExperienceAndBrandingTest extends TestCase
             ->assertHasErrors(['data.email' => 'The email or password is not correct.']);
     }
 
-    public function test_portal_login_page_renders_ward_portal_branding_and_demo_accounts(): void
+    public function test_portal_login_page_renders_ward_portal_branding(): void
     {
         $response = $this->get('/portal/login');
 
         $response->assertStatus(200);
         $response->assertSee('Roxas Memorial Provincial Hospital');
         $response->assertSee('Ward Requisition Portal');
-        $response->assertSee('Ward Staff Demo Accounts (Click to Fill)');
+        $response->assertSee('For CSR, HDU, Dialysis, Pharmacy and Yakap staff');
+        $response->assertSee('Central Operations staff? Open the Operations login');
+        $response->assertDontSee('Remember me');
+    }
+
+    public function test_portal_login_page_renders_demo_accounts_in_local_environment(): void
+    {
+        $this->app->detectEnvironment(fn () => 'local');
+
+        $response = $this->get('/portal/login');
+
+        $response->assertStatus(200);
+        $response->assertSee('Use a demo account');
         $response->assertSee('csr@rmph.local');
-        $response->assertSee('Open Central Operations');
+        $response->assertDontSee('Key: password');
+    }
+
+    public function test_portal_login_page_hides_demo_accounts_in_production_environment(): void
+    {
+        $this->app->detectEnvironment(fn () => 'production');
+
+        $response = $this->get('/portal/login');
+
+        $response->assertStatus(200);
+        $response->assertDontSee('Use a demo account');
+        $response->assertDontSee('csr@rmph.local');
+    }
+
+    public function test_portal_login_validation_failure_message(): void
+    {
+        Livewire::test(\App\Filament\Portal\Auth\Login::class)
+            ->set('data.email', 'wrong@rmph.local')
+            ->set('data.password', 'incorrect-password')
+            ->call('authenticate')
+            ->assertHasErrors(['data.email' => 'The email or password is not correct.']);
     }
 
     public function test_inventory_stats_overview_widget_mounts_correctly(): void
@@ -146,7 +178,7 @@ class UserExperienceAndBrandingTest extends TestCase
         $response->assertRedirect('/admin/login');
     }
 
-    public function test_ward_portal_renders_bottom_navigation_bar_with_48px_targets(): void
+    public function test_ward_portal_renders_bottom_navigation_bar_with_large_targets(): void
     {
         $csrStaff = User::where('email', 'csr@rmph.local')->first();
         $this->actingAs($csrStaff);
@@ -158,6 +190,6 @@ class UserExperienceAndBrandingTest extends TestCase
         $response->assertSee('Catalog');
         $response->assertSee('Requests');
         $response->assertSee('STAT');
-        $response->assertSee('min-h-[48px]', false);
+        $response->assertSee('min-h-[56px]', false);
     }
 }

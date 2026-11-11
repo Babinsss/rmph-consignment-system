@@ -37,7 +37,7 @@ class UnitInfoWidget extends Widget
             'unitCode' => $user?->unit?->code ?? 'UNIT',
             'isWindowOpen' => $isWindowOpen,
             'scheduleSummary' => $scheduleSummary,
-            'currentTime' => $now->format('l, F j, Y • g:i A'),
+            'currentTime' => $now->format('D, j M Y'),
             'totalItemsCount' => Item::where('is_active', true)->count(),
             'pendingRequestsCount' => Request::where('unit_id', $user?->unit_id)->where('status', RequestStatus::Pending)->count(),
             'totalRequestsCount' => Request::where('unit_id', $user?->unit_id)->count(),

@@ -1,9 +1,9 @@
-@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../vendor/filament/filament/resources/css/theme.css';
 
-@source '../../../../app/Filament/**/*';
-@source '../../../../resources/views/**/*';
+@source '../../../app/Filament/**/*';
+@source '../../../resources/views/**/*';
 
-/* Soft teal-tinted page background & centered container */
+/* Soft teal-tinted page background & centered container for Auth */
 .fi-simple-layout {
     background: radial-gradient(circle at 50% 0%, #f0fdfa 0%, #f8fafc 70%) !important;
     min-height: 100vh;

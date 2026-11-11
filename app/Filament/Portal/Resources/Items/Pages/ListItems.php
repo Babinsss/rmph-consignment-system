@@ -7,11 +7,17 @@ use App\Filament\Portal\Resources\Items\ItemResource;
 use App\Models\Item;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Support\Enums\Width;
 use Illuminate\Database\Eloquent\Builder;
 
 class ListItems extends ListRecords
 {
     protected static string $resource = ItemResource::class;
+
+    public function getMaxContentWidth(): Width|string|null
+    {
+        return Width::Full;
+    }
 
     protected function getHeaderActions(): array
     {

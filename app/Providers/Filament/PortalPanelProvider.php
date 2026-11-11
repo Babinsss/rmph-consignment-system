@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Portal\Auth\Login;
 use App\Filament\Portal\Widgets\UnitInfoWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -17,7 +18,6 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class PortalPanelProvider extends PanelProvider
@@ -27,13 +27,12 @@ class PortalPanelProvider extends PanelProvider
         return $panel
             ->id('portal')
             ->path('portal')
-            ->login()
-            ->brandName('RMPH HECS • Unit Portal')
+            ->viteTheme('resources/css/filament/theme.css')
+            ->login(Login::class)
+            ->brandName('Roxas Memorial Provincial Hospital')
+            ->brandLogo(fn () => view('filament.logo'))
+            ->brandLogoHeight('3.5rem')
             ->sidebarCollapsibleOnDesktop()
-            ->renderHook(
-                PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE,
-                fn () => view('filament.auth.portal-login-header'),
-            )
             ->renderHook(
                 PanelsRenderHook::AUTH_LOGIN_FORM_AFTER,
                 fn () => view('filament.auth.portal-demo-accounts'),
@@ -45,10 +44,6 @@ class PortalPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::BODY_END,
                 fn () => view('filament.portal.bottom-nav'),
-            )
-            ->renderHook(
-                PanelsRenderHook::HEAD_END,
-                fn () => new HtmlString('<link rel="stylesheet" href="'.asset('css/filament/hospital-theme.css').'?v=1.1">'),
             )
             ->darkMode(false)
             ->font('Inter')
