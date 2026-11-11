@@ -3,7 +3,10 @@
 namespace Tests\Feature;
 
 use App\Enums\ItemCategory;
+use App\Filament\Resources\Items\Pages\ListItems;
+use App\Models\Batch;
 use App\Models\Consignor;
+use App\Models\Delivery;
 use App\Models\Item;
 use App\Models\Unit;
 use App\Models\User;
@@ -12,6 +15,7 @@ use Database\Seeders\ItemSeeder;
 use Database\Seeders\RoleAndPermissionSeeder;
 use Database\Seeders\UnitSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class CatalogAndConsignorsTest extends TestCase
@@ -139,5 +143,41 @@ class CatalogAndConsignorsTest extends TestCase
 
         $this->assertDatabaseHas('items', ['code' => 'SUP-001', 'category' => 'supply']);
         $this->assertDatabaseHas('items', ['code' => 'DRG-001', 'category' => 'drug']);
+    }
+
+    public function test_consignor_filter_includes_cross_supplier_delivered_items(): void
+    {
+        $custodian = User::where('email', 'aliana.dula@rmph.local')->first()
+            ?? User::factory()->create()->assignRole('custodian');
+
+        $terumo = Consignor::where('code', 'TERUMO')->first();
+        $berovan = Consignor::where('code', 'BEROVAN')->first();
+
+        $item = Item::where('code', 'SUP-001')->first();
+        $this->assertEquals($terumo->id, $item->consignor_id);
+
+        $delivery = Delivery::create([
+            'consignor_id' => $berovan->id,
+            'dr_number' => 'DR-TEST-CROSS',
+            'delivery_date' => now()->toDateString(),
+            'received_by_id' => $custodian->id,
+        ]);
+
+        Batch::create([
+            'delivery_id' => $delivery->id,
+            'item_id' => $item->id,
+            'lot_number' => 'LOT-CROSS-01',
+            'expiration_date' => now()->addYear()->toDateString(),
+            'quantity_received' => 1500,
+            'quantity_remaining' => 1500,
+            'unit_cost' => 3.50,
+            'is_active' => true,
+        ]);
+
+        $this->actingAs($custodian);
+
+        Livewire::test(ListItems::class)
+            ->filterTable('consignor_id', $berovan->id)
+            ->assertCanSeeTableRecords([$item]);
     }
 }

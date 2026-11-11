@@ -7,12 +7,14 @@ use App\Models\Item;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ItemsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query->with(['consignor', 'batches.delivery.consignor']))
             ->striped()
             ->defaultSort('description', 'asc')
             ->emptyStateHeading('No Consignment Items Available')
@@ -55,7 +57,20 @@ class ItemsTable
                     ->options(ItemCategory::class),
                 SelectFilter::make('consignor_id')
                     ->label('Consignor')
-                    ->relationship('consignor', 'name'),
+                    ->relationship('consignor', 'name')
+                    ->query(function (Builder $query, array $data): Builder {
+                        $consignorId = $data['value'] ?? null;
+                        if (! $consignorId) {
+                            return $query;
+                        }
+
+                        return $query->where(function (Builder $q) use ($consignorId) {
+                            $q->where('consignor_id', $consignorId)
+                                ->orWhereHas('batches.delivery', function (Builder $dq) use ($consignorId) {
+                                    $dq->where('consignor_id', $consignorId);
+                                });
+                        });
+                    }),
             ])
             ->recordActions([])
             ->toolbarActions([]);

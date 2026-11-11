@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Deliveries\Schemas;
 
+use App\Models\Consignor;
 use App\Models\Item;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
@@ -13,6 +14,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
+use Illuminate\Support\HtmlString;
 
 class DeliveryForm
 {
@@ -47,6 +49,7 @@ class DeliveryForm
                             ->relationship('consignor', 'name')
                             ->searchable()
                             ->preload()
+                            ->live()
                             ->required()
                             ->validationMessages([
                                 'required' => 'Please select the accredited supplier.',
@@ -122,10 +125,66 @@ class DeliveryForm
                             ->schema([
                                 Select::make('item_id')
                                     ->label('Consigned Item')
-                                    ->relationship('item', 'description')
-                                    ->getOptionLabelFromRecordUsing(fn (Item $record) => "[{$record->code}] {$record->description} ({$record->unit_of_measure})")
                                     ->searchable()
                                     ->preload()
+                                    ->live()
+                                    ->options(function (Get $get): array {
+                                        $selectedConsignorId = $get('/consignor_id') ?? $get('../../consignor_id');
+                                        $selectedConsignor = $selectedConsignorId ? Consignor::find($selectedConsignorId) : null;
+
+                                        $supplierItems = [];
+                                        $otherItems = [];
+
+                                        $allItems = Item::with('consignor')->where('is_active', true)->orderBy('description')->get();
+
+                                        foreach ($allItems as $item) {
+                                            $label = "[{$item->code}] {$item->description} ({$item->unit_of_measure})";
+                                            if ($selectedConsignorId && (string) $item->consignor_id === (string) $selectedConsignorId) {
+                                                $supplierItems[$item->id] = $label;
+                                            } else {
+                                                $consignorTag = $item->consignor ? " — {$item->consignor->name}" : '';
+                                                $otherItems[$item->id] = "{$label}{$consignorTag}";
+                                            }
+                                        }
+
+                                        if ($selectedConsignorId && ! empty($supplierItems)) {
+                                            $supplierName = $selectedConsignor ? $selectedConsignor->name : 'Selected Supplier';
+
+                                            return [
+                                                "Accredited to {$supplierName}" => $supplierItems,
+                                                'Other Hospital Catalog Items' => $otherItems,
+                                            ];
+                                        }
+
+                                        return $supplierItems + $otherItems;
+                                    })
+                                    ->helperText(function (Get $get): ?HtmlString {
+                                        $itemId = $get('item_id');
+                                        $consignorId = $get('/consignor_id') ?? $get('../../consignor_id');
+
+                                        if (! $itemId || ! $consignorId) {
+                                            return null;
+                                        }
+
+                                        $item = Item::with('consignor')->find($itemId);
+                                        if (! $item) {
+                                            return null;
+                                        }
+
+                                        if ((string) $item->consignor_id !== (string) $consignorId) {
+                                            $catalogSupplier = $item->consignor?->name ?? 'another supplier';
+                                            $drSupplier = Consignor::find($consignorId)?->name ?? 'this delivery';
+
+                                            return new HtmlString(
+                                                '<span class="inline-flex items-center gap-1.5 text-xs text-amber-800 font-medium bg-amber-50 px-2 py-1 rounded border border-amber-200 mt-1">'
+                                                .'<svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg>'
+                                                ."<span><strong>Cross-Supplier Delivery:</strong> Catalog primary supplier is <u>{$catalogSupplier}</u>. Receiving this DR will record a new batch under <u>{$drSupplier}</u>.</span>"
+                                                .'</span>'
+                                            );
+                                        }
+
+                                        return null;
+                                    })
                                     ->required()
                                     ->validationMessages([
                                         'required' => 'Please select the delivered item.',

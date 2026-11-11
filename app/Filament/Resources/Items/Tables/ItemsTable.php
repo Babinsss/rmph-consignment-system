@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Items\Tables;
 
 use App\Enums\ItemCategory;
 use App\Models\Item;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -12,12 +13,14 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ItemsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query->with(['consignor', 'batches.delivery.consignor']))
             ->striped()
             ->defaultSort('description', 'asc')
             ->emptyStateHeading('No Consigned Items Found')
@@ -44,7 +47,21 @@ class ItemsTable
                 TextColumn::make('consignor.name')
                     ->label('Consignor (Supplier)')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->description(function (Item $record): ?string {
+                        $otherConsignors = $record->batches
+                            ->where('quantity_remaining', '>', 0)
+                            ->filter(fn ($b) => $b->delivery && $b->delivery->consignor_id !== $record->consignor_id)
+                            ->map(fn ($b) => $b->delivery?->consignor?->name)
+                            ->unique()
+                            ->filter();
+
+                        if ($otherConsignors->isNotEmpty()) {
+                            return 'Also stocked from: '.$otherConsignors->implode(', ');
+                        }
+
+                        return null;
+                    }),
                 TextColumn::make('minimum_level')
                     ->label('Min. Level')
                     ->numeric()
@@ -73,7 +90,20 @@ class ItemsTable
                     ->options(ItemCategory::class),
                 SelectFilter::make('consignor_id')
                     ->label('Consignor')
-                    ->relationship('consignor', 'name'),
+                    ->relationship('consignor', 'name')
+                    ->query(function (Builder $query, array $data): Builder {
+                        $consignorId = $data['value'] ?? null;
+                        if (! $consignorId) {
+                            return $query;
+                        }
+
+                        return $query->where(function (Builder $q) use ($consignorId) {
+                            $q->where('consignor_id', $consignorId)
+                                ->orWhereHas('batches.delivery', function (Builder $dq) use ($consignorId) {
+                                    $dq->where('consignor_id', $consignorId);
+                                });
+                        });
+                    }),
                 TernaryFilter::make('is_active')
                     ->label('Status')
                     ->boolean()
@@ -81,6 +111,15 @@ class ItemsTable
                     ->falseLabel('Inactive Items Only'),
             ])
             ->recordActions([
+                Action::make('view_batches')
+                    ->label('Batches')
+                    ->icon('heroicon-o-archive-box')
+                    ->color('gray')
+                    ->modalHeading(fn (Item $record) => "[{$record->code}] {$record->description} — Depot Batches")
+                    ->modalDescription('Active consignment stock batches currently held in the central depot.')
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Close')
+                    ->modalContent(fn (Item $record) => view('filament.resources.items.modals.stock-batches', ['item' => $record])),
                 EditAction::make(),
             ])
             ->toolbarActions([
