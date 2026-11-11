@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-11T10:22:30.000Z",
+  "title": "Design System: RMPH HECS",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Hospital Alpine Teal",
+        "canonical": "#0f766e",
+        "tonalRamp": ["#042f2e", "#134e4a", "#115e59", "#0f766e", "#0d9488", "#14b8a6", "#2dd4bf", "#f0fdfa"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Pure White Canvas",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#475569", "#94a3b8", "#cbd5e1", "#f8fafc", "#ffffff"]
+      },
+      "danger": {
+        "role": "danger",
+        "displayName": "Clinical Danger Red",
+        "canonical": "#b91c1c",
+        "tonalRamp": ["#450a0a", "#7f1d1d", "#991b1b", "#b91c1c", "#dc2626", "#ef4444", "#fecaca", "#fef2f2"]
+      },
+      "warning": {
+        "role": "warning",
+        "displayName": "Caution Amber",
+        "canonical": "#b45309",
+        "tonalRamp": ["#451a03", "#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fde68a", "#fffbeb"]
+      },
+      "success": {
+        "role": "success",
+        "displayName": "Dispensed Emerald",
+        "canonical": "#15803d",
+        "tonalRamp": ["#052e16", "#14532d", "#166534", "#15803d", "#16a34a", "#22c55e", "#bbf7d0", "#f0fdf4"]
+      },
+      "info": {
+        "role": "info",
+        "displayName": "Hospital Sky",
+        "canonical": "#0369a1",
+        "tonalRamp": ["#082f49", "#0c4a6e", "#075985", "#0369a1", "#0284c7", "#38bdf8", "#bae6fd", "#f0f9ff"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (30px / 700)",
+        "purpose": "Page titles and top-level hospital operational metrics."
+      },
+      "headline": {
+        "displayName": "Headline (24px / 700)",
+        "purpose": "Section headings and panel module titles."
+      },
+      "title": {
+        "displayName": "Title (18px / 600)",
+        "purpose": "Table headers, card headers, and modal window titles."
+      },
+      "body": {
+        "displayName": "Body (14px / 400 & 500)",
+        "purpose": "Item descriptions, batch records, and form input values."
+      },
+      "label": {
+        "displayName": "Label (12px / 600 uppercase)",
+        "purpose": "Status badges, table headers, and batch metadata pills."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-xs",
+        "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        "purpose": "Subtle card and button resting surface definition."
+      },
+      {
+        "name": "shadow-sm",
+        "value": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
+        "purpose": "Hover elevation and active interactive controls."
+      },
+      {
+        "name": "shadow-modal",
+        "value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
+        "purpose": "Floating modal sheets and slide-overs."
+      }
+    ],
+    "motion": [
+      {
+        "name": "transition-standard",
+        "value": "all 0.15s ease-in-out",
+        "purpose": "Default easing for buttons, inputs, and table row hover states."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Ward Touch Action Button",
+      "kind": "button",
+      "refersTo": "button-ward",
+      "description": "48px minimum touch target button for clinical tablets and gloved ward staff.",
+      "html": "<button class=\"ds-btn-ward\"><svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z\" clip-rule=\"evenodd\" /></svg><span>Submit Requisition</span></button>",
+      "css": ".ds-btn-ward { min-height: 48px; min-width: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; background-color: #0f766e; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; border-radius: 12px; border: none; cursor: pointer; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); transition: all 0.15s ease-in-out; } .ds-btn-ward:hover { background-color: #115e59; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1); } .ds-btn-ward:active { transform: scale(0.98); } .ds-btn-ward .ds-icon { width: 20px; height: 20px; }"
+    },
+    {
+      "name": "Standard Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Standard 40px desktop button for custodian operations and modal actions.",
+      "html": "<button class=\"ds-btn-primary\"><span>Save Batch Record</span></button>",
+      "css": ".ds-btn-primary { height: 40px; display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; background-color: #0f766e; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; border-radius: 8px; border: none; cursor: pointer; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); transition: all 0.15s ease-in-out; } .ds-btn-primary:hover { background-color: #115e59; } .ds-btn-primary:focus-visible { outline: 2px solid #0f766e; outline-offset: 2px; }"
+    },
+    {
+      "name": "Requisition Pending Badge",
+      "kind": "chip",
+      "refersTo": "badge-pending",
+      "description": "Dual-coded soft amber badge for requisitions awaiting custodian approval.",
+      "html": "<span class=\"ds-badge ds-badge-pending\"><svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z\" clip-rule=\"evenodd\" /></svg><span>Pending</span></span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; line-height: 16px; border-radius: 8px; border-width: 1px; border-style: solid; white-space: nowrap; } .ds-badge .ds-icon { width: 14px; height: 14px; flex-shrink: 0; } .ds-badge-pending { background-color: #fffbeb; color: #b45309; border-color: #fde68a; }"
+    },
+    {
+      "name": "Fulfilled Stock Badge",
+      "kind": "chip",
+      "refersTo": "badge-fulfilled",
+      "description": "Dual-coded emerald badge for completed requisitions and healthy stock levels.",
+      "html": "<span class=\"ds-badge ds-badge-fulfilled\"><svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z\" clip-rule=\"evenodd\" /></svg><span>Fulfilled</span></span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; line-height: 16px; border-radius: 8px; border-width: 1px; border-style: solid; white-space: nowrap; } .ds-badge .ds-icon { width: 14px; height: 14px; flex-shrink: 0; } .ds-badge-fulfilled { background-color: #f0fdf4; color: #15803d; border-color: #bbf7d0; }"
+    },
+    {
+      "name": "Danger / Expired / STAT Badge",
+      "kind": "chip",
+      "refersTo": "badge-danger",
+      "description": "Dual-coded soft red badge for emergency STAT requisitions or expired batches.",
+      "html": "<span class=\"ds-badge ds-badge-danger\"><svg class=\"ds-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M11.983 1.907a.75.75 0 00-1.292-.657l-8.5 9.5A.75.75 0 002.75 12h6.572l-1.305 6.093a.75.75 0 001.292.657l8.5-9.5A.75.75 0 0017.25 8h-6.572l1.305-6.093z\" /></svg><span>STAT (Urgent)</span></span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; line-height: 16px; border-radius: 8px; border-width: 1px; border-style: solid; white-space: nowrap; } .ds-badge .ds-icon { width: 14px; height: 14px; flex-shrink: 0; } .ds-badge-danger { background-color: #fef2f2; color: #b91c1c; border-color: #fecaca; }"
+    },
+    {
+      "name": "Glove-Friendly Touch Stepper",
+      "kind": "custom",
+      "refersTo": "stepper-ward",
+      "description": "Tactile increment/decrement control with 48px touch regions for clinical tablets.",
+      "html": "<div class=\"ds-stepper\"><button type=\"button\" class=\"ds-stepper-btn\">−</button><input type=\"text\" readonly value=\"25 boxes\" class=\"ds-stepper-val\" /><button type=\"button\" class=\"ds-stepper-btn ds-stepper-btn--add\">+</button></div>",
+      "css": ".ds-stepper { display: inline-flex; align-items: center; border: 2px solid #cbd5e1; border-radius: 12px; background: #ffffff; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); overflow: hidden; font-family: 'Inter', sans-serif; } .ds-stepper-btn { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: #334155; background: #ffffff; border: none; cursor: pointer; transition: background 0.15s; } .ds-stepper-btn:hover { background: #f1f5f9; } .ds-stepper-btn--add { color: #0f766e; border-left: 1px solid #e2e8f0; } .ds-stepper-val { width: 96px; height: 48px; text-align: center; font-size: 14px; font-weight: 700; color: #0f172a; border: none; background: transparent; }"
+    },
+    {
+      "name": "Hospital Data Card",
+      "kind": "card",
+      "refersTo": "card-hospital",
+      "description": "Standard 12px-radius container with 1px Slate border and 24px padding.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-header\"><h3 class=\"ds-card-title\">Batch Inventory Overview</h3><span class=\"ds-badge ds-badge-fulfilled\">Active</span></div><p class=\"ds-card-body\">All consignments verified under current FEFO tracking rules.</p></div>",
+      "css": ".ds-card { padding: 24px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); font-family: 'Inter', sans-serif; } .ds-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; } .ds-card-title { font-size: 18px; font-weight: 600; color: #0f172a; margin: 0; } .ds-card-body { font-size: 14px; color: #475569; margin: 0; line-height: 1.5; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clinical Sanctuary",
+    "overview": "RMPH HECS (Hospital Enterprise Consignment System) is designed for high-stakes healthcare operations at Roxas Memorial Provincial Hospital. The interface provides a calm, orderly, and deeply reassuring atmosphere that lowers cognitive load for hospital custodians and ward clinicians navigating high-stress shifts. Rather than overwhelming users with intense saturation or synthetic decorations, the system anchors itself in authoritative Hospital Alpine Teal, crisp Slate neutrals, and soft-tinted semantic alerts.\n\nThe system is engineered for dual operating environments: desktop workstations in custodian supply warehouses and administrative offices, and bedside clinical tablets in hospital wards (CSR, HDU, Dialysis Center, and Pharmacies). Clean tabular density supports custodian oversight, while generous 48px touch targets enable rapid, mistake-free tapping by clinicians wearing medical gloves.",
+    "keyCharacteristics": [
+      "Authoritative & Calming: Grounded in Hospital Alpine Teal 700 (#0F766E) and Slate backgrounds.",
+      "Dual-Coded Accessibility: Every status combines an explicit text label with a monochrome SVG icon on a soft-tinted badge (WCAG 2.2 AA compliant).",
+      "Tablet & Glove-Ready: 48px minimum touch targets across ward requisition and action flows.",
+      "Strict 8px Spatial Grid: Consistent rhythmic pacing across all layouts, cards, and modal sheets.",
+      "Zero-Emoji Discipline: Serious medical professionalism with zero emojis across all statuses, alerts, and navigation."
+    ],
+    "rules": [
+      {
+        "name": "The Clinical Contrast Rule",
+        "body": "Alert backgrounds must always use soft 50-level tints paired with dark 700-level text and 200-level borders; high-saturation, unreadable solid color blocks for data indicators are strictly prohibited.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ten Percent Rule",
+        "body": "Hospital Alpine Teal is reserved for primary actions, navigation indicators, and item identifiers. It must never cover more than 10% of any viewport to preserve its visual authority.",
+        "section": "colors"
+      },
+      {
+        "name": "The Inter-Only Rule",
+        "body": "All user interface elements must use Inter with standardized weight and tracking tokens; decorative, serif, or whimsical display typefaces are strictly prohibited.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "All item quantities, stock counts, batch numbers, and expiry day counts must render with monospace or tabular figures to preserve vertical column alignment.",
+        "section": "typography"
+      },
+      {
+        "name": "The 8px Grid Rule",
+        "body": "All structural margins, paddings, and flex/grid gaps must be exact multiples of 8px (8, 16, 24, 32, 40, 48px), with 4px permitted only for micro badge alignment.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-At-Rest Rule",
+        "body": "All cards, tables, and rows remain flat at rest with 1px borders (#E2E8F0). Elevated drop shadows appear only in response to direct user interaction (hover, active focus, modal overlays).",
+        "section": "elevation"
+      },
+      {
+        "name": "The Two-Tier Radius Rule",
+        "body": "Use 8px (rounded-lg) for buttons and form fields; use 12px (rounded-xl) for cards, tables, and modal windows. Never introduce arbitrary 4px, 16px, or 20px radii.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Ward Tap Target Rule",
+        "body": "Any interactive button, stepper, or select control rendered in the Unit Portal or ward-requisition flow must adhere to a strict 48px minimum touch target.",
+        "section": "components"
+      },
+      {
+        "name": "The Zero-Emoji Dual-Coded Rule",
+        "body": "Every badge and alert must pair clear English text with an authentic SVG Heroicon on a tinted background. Emojis are strictly banned from all UI components.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do use Hospital Alpine Teal (#0F766E) as the primary brand anchor for major CTAs, navigation, and active indicators.",
+      "Do enforce minimum 48px touch targets on all ward requisition controls and mobile/tablet touch interfaces.",
+      "Do dual-code every badge with readable text, a standard SVG Heroicon, and semantic soft colors.",
+      "Do use soft 50-level backgrounds (#FEF2F2, #FFFBEB, #F0FDF4, #F0F9FF) with high-contrast 700-level text for alert states.",
+      "Do format item codes, quantities, and batch lot numbers in monospace or tabular figures.",
+      "Do adhere strictly to the 8px spatial grid across all layouts, margins, and paddings."
+    ],
+    "donts": [
+      "Don't use emojis anywhere in the user interface (no status emojis, icon substitutes, or decorative glyphs).",
+      "Don't use neon, vibrant purple/blue gradients, dark-mode neon glows, or SaaS-marketing tropes.",
+      "Don't rely on color alone to indicate urgent states like batch expiration or stockouts.",
+      "Don't expose supplier unit costs or procurement financial values to requesting_unit role screens.",
+      "Don't use raw unpadded table cells or unformatted system fonts.",
+      "Don't mix arbitrary border radii outside the two standard tiers (8px for controls, 12px for cards)."
+    ]
+  }
+}

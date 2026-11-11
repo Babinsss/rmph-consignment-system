@@ -10,7 +10,7 @@
 
     <div class="space-y-6">
         {{-- 1. Top Bar: Unit Context, Back Navigation, and Urgency Switch --}}
-        <div class="p-4 sm:p-6 rounded-xl bg-white border border-slate-200/60 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="p-4 sm:p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div class="space-y-1">
                 <div class="flex items-center gap-2">
                     <a href="{{ url('/portal') }}"
@@ -29,7 +29,7 @@
                 <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
                     @if ($is_urgent)
                         <span class="inline-flex items-center gap-2 text-red-700">
-                            <x-filament::icon icon="heroicon-m-bolt" class="w-7 h-7 text-red-600 animate-pulse" />
+                            <x-filament::icon icon="heroicon-m-bolt" class="w-7 h-7 text-red-600 animate-pulse motion-reduce:animate-none" />
                             STAT Emergency Requisition Slip
                         </span>
                     @else
@@ -54,7 +54,7 @@
                     <button type="button"
                             wire:click="toggleUrgent"
                             class="min-h-[48px] px-4 py-2.5 rounded-xl text-xs font-bold bg-red-50 text-red-700 border border-red-200/80 hover:bg-red-100 hover:border-red-300 transition flex items-center gap-2 shadow-xs">
-                        <x-filament::icon icon="heroicon-m-bolt" class="w-4 h-4 text-red-600 animate-pulse" />
+                        <x-filament::icon icon="heroicon-m-bolt" class="w-4 h-4 text-red-600 animate-pulse motion-reduce:animate-none" />
                         Switch to STAT (Urgent) Request
                     </button>
                 @endif
@@ -84,11 +84,11 @@
 
         {{-- 3. Full-Width Red STAT Emergency Card (When is_urgent is true) --}}
         @if ($is_urgent)
-            <div class="p-6 rounded-xl bg-red-50/80 border-2 border-red-300 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] space-y-5">
+            <div class="p-6 rounded-xl bg-red-50/80 border-2 border-red-300 shadow-xs space-y-5">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-red-200/80">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <x-filament::icon icon="heroicon-m-bolt" class="w-6 h-6 animate-pulse" />
+                            <x-filament::icon icon="heroicon-m-bolt" class="w-6 h-6 animate-pulse motion-reduce:animate-none" />
                         </div>
                         <div>
                             <h2 class="text-base font-extrabold text-red-950 uppercase tracking-wide">
@@ -158,7 +158,7 @@
             {{-- ================= LEFT PANE: CATALOG BROWSER (8 Cols) ================= --}}
             <div class="lg:col-span-7 xl:col-span-8 space-y-4">
                 {{-- Search & Category Filters --}}
-                <div class="p-4 rounded-xl bg-white border border-slate-200/60 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] space-y-3">
+                <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-xs space-y-3">
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
                             <x-filament::icon icon="heroicon-m-magnifying-glass" class="w-5 h-5" />
@@ -170,7 +170,8 @@
                         @if (filled($search))
                             <button type="button"
                                     wire:click="$set('search', '')"
-                                    class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
+                                    aria-label="Clear catalog search query"
+                                    class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none">
                                 <x-filament::icon icon="heroicon-m-x-mark" class="w-5 h-5" />
                             </button>
                         @endif
@@ -206,17 +207,17 @@
                             @php
                                 $inCart = isset($cart[$item->id]);
                                 $currentQty = $cart[$item->id] ?? 0;
-                                $stock = $item->current_stock ?? $item->batches()->sum('quantity_remaining');
+                                $stock = (int) ($item->current_stock ?? 0);
                             @endphp
-                            <div class="p-4 rounded-xl bg-white border {{ $inCart ? 'border-teal-500 ring-1 ring-teal-500/30' : 'border-slate-200/60' }} shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] hover:border-slate-300 transition flex flex-col justify-between gap-3">
+                            <div class="p-4 rounded-xl bg-white border {{ $inCart ? 'border-teal-600 ring-1 ring-teal-600/30' : 'border-slate-200' }} shadow-xs hover:border-slate-300 transition flex flex-col justify-between gap-3">
                                 <div class="space-y-1.5">
                                     <div class="flex items-center justify-between gap-2">
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider font-mono {{ $item->category->value === 'supply' ? 'bg-sky-50 text-sky-800 border border-sky-200/60' : 'bg-purple-50 text-purple-800 border border-purple-200/60' }}">
+                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider font-mono {{ $item->category->value === 'supply' ? 'bg-sky-50 text-sky-800 border border-sky-200' : 'bg-teal-50 text-teal-800 border border-teal-200' }}">
                                             @if ($item->category->value === 'supply')
                                                 <x-filament::icon icon="heroicon-m-cube" class="w-3 h-3 text-sky-700" />
                                                 Supply
                                             @else
-                                                <x-filament::icon icon="heroicon-m-beaker" class="w-3 h-3 text-purple-700" />
+                                                <x-filament::icon icon="heroicon-m-beaker" class="w-3 h-3 text-teal-700" />
                                                 Drug
                                             @endif
                                         </span>
@@ -229,10 +230,9 @@
                                         {{ $item->description }}
                                     </h3>
 
-                                    <div class="text-[11px] text-slate-500 space-y-0.5">
-                                        <div>Consignor: <strong class="text-slate-700 font-semibold">{{ $item->consignor?->name ?? 'Standard Depot' }}</strong></div>
-                                        <div>Packaging: <span class="font-medium text-slate-700">{{ $item->unit_of_measure }}</span></div>
-                                    </div>
+                                    <p class="text-xs text-slate-500 truncate">
+                                        <span class="text-slate-700 font-medium">{{ $item->consignor?->name ?? 'Central Storage Depot' }}</span> • {{ $item->unit_of_measure }}
+                                    </p>
 
                                     {{-- Stock On Hand (Depot) --}}
                                     <div class="pt-1 text-xs">
@@ -257,15 +257,17 @@
                                             <div class="flex items-center gap-1">
                                                 <button type="button"
                                                         wire:click="decrementQuantity({{ $item->id }})"
-                                                        class="min-w-[48px] min-h-[48px] rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-base transition">
+                                                        aria-label="Decrease requested quantity for {{ $item->description }}"
+                                                        class="min-w-[48px] min-h-[48px] rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-base transition focus-visible:outline-2 focus-visible:outline-teal-700">
                                                     <x-filament::icon icon="heroicon-m-minus" class="w-4 h-4" />
                                                 </button>
-                                                <span class="w-12 text-center font-bold tabular-nums text-sm text-teal-800">
+                                                <span class="w-12 text-center font-bold tabular-nums text-sm text-teal-800" aria-label="Current requested quantity: {{ $currentQty }}">
                                                     {{ $currentQty }}
                                                 </span>
                                                 <button type="button"
                                                         wire:click="incrementQuantity({{ $item->id }})"
-                                                        class="min-w-[48px] min-h-[48px] rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-base transition">
+                                                        aria-label="Increase requested quantity for {{ $item->description }}"
+                                                        class="min-w-[48px] min-h-[48px] rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-base transition focus-visible:outline-2 focus-visible:outline-teal-700">
                                                     <x-filament::icon icon="heroicon-m-plus" class="w-4 h-4" />
                                                 </button>
                                             </div>
@@ -308,7 +310,7 @@
 
             {{-- ================= RIGHT PANE: STICKY REQUISITION SLIP / CART (4 Cols) ================= --}}
             <div class="lg:col-span-5 xl:col-span-4">
-                <div class="sticky top-6 p-5 rounded-xl bg-white border border-slate-200/60 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] space-y-5">
+                <div class="sticky top-6 p-5 rounded-xl bg-white border border-slate-200 shadow-xs space-y-5">
                     {{-- Cart Header --}}
                     <div class="flex items-center justify-between pb-3 border-b border-slate-100">
                         <div class="flex items-center gap-2">
@@ -367,7 +369,8 @@
                                         </div>
                                         <button type="button"
                                                 wire:click="removeFromCart({{ $item->id }})"
-                                                class="min-w-[48px] min-h-[48px] flex items-center justify-center text-slate-400 hover:text-rose-600 transition -mr-2">
+                                                aria-label="Remove {{ $item->description }} from requisition slip"
+                                                class="min-w-[48px] min-h-[48px] flex items-center justify-center text-slate-400 hover:text-rose-600 transition -mr-2 focus-visible:outline-2 focus-visible:outline-rose-600 rounded-lg">
                                             <x-filament::icon icon="heroicon-m-trash" class="w-4 h-4" />
                                         </button>
                                     </div>
@@ -378,15 +381,17 @@
                                         <div class="flex items-center gap-1.5">
                                             <button type="button"
                                                     wire:click="decrementQuantity({{ $item->id }})"
-                                                    class="min-w-[48px] min-h-[48px] rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-base transition">
+                                                    aria-label="Decrease quantity for {{ $item->description }}"
+                                                    class="min-w-[48px] min-h-[48px] rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-base transition focus-visible:outline-2 focus-visible:outline-teal-700">
                                                 <x-filament::icon icon="heroicon-m-minus" class="w-4 h-4" />
                                             </button>
-                                            <span class="w-10 text-center font-bold tabular-nums text-sm text-slate-900">
+                                            <span class="w-10 text-center font-bold tabular-nums text-sm text-slate-900" aria-label="Selected quantity: {{ $qty }}">
                                                 {{ $qty }}
                                             </span>
                                             <button type="button"
                                                     wire:click="incrementQuantity({{ $item->id }})"
-                                                    class="min-w-[48px] min-h-[48px] rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-base transition">
+                                                    aria-label="Increase quantity for {{ $item->description }}"
+                                                    class="min-w-[48px] min-h-[48px] rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-base transition focus-visible:outline-2 focus-visible:outline-teal-700">
                                                 <x-filament::icon icon="heroicon-m-plus" class="w-4 h-4" />
                                             </button>
                                         </div>
@@ -440,18 +445,31 @@
 
                     {{-- Primary Submit Button (48px Touch Target) --}}
                     <div>
-                        <button type="button"
-                                wire:click="openConfirm"
-                                @if (empty($cart)) disabled @endif
-                                class="min-h-[48px] w-full px-5 py-3 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 shadow-xs {{ empty($cart) ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : ($is_urgent ? 'bg-red-600 hover:bg-red-700 text-white shadow-red-200' : 'bg-teal-700 hover:bg-teal-800 text-white shadow-teal-200') }}">
-                            @if ($is_urgent)
-                                <x-filament::icon icon="heroicon-m-bolt" class="w-5 h-5 text-white" />
-                                <span>Review & Submit STAT Request</span>
-                            @else
-                                <x-filament::icon icon="heroicon-m-paper-airplane" class="w-5 h-5 text-white" />
-                                <span>Review & Submit Requisition</span>
-                            @endif
-                        </button>
+                        @if (empty($cart))
+                            <button type="button"
+                                    disabled
+                                    class="min-h-[48px] w-full px-5 py-3 rounded-xl text-sm font-bold bg-slate-200 text-slate-500 cursor-not-allowed flex items-center justify-center gap-2 shadow-xs">
+                                @if ($is_urgent)
+                                    <x-filament::icon icon="heroicon-m-bolt" class="w-5 h-5 text-slate-400" />
+                                    <span>Review & Submit STAT Request</span>
+                                @else
+                                    <x-filament::icon icon="heroicon-m-paper-airplane" class="w-5 h-5 text-slate-400" />
+                                    <span>Review & Submit Requisition</span>
+                                @endif
+                            </button>
+                        @else
+                            <button type="button"
+                                    wire:click="openConfirm"
+                                    class="min-h-[48px] w-full px-5 py-3 rounded-xl text-sm font-bold text-white transition flex items-center justify-center gap-2 shadow-xs {{ $is_urgent ? 'bg-red-600 hover:bg-red-700' : 'bg-teal-700 hover:bg-teal-800' }}">
+                                @if ($is_urgent)
+                                    <x-filament::icon icon="heroicon-m-bolt" class="w-5 h-5 text-white" />
+                                    <span>Review & Submit STAT Request</span>
+                                @else
+                                    <x-filament::icon icon="heroicon-m-paper-airplane" class="w-5 h-5 text-white" />
+                                    <span>Review & Submit Requisition</span>
+                                @endif
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -469,7 +487,7 @@
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-xl {{ $is_urgent ? 'bg-red-100 text-red-700' : 'bg-teal-100 text-teal-800' }} flex items-center justify-center shrink-0">
                             @if ($is_urgent)
-                                <x-filament::icon icon="heroicon-m-bolt" class="w-6 h-6 animate-pulse text-red-600" />
+                                <x-filament::icon icon="heroicon-m-bolt" class="w-6 h-6 animate-pulse motion-reduce:animate-none text-red-600" />
                             @else
                                 <x-filament::icon icon="heroicon-m-check-badge" class="w-6 h-6 text-teal-700" />
                             @endif
@@ -485,7 +503,8 @@
                     </div>
                     <button type="button"
                             wire:click="closeConfirm"
-                            class="min-w-[48px] min-h-[48px] flex items-center justify-center text-slate-400 hover:text-slate-600 transition -mr-2 -mt-2">
+                            aria-label="Close requisition confirmation dialog"
+                            class="min-w-[48px] min-h-[48px] flex items-center justify-center text-slate-400 hover:text-slate-600 transition -mr-2 -mt-2 focus-visible:outline-2 focus-visible:outline-slate-500 rounded-lg">
                         <x-filament::icon icon="heroicon-m-x-mark" class="w-5 h-5" />
                     </button>
                 </div>
@@ -550,9 +569,15 @@
                     </button>
                     <button type="button"
                             wire:click="submitRequisition"
-                            class="min-h-[48px] px-6 py-2.5 rounded-xl text-xs font-bold text-white transition flex items-center justify-center gap-2 shadow-xs {{ $is_urgent ? 'bg-red-600 hover:bg-red-700' : 'bg-teal-700 hover:bg-teal-800' }}">
-                        <x-filament::icon icon="heroicon-m-check" class="w-4 h-4 text-white" />
-                        <span>Confirm & Dispatch to Depot</span>
+                            wire:loading.attr="disabled"
+                            class="min-h-[48px] px-6 py-2.5 rounded-xl text-xs font-bold text-white transition flex items-center justify-center gap-2 shadow-xs disabled:opacity-60 disabled:cursor-not-allowed {{ $is_urgent ? 'bg-red-600 hover:bg-red-700' : 'bg-teal-700 hover:bg-teal-800' }}">
+                        <x-filament::icon icon="heroicon-m-check" class="w-4 h-4 text-white" wire:loading.remove wire:target="submitRequisition" />
+                        <svg class="animate-spin w-4 h-4 text-white" wire:loading wire:target="submitRequisition" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span wire:loading.remove wire:target="submitRequisition">Confirm & Dispatch to Depot</span>
+                        <span wire:loading wire:target="submitRequisition">Dispatching Requisition...</span>
                     </button>
                 </div>
             </div>

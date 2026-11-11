@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Auth\Login;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -17,7 +18,6 @@ use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\HtmlString;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 class AdminPanelProvider extends PanelProvider
@@ -28,13 +28,12 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
-            ->brandName('RMPH HECS • Operations')
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->login(Login::class)
+            ->brandName('Roxas Memorial Provincial Hospital')
+            ->brandLogo(fn () => view('filament.logo'))
+            ->brandLogoHeight('3.5rem')
             ->sidebarCollapsibleOnDesktop()
-            ->renderHook(
-                PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE,
-                fn () => view('filament.auth.admin-login-header'),
-            )
             ->renderHook(
                 PanelsRenderHook::AUTH_LOGIN_FORM_AFTER,
                 fn () => view('filament.auth.admin-demo-accounts'),
@@ -42,10 +41,6 @@ class AdminPanelProvider extends PanelProvider
             ->renderHook(
                 PanelsRenderHook::FOOTER,
                 fn () => view('filament.footer'),
-            )
-            ->renderHook(
-                PanelsRenderHook::HEAD_END,
-                fn () => new HtmlString('<link rel="stylesheet" href="'.asset('css/filament/hospital-theme.css').'?v=1.0">'),
             )
             ->darkMode(false)
             ->font('Inter')

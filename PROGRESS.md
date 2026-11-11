@@ -174,3 +174,18 @@ A focused internal inventory system to record consigned Medical Supplies and Dru
     - *Confirmation Modal Screen:* Review dialog before dispatching order to depot, summarizing priority, clinical reason, all items/quantities, and total units.
     - *Unit Cost Security:* Verified unit cost remains strictly hidden from all ward views, tables, inputs, and summaries.
   - **Automated Test Coverage:** Added automated test cases in `RequisitionPortalTest.php` and `UserExperienceAndBrandingTest.php` verifying the two-pane view, bottom navigation, Livewire interactions, STAT reason chips, and unit cost invisibility. All 69 tests passing with 240 assertions.
+- [x] **Stage 3: Native Filament Theme & Polished Admin Login (/admin/login)** *(Completed & Tested - 72 tests passing, 249 assertions)*
+  - **Diagnosed Unstyled Look:** Identified missing `node_modules` (Vite assets uncompiled), lack of custom Filament theme (`viteTheme`), and unconstrained SVG sizing.
+  - **Official Filament Theme Setup:** Generated `resources/css/filament/admin/theme.css` via `php artisan make:filament-theme admin`, added `@source` path scanning `resources/views/**/*`, and compiled assets cleanly via `npm run build` with Vite v8.
+  - **Custom Login Page Class:** Created `App\Filament\Auth\Login` extending Filament's native `Filament\Auth\Pages\Login`:
+    - Registered with `->login(\App\Filament\Auth\Login::class)` in `AdminPanelProvider`.
+    - Removed "Remember me" checkbox, preserving clean email and password fields with revealable password toggle.
+    - Added plain-language authentication failure error: *"The email or password is not correct."*
+    - Enforced centered 420px maximum card width and soft teal-tinted page background.
+  - **Hospital Branding Header:** Standardized header with 56px hospital building emblem (`resources/views/filament/logo.blade.php`), official heading *"Roxas Memorial Provincial Hospital"*, subtitle *"Consignment Inventory System"*, and authorization notice *"Authorized hospital personnel only"*.
+  - **Form Actions & Secondary Navigation:**
+    - Full-width 48px "Sign in" primary CTA button in Teal 700 (`#0F766E`) with crisp hover/active states.
+    - Secondary button: *"Ward staff? Open the Ward Portal"* (`x-filament::button` linking to `/portal/login`).
+  - **Local-Only Demo Account Selector:** Implemented collapsed `<details>` dropdown ("Use a demo account") active only when `APP_ENV=local`. Auto-populates selected account email without ever printing passwords on the page. Completely omitted in `production`.
+  - **Helpline Footer:** Added clean single-line footer via `PanelsRenderHook::FOOTER` (`Roxas Memorial Provincial Hospital • IT Helpdesk: Ext. 104`).
+  - **Accessibility & Test Coverage:** All controls meet WCAG 2.2 AA (>= 4.5:1 contrast, 48px touch targets, full keyboard focus, password manager compatibility). Added automated tests covering branding, error messages, and local vs production demo display. 72 tests passing.

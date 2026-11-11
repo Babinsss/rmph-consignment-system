@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\ItemCategory;
+use App\Filament\Auth\Login;
 use App\Filament\Portal\Widgets\UnitInfoWidget;
 use App\Filament\Widgets\InventoryStatsOverview;
 use App\Models\Consignor;
@@ -27,17 +28,48 @@ class UserExperienceAndBrandingTest extends TestCase
         $this->seed(UserSeeder::class);
     }
 
-    public function test_admin_login_page_renders_hospital_branding_and_demo_accounts(): void
+    public function test_admin_login_page_renders_hospital_branding(): void
     {
         $response = $this->get('/admin/login');
 
         $response->assertStatus(200);
         $response->assertSee('Roxas Memorial Provincial Hospital');
-        $response->assertSee('Central Operations');
-        $response->assertSee('Custodian Management');
-        $response->assertSee('Demo Accounts (Click to Fill)');
+        $response->assertSee('Consignment Inventory System');
+        $response->assertSee('Authorized hospital personnel only');
+        $response->assertSee('Ward staff? Open the Ward Portal');
+        $response->assertDontSee('Remember me');
+    }
+
+    public function test_admin_login_page_renders_demo_accounts_in_local_environment(): void
+    {
+        $this->app->detectEnvironment(fn () => 'local');
+
+        $response = $this->get('/admin/login');
+
+        $response->assertStatus(200);
+        $response->assertSee('Use a demo account');
         $response->assertSee('admin@rmph.local');
-        $response->assertSee('Open Ward Portal');
+        $response->assertDontSee('Key: password');
+    }
+
+    public function test_admin_login_page_hides_demo_accounts_in_production_environment(): void
+    {
+        $this->app->detectEnvironment(fn () => 'production');
+
+        $response = $this->get('/admin/login');
+
+        $response->assertStatus(200);
+        $response->assertDontSee('Use a demo account');
+        $response->assertDontSee('admin@rmph.local');
+    }
+
+    public function test_admin_login_validation_failure_message(): void
+    {
+        Livewire::test(Login::class)
+            ->set('data.email', 'wrong@rmph.local')
+            ->set('data.password', 'incorrect-password')
+            ->call('authenticate')
+            ->assertHasErrors(['data.email' => 'The email or password is not correct.']);
     }
 
     public function test_portal_login_page_renders_ward_portal_branding_and_demo_accounts(): void

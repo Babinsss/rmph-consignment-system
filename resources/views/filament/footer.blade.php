@@ -1,3 +1,3 @@
-<div class="py-4 text-center text-xs text-gray-400 dark:text-gray-500">
-    <span>Roxas Memorial Provincial Hospital (RMPH) • Hospital Consignment Inventory System (HECS)</span>
+<div class="py-4 text-center text-xs text-slate-400">
+    <span>Roxas Memorial Provincial Hospital • IT Helpdesk: Ext. 104</span>
 </div>

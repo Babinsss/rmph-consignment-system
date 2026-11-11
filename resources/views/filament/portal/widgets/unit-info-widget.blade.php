@@ -5,7 +5,7 @@
 <x-filament-widgets::widget>
     <div class="space-y-6">
         {{-- 1. Unit Context & Schedule Banner --}}
-        <div class="p-6 rounded-xl bg-white border border-slate-200/60 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div class="space-y-1.5">
                 <div class="flex items-center gap-2">
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-bold uppercase tracking-wider bg-teal-50 text-teal-800 border border-teal-200/60 font-mono">
@@ -28,7 +28,7 @@
                 @if ($data['isWindowOpen'])
                     <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs font-semibold">
                         <span class="relative flex h-2 w-2">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="animate-ping motion-reduce:hidden absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
                         </span>
                         <span>Schedule: <strong>OPEN</strong> ({{ $data['scheduleSummary'] }})</span>
@@ -46,7 +46,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {{-- A. Regular / New Request Card --}}
             <a href="{{ url('/portal/requests/create') }}"
-               class="min-h-[48px] p-6 rounded-xl bg-white border border-slate-200/60 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] hover:border-teal-600/40 hover:shadow-md transition-all group flex items-center justify-between">
+               class="min-h-[48px] p-6 rounded-xl bg-white border border-slate-200 shadow-xs hover:border-teal-600/40 hover:shadow-sm transition-all group flex items-center justify-between">
                 <div class="space-y-1">
                     <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-teal-700">
                         <x-filament::icon icon="heroicon-m-plus-circle" class="w-4 h-4 text-teal-700" />
@@ -66,7 +66,7 @@
 
             {{-- B. Full-Width Red STAT Emergency Requisition Card --}}
             <a href="{{ url('/portal/requests/create?urgent=1') }}"
-               class="min-h-[48px] p-6 rounded-xl bg-red-50/70 border border-red-200/80 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] hover:bg-red-50 hover:border-red-300 transition-all group flex items-center justify-between">
+               class="min-h-[48px] p-6 rounded-xl bg-red-50/70 border border-red-200 shadow-xs hover:bg-red-50 hover:border-red-300 transition-all group flex items-center justify-between">
                 <div class="space-y-1">
                     <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-red-700">
                         <x-filament::icon icon="heroicon-m-bolt" class="w-4 h-4 text-red-600" />
@@ -80,13 +80,13 @@
                     </p>
                 </div>
                 <div class="w-12 h-12 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition">
-                    <x-filament::icon icon="heroicon-m-bolt" class="w-6 h-6 animate-pulse" />
+                    <x-filament::icon icon="heroicon-m-bolt" class="w-6 h-6 animate-pulse motion-reduce:animate-none" />
                 </div>
             </a>
         </div>
 
         {{-- 3. Last 5 Requests Section --}}
-        <div class="p-6 rounded-xl bg-white border border-slate-200/60 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.03)] space-y-4">
+        <div class="p-6 rounded-xl bg-white border border-slate-200 shadow-xs space-y-4">
             <div class="flex items-center justify-between">
                 <div>
                     <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">

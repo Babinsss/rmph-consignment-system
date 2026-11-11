@@ -1,0 +1,91 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/**/*';
+
+/* Soft teal-tinted page background & centered container */
+.fi-simple-layout {
+    background: radial-gradient(circle at 50% 0%, #f0fdfa 0%, #f8fafc 70%) !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 1rem;
+}
+
+/* One centered card, max width about 420px, generous padding */
+.fi-simple-main-ctn {
+    width: 100%;
+    max-width: 420px !important;
+    margin: 0 auto;
+}
+
+.fi-simple-main {
+    max-width: 420px !important;
+    width: 100% !important;
+    border-radius: 0.75rem !important; /* 12px rounded corners */
+    border: 1px solid #e2e8f0 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 20px -2px rgba(15, 118, 110, 0.06), 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+    padding: 2rem !important;
+}
+
+@media (max-width: 640px) {
+    .fi-simple-main {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Simple Header Typography & Alignment */
+.fi-simple-header {
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+}
+
+.fi-simple-header-heading {
+    font-size: 1.25rem !important; /* 20px */
+    font-weight: 800 !important;
+    letter-spacing: -0.025em !important;
+    color: #0f172a !important;
+    margin-top: 0.75rem !important;
+}
+
+.fi-simple-header-subheading {
+    margin-top: 0.25rem !important;
+}
+
+/* Full-width "Sign in" button in Teal 700 (#0F766E) with white text */
+.fi-simple-main button[type="submit"] {
+    min-height: 48px !important;
+    background-color: #0f766e !important;
+    color: #ffffff !important;
+    font-size: 0.9375rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 1px 3px 0 rgba(15, 118, 110, 0.2) !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+.fi-simple-main button[type="submit"]:hover {
+    background-color: #0d9488 !important;
+    box-shadow: 0 4px 8px 0 rgba(15, 118, 110, 0.25) !important;
+}
+
+.fi-simple-main button[type="submit"]:active {
+    background-color: #115e59 !important;
+    transform: scale(0.99) !important;
+}
+
+/* Auth Inputs Touch Target & Accessible Focus */
+.fi-simple-main .fi-input-wrp {
+    min-height: 44px !important;
+    border-radius: 0.5rem !important;
+    border-color: #cbd5e1 !important;
+}
+
+.fi-simple-main .fi-input-wrp:focus-within {
+    border-color: #0f766e !important;
+    box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2) !important;
+}
