@@ -212,3 +212,26 @@ A focused internal inventory system to record consigned Medical Supplies and Dru
   - **Requests & Items Full Width:** Configured `getMaxContentWidth()` returning `Width::Full` in `ListRequests.php` and `ListItems.php`, resolving table container width.
   - **Centered Helpline Footer:** Added generous spacing above footer, preventing overlap with bottom nav.
   - **Automated Test Coverage:** Added unit and feature tests covering portal login branding, 52px targets, local vs production demo display, and validation failure. All 75 tests passing with 259 assertions.
+- [x] **Stage 5: Redesigned Delivery Receiving Screen (/admin/deliveries/create)** *(Completed & Tested - 78 tests passing, 273 assertions)*
+  - **Full-Width Layout & Viewport Breathing Room:** Configured `getMaxContentWidth()` returning `Width::Full` on `CreateDelivery.php`, resolving container squeeze.
+  - **Compact Header Section:** Arranged Accredited Consignor, DR / Invoice #, Date of Delivery, and Received By in one single row on desktop (`xl:grid-cols-4`), two rows on tablet (`md:grid-cols-2`), and stacked on mobile, with Notes below as a full-width optional field. Fixed "Received By" truncation.
+  - **Native Filament Table Repeater:** Switched the "Batch Items" Repeater to Filament 5's native `->table(...)` layout with `TableColumn::make(...)`:
+    - Headers shown once in `<thead>`, removing repetitive row labels.
+    - Sized columns: Consigned Item (34-44%), Lot / Batch # (18-20%), Expiration Date (18-20%), Quantity Delivered (15-16%), and Unit Cost (15%, conditionally visible).
+    - Compact row layout with small Duplicate (`cloneable()`) and Delete (`deletable()`) buttons per row.
+    - Responsive `@container` query fallback: automatically transforms to stacked card per line on phone screens.
+  - **Rapid Keyboard Entry:**
+    - Tab moves sequentially across row fields.
+    - Enter key handler on the last field (`unit_cost` or `quantity_received` if cost hidden) automatically triggers `+ Add Consigned Item Line` and auto-focuses the first field of the new batch row.
+    - Item select is fully searchable and preloaded.
+  - **Inline Plain-Language Row Validations:**
+    - Duplicate check: Rule validates that the same Item and Lot combination is not entered more than once across rows (*"This item and lot number combination has already been added in another row."*).
+    - Expiration check: Enforces `afterOrEqual('today')` (*"Expiration date cannot be in the past."*).
+    - Quantity check: Requires minimum 1 (*"Quantity must be at least 1."*).
+    - Missing unit cost: Conditionally required (*"Please enter the unit cost per unit."*).
+  - **Sticky Bottom Bar with Live Totals & Action:**
+    - Integrated sticky bottom bar (`View::make('filament.resources.deliveries.live-totals')` + `Actions::make()`) showing real-time Total Batches, Total Units, and Total DR Value (custodian/admin/viewer only).
+    - Main action button: "Review & Receive Stock" (Teal 700 with Heroicon).
+  - **Review Step with Confirmation Modal:**
+    - Dialog confirms: *"You are receiving X batch(es) totaling Y unit(s) from [Supplier], DR [number]. Confirm receiving?"* with "Back" button, submit button, and double-submit prevention.
+  - **Automated Test Coverage:** Added automated feature tests in `DeliveriesAndBatchesTest.php` covering table rendering, sticky totals, duplicate lot validation, and past expiration validation. All 78 tests passing with 273 assertions.

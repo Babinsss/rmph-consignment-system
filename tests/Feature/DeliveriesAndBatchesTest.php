@@ -228,12 +228,69 @@ class DeliveriesAndBatchesTest extends TestCase
         $this->assertFalse($this->csrStaff->canViewUnitCosts());
     }
 
-    public function test_delivery_create_form_renders_cleanly_without_type_error(): void
+    public function test_delivery_create_form_renders_cleanly_with_responsive_table_and_sticky_totals(): void
     {
         $this->actingAs($this->custodian);
 
         Livewire::test(CreateDelivery::class)
             ->assertSuccessful()
-            ->assertSee('Live Delivery Totals');
+            ->assertSee('Review & Receive Stock')
+            ->assertSee('Total Batches:')
+            ->assertSee('Total Units:');
+    }
+
+    public function test_delivery_validates_duplicate_item_and_lot_combination(): void
+    {
+        $this->actingAs($this->custodian);
+
+        Livewire::test(CreateDelivery::class)
+            ->fillForm([
+                'consignor_id' => $this->consignor->id,
+                'dr_number' => 'DR-DUP-TEST',
+                'delivery_date' => now()->toDateString(),
+                'received_by_id' => $this->custodian->id,
+                'batches' => [
+                    [
+                        'item_id' => $this->item->id,
+                        'lot_number' => 'LOT-MATCH-01',
+                        'expiration_date' => now()->addYear()->toDateString(),
+                        'quantity_received' => 10,
+                        'unit_cost' => 25.00,
+                    ],
+                    [
+                        'item_id' => $this->item->id,
+                        'lot_number' => 'LOT-MATCH-01',
+                        'expiration_date' => now()->addYear()->toDateString(),
+                        'quantity_received' => 20,
+                        'unit_cost' => 25.00,
+                    ],
+                ],
+            ])
+            ->call('create')
+            ->assertHasFormErrors(['batches.1.lot_number']);
+    }
+
+    public function test_delivery_validates_past_expiration_date(): void
+    {
+        $this->actingAs($this->custodian);
+
+        Livewire::test(CreateDelivery::class)
+            ->fillForm([
+                'consignor_id' => $this->consignor->id,
+                'dr_number' => 'DR-PAST-TEST',
+                'delivery_date' => now()->toDateString(),
+                'received_by_id' => $this->custodian->id,
+                'batches' => [
+                    [
+                        'item_id' => $this->item->id,
+                        'lot_number' => 'LOT-PAST-01',
+                        'expiration_date' => now()->subDay()->toDateString(),
+                        'quantity_received' => 10,
+                        'unit_cost' => 25.00,
+                    ],
+                ],
+            ])
+            ->call('create')
+            ->assertHasFormErrors(['batches.0.expiration_date']);
     }
 }

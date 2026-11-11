@@ -3,43 +3,60 @@
 namespace App\Filament\Resources\Deliveries\Schemas;
 
 use App\Models\Item;
+use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Repeater\TableColumn;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
-use Illuminate\Support\HtmlString;
 
 class DeliveryForm
 {
     public static function configure(Schema $schema): Schema
     {
+        $enterKeyScript = "
+            const addBtn = document.querySelector('[data-repeater-add-batches]');
+            if (addBtn) {
+                addBtn.click();
+                setTimeout(() => {
+                    const row = document.querySelector('.fi-fo-table-repeater tbody tr:last-child');
+                    if (row) {
+                        const target = row.querySelector('.choices__input, input:not([type=hidden]), select');
+                        if (target) { target.focus(); }
+                    }
+                }, 200);
+            }
+        ";
+
         return $schema
             ->components([
                 Section::make('Delivery Receipt Header')
-                    ->description('Record the supplier, Delivery Receipt (DR) reference number, and delivery date.')
-                    ->columns(2)
+                    ->description('Record supplier DR details and the verifying stock custodian.')
+                    ->columns([
+                        'default' => 1,
+                        'md' => 2,
+                        'xl' => 4,
+                    ])
                     ->components([
                         Select::make('consignor_id')
-                            ->label('Accredited Consignor (Supplier)')
+                            ->label('Accredited Consignor')
                             ->relationship('consignor', 'name')
                             ->searchable()
                             ->preload()
                             ->required()
                             ->validationMessages([
-                                'required' => 'Please select the accredited supplier delivering these goods.',
+                                'required' => 'Please select the accredited supplier.',
                             ]),
 
                         TextInput::make('dr_number')
-                            ->label('Delivery Receipt (DR) Number')
+                            ->label('DR / Invoice #')
                             ->required()
                             ->maxLength(100)
                             ->placeholder('e.g. DR-2026-0814')
-                            ->helperText('Exact DR or invoice number printed on physical supplier paperwork.')
                             ->validationMessages([
                                 'required' => 'Please enter the delivery receipt (DR) number.',
                             ]),
@@ -49,73 +66,59 @@ class DeliveryForm
                             ->default(now())
                             ->required()
                             ->validationMessages([
-                                'required' => 'Please enter the date the shipment arrived at the hospital.',
+                                'required' => 'Please enter the arrival date.',
                             ]),
 
                         Select::make('received_by_id')
-                            ->label('Received By (Stock Custodian)')
+                            ->label('Received By')
                             ->relationship('receivedBy', 'name')
                             ->default(fn () => auth()->id())
                             ->required()
                             ->validationMessages([
-                                'required' => 'Please select the custodian who physically verified the delivery.',
+                                'required' => 'Please select the custodian who verified this delivery.',
                             ]),
 
                         Textarea::make('notes')
                             ->label('Delivery Notes / Physical Inspection Remarks (Optional)')
-                            ->placeholder('Notes on temperature conditions, packaging seals, physical count verification, etc.')
+                            ->placeholder('Notes on packaging seals, cold-chain temperature conditions, physical inspection findings...')
                             ->rows(2)
                             ->columnSpanFull(),
                     ]),
 
                 Section::make('Delivered Consigned Items & Batches')
-                    ->description('Enter each item received under this DR. Each line creates an active batch in the central storage depot.')
+                    ->description('Enter each received item line. Each line creates an active batch in the central storage depot.')
+                    ->columnSpanFull()
                     ->components([
-                        Placeholder::make('live_delivery_totals')
-                            ->label('Live Delivery Totals')
-                            ->content(function (Get $get): HtmlString {
-                                $batches = $get('batches') ?? [];
-                                $totalBatches = count($batches);
-                                $totalUnits = 0;
-                                $totalValue = 0;
-
-                                foreach ($batches as $batch) {
-                                    $qty = (int) ($batch['quantity_received'] ?? 0);
-                                    $cost = (float) ($batch['unit_cost'] ?? 0);
-                                    $totalUnits += $qty;
-                                    $totalValue += ($qty * $cost);
-                                }
-
-                                $formattedUnits = number_format($totalUnits);
-                                $canViewCost = auth()->user()?->canViewUnitCosts() ?? false;
-
-                                $costHtml = '';
-                                if ($canViewCost) {
-                                    $formattedValue = '₱ '.number_format($totalValue, 2);
-                                    $costHtml = '<div class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-teal-50 border border-teal-200 text-teal-900">'
-                                        .'<span class="text-xs text-teal-700 font-medium">Total DR Value:</span>'
-                                        .'<strong class="text-sm font-bold text-teal-950">'.$formattedValue.'</strong>'
-                                        .'</div>';
-                                }
-
-                                return new HtmlString(
-                                    '<div class="flex flex-wrap items-center gap-3 p-3.5 rounded-xl bg-gray-50 border border-gray-200">'
-                                    .'<div class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white border border-gray-200 text-gray-800">'
-                                    .'<span class="text-xs text-gray-500 font-medium">Total Batches:</span>'
-                                    .'<strong class="text-sm font-bold text-gray-900">'.$totalBatches.'</strong>'
-                                    .'</div>'
-                                    .'<div class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white border border-gray-200 text-gray-800">'
-                                    .'<span class="text-xs text-gray-500 font-medium">Total Units Delivered:</span>'
-                                    .'<strong class="text-sm font-bold text-emerald-700">'.$formattedUnits.' units</strong>'
-                                    .'</div>'
-                                    .$costHtml
-                                    .'</div>'
-                                );
-                            }),
-
                         Repeater::make('batches')
                             ->label('Batch Items')
                             ->relationship('batches')
+                            ->compact()
+                            ->table(function (): array {
+                                $canViewCost = auth()->user()?->canViewUnitCosts() ?? false;
+
+                                $columns = [
+                                    TableColumn::make('Consigned Item')
+                                        ->width($canViewCost ? '34%' : '44%')
+                                        ->markAsRequired(),
+                                    TableColumn::make('Lot / Batch #')
+                                        ->width($canViewCost ? '18%' : '20%')
+                                        ->markAsRequired(),
+                                    TableColumn::make('Expiration Date')
+                                        ->width($canViewCost ? '18%' : '20%')
+                                        ->markAsRequired(),
+                                    TableColumn::make('Quantity Delivered')
+                                        ->width($canViewCost ? '15%' : '16%')
+                                        ->markAsRequired(),
+                                ];
+
+                                if ($canViewCost) {
+                                    $columns[] = TableColumn::make('Unit Cost (PHP)')
+                                        ->width('15%')
+                                        ->markAsRequired();
+                                }
+
+                                return $columns;
+                            })
                             ->schema([
                                 Select::make('item_id')
                                     ->label('Consigned Item')
@@ -126,10 +129,6 @@ class DeliveryForm
                                     ->required()
                                     ->validationMessages([
                                         'required' => 'Please select the delivered item.',
-                                    ])
-                                    ->columnSpan([
-                                        'default' => 12,
-                                        'lg' => 4,
                                     ]),
 
                                 TextInput::make('lot_number')
@@ -137,23 +136,43 @@ class DeliveryForm
                                     ->required()
                                     ->placeholder('e.g. LOT-2026-A1')
                                     ->maxLength(100)
+                                    ->rules([
+                                        fn (Get $get): \Closure => function (string $attribute, $value, \Closure $fail) use ($get) {
+                                            $itemId = $get('item_id');
+                                            $lot = trim((string) $value);
+
+                                            if (! $itemId || $lot === '') {
+                                                return;
+                                            }
+
+                                            $allBatches = $get('/batches') ?? $get('../../batches') ?? [];
+                                            $duplicates = 0;
+
+                                            foreach ($allBatches as $batch) {
+                                                $otherItem = $batch['item_id'] ?? null;
+                                                $otherLot = trim((string) ($batch['lot_number'] ?? ''));
+
+                                                if ((string) $otherItem === (string) $itemId && strcasecmp($otherLot, $lot) === 0) {
+                                                    $duplicates++;
+                                                }
+                                            }
+
+                                            if ($duplicates > 1) {
+                                                $fail('This item and lot number combination has already been added in another row.');
+                                            }
+                                        },
+                                    ])
                                     ->validationMessages([
                                         'required' => 'Please enter the manufacturer lot number.',
-                                    ])
-                                    ->columnSpan([
-                                        'default' => 6,
-                                        'lg' => 2,
                                     ]),
 
                                 DatePicker::make('expiration_date')
                                     ->label('Expiration Date')
                                     ->required()
+                                    ->afterOrEqual('today')
                                     ->validationMessages([
                                         'required' => 'Please enter the expiration date printed on the packaging.',
-                                    ])
-                                    ->columnSpan([
-                                        'default' => 6,
-                                        'lg' => 2,
+                                        'after_or_equal' => 'Expiration date cannot be in the past.',
                                     ]),
 
                                 TextInput::make('quantity_received')
@@ -163,13 +182,16 @@ class DeliveryForm
                                     ->required()
                                     ->live(onBlur: true)
                                     ->placeholder('Units')
+                                    ->extraInputAttributes(function () use ($enterKeyScript) {
+                                        $canViewCost = auth()->user()?->canViewUnitCosts() ?? false;
+
+                                        return $canViewCost ? [] : [
+                                            'x-on:keydown.enter.prevent' => $enterKeyScript,
+                                        ];
+                                    })
                                     ->validationMessages([
                                         'required' => 'Please enter the delivered quantity.',
                                         'min' => 'Quantity must be at least 1.',
-                                    ])
-                                    ->columnSpan([
-                                        'default' => 6,
-                                        'lg' => 2,
                                     ]),
 
                                 TextInput::make('unit_cost')
@@ -182,24 +204,22 @@ class DeliveryForm
                                     ->placeholder('0.00')
                                     ->visible(fn () => auth()->user()?->canViewUnitCosts() ?? false)
                                     ->required(fn () => auth()->user()?->canViewUnitCosts() ?? false)
-                                    ->validationMessages([
-                                        'required' => 'Please enter the unit cost per piece/unit.',
+                                    ->extraInputAttributes([
+                                        'x-on:keydown.enter.prevent' => $enterKeyScript,
                                     ])
-                                    ->columnSpan([
-                                        'default' => 6,
-                                        'lg' => 2,
+                                    ->validationMessages([
+                                        'required' => 'Please enter the unit cost per unit.',
+                                        'min' => 'Unit cost cannot be negative.',
                                     ]),
                             ])
-                            ->columns(12)
                             ->defaultItems(1)
                             ->minItems(1)
                             ->cloneable()
-                            ->collapsible()
-                            ->itemLabel(fn (array $state): ?string => isset($state['item_id'])
-                                ? Item::find($state['item_id'])?->description.' (Lot: '.($state['lot_number'] ?? '—').')'
-                                : 'New Batch Line'
-                            )
-                            ->addActionLabel('+ Add Another Consigned Item Line')
+                            ->deletable()
+                            ->reorderable(false)
+                            ->collapsible(false)
+                            ->addActionLabel('+ Add Consigned Item Line')
+                            ->addAction(fn (Action $action) => $action->extraAttributes(['data-repeater-add-batches' => 'true']))
                             ->mutateRelationshipDataBeforeCreateUsing(function (array $data): array {
                                 $data['quantity_remaining'] = $data['quantity_received'];
                                 $data['is_active'] = true;
