@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Requests\Pages;
 use App\Enums\RequestStatus;
 use App\Filament\Resources\Requests\RequestResource;
 use App\Models\Request;
+use App\Support\CustodianScope;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Schemas\Components\Tabs\Tab;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,15 +16,30 @@ class ListRequests extends ListRecords
 
     public function getTabs(): array
     {
-        $pendingUrgentCount = Request::where('is_urgent', true)
+        $baseQuery = fn () => CustodianScope::applyToRequests(Request::query());
+
+        $totalCount = $baseQuery()->count();
+
+        $pendingUrgentCount = $baseQuery()
+            ->where('is_urgent', true)
             ->where('status', RequestStatus::Pending)
             ->count();
 
-        $pendingTotalCount = Request::where('status', RequestStatus::Pending)->count();
+        $pendingTotalCount = $baseQuery()
+            ->where('status', RequestStatus::Pending)
+            ->count();
+
+        $fulfilledCount = $baseQuery()
+            ->where('status', RequestStatus::Fulfilled)
+            ->count();
+
+        $rejectedCount = $baseQuery()
+            ->where('status', RequestStatus::Rejected)
+            ->count();
 
         return [
             'all' => Tab::make('All Requisitions')
-                ->badge(Request::count()),
+                ->badge($totalCount),
 
             'urgent' => Tab::make('Urgent (STAT)')
                 ->icon('heroicon-m-bolt')
@@ -38,12 +54,12 @@ class ListRequests extends ListRecords
 
             'fulfilled' => Tab::make('Fulfilled')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('status', RequestStatus::Fulfilled))
-                ->badge(Request::where('status', RequestStatus::Fulfilled)->count())
+                ->badge($fulfilledCount)
                 ->badgeColor('success'),
 
             'rejected' => Tab::make('Rejected')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('status', RequestStatus::Rejected))
-                ->badge(Request::where('status', RequestStatus::Rejected)->count()),
+                ->badge($rejectedCount),
         ];
     }
 }

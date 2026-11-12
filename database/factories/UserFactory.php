@@ -54,4 +54,24 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    /**
+     * Indicate that the user is a Medical Supplies Custodian.
+     */
+    public function suppliesCustodian(): static
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->assignRole('custodian_supplies');
+        });
+    }
+
+    /**
+     * Indicate that the user is a Drugs & Medicine Custodian.
+     */
+    public function drugsCustodian(): static
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->assignRole('custodian_drugs');
+        });
+    }
 }

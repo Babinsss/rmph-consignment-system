@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\StockMovements\Tables;
 
 use App\Models\StockMovement;
+use App\Support\CustodianScope;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -14,6 +15,7 @@ class StockMovementsTable
         return $table
             ->striped()
             ->defaultSort('id', 'desc')
+            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => CustodianScope::applyToStockMovements($query))
             ->emptyStateHeading('No Stock Card Records')
             ->emptyStateDescription('Audit history of received shipments, ward issuances, and physical inventory count adjustments will appear here.')
             ->emptyStateIcon('heroicon-o-arrows-right-left')

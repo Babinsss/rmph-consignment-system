@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Items\Tables;
 
 use App\Enums\ItemCategory;
 use App\Models\Item;
+use App\Support\CustodianScope;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -20,7 +21,9 @@ class ItemsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->with(['consignor', 'batches.delivery.consignor']))
+            ->modifyQueryUsing(fn (Builder $query) => CustodianScope::applyToItems(
+                $query->with(['consignor', 'batches.delivery.consignor'])
+            ))
             ->striped()
             ->defaultSort('description', 'asc')
             ->emptyStateHeading('No Consigned Items Found')

@@ -39,9 +39,33 @@ class RoleAndPermissionSeeder extends Seeder
         $adminRole = Role::findOrCreate('admin', 'web');
         $adminRole->syncPermissions(Permission::all());
 
-        // 2. Custodian (Aliana Marie Dula & Kristine Mae Batan)
+        // 2a. Generic Custodian (legacy / admin use — full access to all categories)
         $custodianRole = Role::findOrCreate('custodian', 'web');
         $custodianRole->syncPermissions([
+            'manage_catalog',
+            'record_deliveries',
+            'view_unit_costs',
+            'fulfill_requests',
+            'view_inventory',
+            'view_all_requests',
+            'view_reports',
+        ]);
+
+        // 2b. Custodian – Medical Supplies only (Aliana Marie Dula)
+        $custodianSuppliesRole = Role::findOrCreate('custodian_supplies', 'web');
+        $custodianSuppliesRole->syncPermissions([
+            'manage_catalog',
+            'record_deliveries',
+            'view_unit_costs',
+            'fulfill_requests',
+            'view_inventory',
+            'view_all_requests',
+            'view_reports',
+        ]);
+
+        // 2c. Custodian – Drugs & Medicine only (Kristine Mae Batan)
+        $custodianDrugsRole = Role::findOrCreate('custodian_drugs', 'web');
+        $custodianDrugsRole->syncPermissions([
             'manage_catalog',
             'record_deliveries',
             'view_unit_costs',

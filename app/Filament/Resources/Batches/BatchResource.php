@@ -25,7 +25,7 @@ class BatchResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'viewer']) ?? false;
+        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']) ?? false;
     }
 
     public static function canCreate(): bool

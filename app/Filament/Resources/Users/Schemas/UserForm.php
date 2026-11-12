@@ -44,6 +44,15 @@ class UserForm
                 Select::make('roles')
                     ->label('Assigned Role(s)')
                     ->relationship('roles', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) => match ($record->name) {
+                        'admin' => 'Administrator (RMPH IT)',
+                        'custodian' => 'General Custodian (All Categories)',
+                        'custodian_supplies' => 'Supplies Custodian (Medical Supplies Only)',
+                        'custodian_drugs' => 'Drugs Custodian (Drugs & Medicine Only)',
+                        'viewer' => 'Viewer (Chief of Hospital - Read Only)',
+                        'requesting_unit' => 'Requesting Unit Staff (Ward)',
+                        default => $record->name,
+                    })
                     ->multiple()
                     ->preload()
                     ->required()

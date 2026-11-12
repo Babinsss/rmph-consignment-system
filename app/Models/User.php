@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Enums\ItemCategory;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
@@ -76,7 +78,7 @@ class User extends Authenticatable implements FilamentUser
         }
 
         if ($panel->getId() === 'admin') {
-            return $this->hasAnyRole(['admin', 'custodian', 'viewer']);
+            return $this->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']);
         }
 
         if ($panel->getId() === 'portal') {
@@ -93,7 +95,7 @@ class User extends Authenticatable implements FilamentUser
      */
     public function canViewUnitCosts(): bool
     {
-        return $this->hasAnyRole(['admin', 'custodian', 'viewer']);
+        return $this->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']);
     }
 
     /**
@@ -105,11 +107,47 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * Check if user is a Custodian.
+     * Check if user is any kind of Custodian (generic, supplies, or drugs).
      */
     public function isCustodian(): bool
     {
-        return $this->hasRole('custodian');
+        return $this->hasAnyRole(['custodian', 'custodian_supplies', 'custodian_drugs']);
+    }
+
+    /**
+     * Check if user is the Supplies Custodian (Aliana Marie Dula).
+     */
+    public function isCustodianSupplies(): bool
+    {
+        return $this->hasRole('custodian_supplies');
+    }
+
+    /**
+     * Check if user is the Drugs & Medicine Custodian (Kristine Mae Batan).
+     */
+    public function isCustodianDrugs(): bool
+    {
+        return $this->hasRole('custodian_drugs');
+    }
+
+    /**
+     * Return the ItemCategory this custodian is scoped to, or null for full access.
+     *
+     * - custodian_supplies → ItemCategory::Supply
+     * - custodian_drugs    → ItemCategory::Drug
+     * - custodian / admin / viewer → null (full access, no category restriction)
+     */
+    public function custodianCategory(): ?ItemCategory
+    {
+        if ($this->hasRole('custodian_supplies')) {
+            return ItemCategory::Supply;
+        }
+
+        if ($this->hasRole('custodian_drugs')) {
+            return ItemCategory::Drug;
+        }
+
+        return null;
     }
 
     /**

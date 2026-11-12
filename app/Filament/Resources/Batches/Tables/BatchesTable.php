@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Batches\Tables;
 use App\Enums\ItemCategory;
 use App\Models\Batch;
 use App\Services\FulfillmentService;
+use App\Support\CustodianScope;
 use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
@@ -24,6 +25,7 @@ class BatchesTable
         return $table
             ->striped()
             ->defaultSort('expiration_date', 'asc')
+            ->modifyQueryUsing(fn (Builder $query) => CustodianScope::applyToBatches($query))
             ->emptyStateHeading('No Consignment Batches in Depot')
             ->emptyStateDescription('Batches created from confirmed Delivery Receipts (DR) will appear here with lot numbers, expiration tracking, and live depot stock.')
             ->emptyStateIcon('heroicon-o-circle-stack')
@@ -156,7 +158,7 @@ class BatchesTable
                     ->label('Adjust Stock')
                     ->icon('heroicon-o-pencil-square')
                     ->color('warning')
-                    ->visible(fn (): bool => auth()->user()?->hasAnyRole(['admin', 'custodian']) ?? false)
+                    ->visible(fn (): bool => auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs']) ?? false)
                     ->modalHeading(fn (Batch $record): string => "Physical Count Adjustment: Lot #{$record->lot_number}")
                     ->modalDescription(fn (Batch $record): string => "Current system stock: {$record->quantity_remaining} units of {$record->item->description}. Enter the verified physical count and mandatory audit reason.")
                     ->schema([

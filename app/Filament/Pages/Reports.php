@@ -25,7 +25,7 @@ class Reports extends Page
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'viewer']) ?? false;
+        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']) ?? false;
     }
 
     public function getViewData(): array

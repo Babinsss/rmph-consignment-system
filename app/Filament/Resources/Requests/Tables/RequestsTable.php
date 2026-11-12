@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Requests\Tables;
 use App\Enums\RequestStatus;
 use App\Models\Request;
 use App\Services\FulfillmentService;
+use App\Support\CustodianScope;
 use Filament\Actions\Action;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\Placeholder;
@@ -25,6 +26,7 @@ class RequestsTable
         return $table
             ->striped()
             ->defaultSort('request_date', 'desc')
+            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => CustodianScope::applyToRequests($query))
             ->emptyStateHeading('No Requisitions Received')
             ->emptyStateDescription('Supply requests submitted by hospital units (CSR, HDU, Dialysis, Pharmacies, Yakap) will appear here for custodian fulfillment.')
             ->emptyStateIcon('heroicon-o-inbox-stack')
@@ -98,7 +100,7 @@ class RequestsTable
                     ->icon('heroicon-o-check-badge')
                     ->color('success')
                     ->visible(fn (Request $record): bool => ($record->isPending() || $record->isPartiallyFulfilled())
-                        && (auth()->user()?->hasAnyRole(['admin', 'custodian']) ?? false)
+                        && (auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs']) ?? false)
                     )
                     ->modalHeading(fn (Request $record): string => "Fulfill Requisition #{$record->request_number}")
                     ->modalDescription(fn (Request $record): string => "System recommends batches by First-Expiry-First-Out (FEFO) for {$record->unit->name}. Review or adjust the quantities to issue.")
@@ -172,7 +174,7 @@ class RequestsTable
                     ->label('Reject')
                     ->icon('heroicon-o-x-circle')
                     ->color('danger')
-                    ->visible(fn (Request $record): bool => $record->isPending() && (auth()->user()?->hasAnyRole(['admin', 'custodian']) ?? false))
+                    ->visible(fn (Request $record): bool => $record->isPending() && (auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs']) ?? false))
                     ->requiresConfirmation()
                     ->schema([
                         Textarea::make('rejection_reason')

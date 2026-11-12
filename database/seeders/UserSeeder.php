@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
                 'is_active' => true,
             ]
         );
-        $custodianSupplies->syncRoles(['custodian']);
+        $custodianSupplies->syncRoles(['custodian_supplies']);
 
         $custodianDrugs = User::updateOrCreate(
             ['email' => 'kristine.batan@rmph.local'],
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
                 'is_active' => true,
             ]
         );
-        $custodianDrugs->syncRoles(['custodian']);
+        $custodianDrugs->syncRoles(['custodian_drugs']);
 
         // 3. Viewer (Chief of Hospital)
         $chief = User::updateOrCreate(

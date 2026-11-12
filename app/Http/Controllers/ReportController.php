@@ -187,6 +187,6 @@ class ReportController extends Controller
 
     protected function authorizeAccess(): void
     {
-        abort_unless(auth()->user()?->hasAnyRole(['admin', 'custodian', 'viewer']), 403, 'Unauthorized access to consignment inventory reports.');
+        abort_unless(auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']), 403, 'Unauthorized access to consignment inventory reports.');
     }
 }

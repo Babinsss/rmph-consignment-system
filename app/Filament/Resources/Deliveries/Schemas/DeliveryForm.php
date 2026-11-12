@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Deliveries\Schemas;
 
 use App\Models\Consignor;
 use App\Models\Item;
+use App\Support\CustodianScope;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Repeater;
@@ -135,7 +136,9 @@ class DeliveryForm
                                         $supplierItems = [];
                                         $otherItems = [];
 
-                                        $allItems = Item::with('consignor')->where('is_active', true)->orderBy('description')->get();
+                                        $query = Item::with('consignor')->where('is_active', true)->orderBy('description');
+                                        CustodianScope::applyToItems($query);
+                                        $allItems = $query->get();
 
                                         foreach ($allItems as $item) {
                                             $label = "[{$item->code}] {$item->description} ({$item->unit_of_measure})";

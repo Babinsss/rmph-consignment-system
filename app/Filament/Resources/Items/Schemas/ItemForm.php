@@ -36,7 +36,17 @@ class ItemForm
                     ]),
                 Select::make('category')
                     ->label('Item Classification')
-                    ->options(ItemCategory::class)
+                    ->options(function () {
+                        $scoped = auth()->user()?->custodianCategory();
+                        if ($scoped) {
+                            return [$scoped->value => $scoped->getLabel()];
+                        }
+
+                        return ItemCategory::class;
+                    })
+                    ->default(fn () => auth()->user()?->custodianCategory()?->value)
+                    ->disabled(fn () => auth()->user()?->custodianCategory() !== null)
+                    ->dehydrated()
                     ->required()
                     ->validationMessages([
                         'required' => 'Please choose whether this is a Medical Supply or Drug & Medicine.',

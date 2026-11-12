@@ -7,7 +7,7 @@ Route::get('/', function () {
     if (auth()->check()) {
         $user = auth()->user();
 
-        if ($user->hasRole('requesting_unit') && ! $user->hasAnyRole(['admin', 'custodian', 'viewer'])) {
+        if ($user->hasRole('requesting_unit') && ! $user->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer'])) {
             return redirect('/portal');
         }
 

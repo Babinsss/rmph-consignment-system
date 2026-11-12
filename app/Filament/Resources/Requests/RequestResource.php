@@ -8,6 +8,7 @@ use App\Filament\Resources\Requests\Pages\ViewRequest;
 use App\Filament\Resources\Requests\Schemas\RequestForm;
 use App\Filament\Resources\Requests\Tables\RequestsTable;
 use App\Models\Request;
+use App\Support\CustodianScope;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -29,7 +30,9 @@ class RequestResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        $pendingCount = Request::where('status', RequestStatus::Pending)->count();
+        $query = Request::where('status', RequestStatus::Pending);
+        CustodianScope::applyToRequests($query);
+        $pendingCount = $query->count();
 
         return $pendingCount > 0 ? (string) $pendingCount : null;
     }
@@ -41,7 +44,7 @@ class RequestResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'viewer']) ?? false;
+        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']) ?? false;
     }
 
     public static function canCreate(): bool

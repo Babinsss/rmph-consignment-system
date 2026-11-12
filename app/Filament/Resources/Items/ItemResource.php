@@ -29,17 +29,28 @@ class ItemResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'viewer']) ?? false;
+        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']) ?? false;
     }
 
     public static function canCreate(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian']) ?? false;
+        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs']) ?? false;
     }
 
     public static function canEdit($record): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian']) ?? false;
+        $user = auth()->user();
+        if (! $user?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs'])) {
+            return false;
+        }
+
+        // Category-scoped custodians may only edit items in their own category.
+        $category = $user->custodianCategory();
+        if ($category !== null && $record->category !== $category) {
+            return false;
+        }
+
+        return true;
     }
 
     public static function canDelete($record): bool
