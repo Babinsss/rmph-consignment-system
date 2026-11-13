@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\ItemCategory;
+use App\Filament\Resources\Items\ItemResource;
 use App\Filament\Resources\Items\Pages\ListItems;
 use App\Models\Batch;
 use App\Models\Consignor;
@@ -179,5 +180,51 @@ class CatalogAndConsignorsTest extends TestCase
         Livewire::test(ListItems::class)
             ->filterTable('consignor_id', $berovan->id)
             ->assertCanSeeTableRecords([$item]);
+    }
+
+    public function test_supplies_custodian_only_sees_medical_supplies_in_admin_items(): void
+    {
+        $suppliesCustodian = User::factory()->suppliesCustodian()->create();
+        $supplyItem = Item::where('code', 'SUP-001')->first();
+        $drugItem = Item::where('code', 'DRG-001')->first();
+
+        $this->actingAs($suppliesCustodian);
+
+        Livewire::test(ListItems::class)
+            ->searchTable('SUP-001')
+            ->assertCanSeeTableRecords([$supplyItem]);
+
+        Livewire::test(ListItems::class)
+            ->searchTable('DRG-001')
+            ->assertCanNotSeeTableRecords([$drugItem]);
+    }
+
+    public function test_drugs_custodian_only_sees_drugs_in_admin_items(): void
+    {
+        $drugsCustodian = User::factory()->drugsCustodian()->create();
+        $supplyItem = Item::where('code', 'SUP-001')->first();
+        $drugItem = Item::where('code', 'DRG-001')->first();
+
+        $this->actingAs($drugsCustodian);
+
+        Livewire::test(ListItems::class)
+            ->searchTable('DRG-001')
+            ->assertCanSeeTableRecords([$drugItem]);
+
+        Livewire::test(ListItems::class)
+            ->searchTable('SUP-001')
+            ->assertCanNotSeeTableRecords([$supplyItem]);
+    }
+
+    public function test_supplies_custodian_cannot_edit_drug_item(): void
+    {
+        $suppliesCustodian = User::factory()->suppliesCustodian()->create();
+        $supplyItem = Item::where('code', 'SUP-001')->first();
+        $drugItem = Item::where('code', 'DRG-001')->first();
+
+        $this->actingAs($suppliesCustodian);
+
+        $this->assertTrue(ItemResource::canEdit($supplyItem));
+        $this->assertFalse(ItemResource::canEdit($drugItem));
     }
 }

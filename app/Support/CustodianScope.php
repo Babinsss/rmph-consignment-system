@@ -59,7 +59,10 @@ class CustodianScope
         $category = $user?->custodianCategory();
 
         if ($category instanceof ItemCategory) {
-            $query->whereHas('batches.item', fn (Builder $q) => $q->where('category', $category->value));
+            $query->where(function (Builder $sub) use ($category) {
+                $sub->whereHas('batches.item', fn (Builder $q) => $q->where('category', $category->value))
+                    ->orDoesntHave('batches');
+            });
         }
 
         return $query;
@@ -92,7 +95,10 @@ class CustodianScope
         $category = $user?->custodianCategory();
 
         if ($category instanceof ItemCategory) {
-            $query->whereHas('lines.item', fn (Builder $q) => $q->where('category', $category->value));
+            $query->where(function (Builder $sub) use ($category) {
+                $sub->whereHas('lines.item', fn (Builder $q) => $q->where('category', $category->value))
+                    ->orDoesntHave('lines');
+            });
         }
 
         return $query;
