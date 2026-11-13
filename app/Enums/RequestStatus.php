@@ -12,6 +12,7 @@ enum RequestStatus: string implements HasColor, HasIcon, HasLabel
     case PartiallyFulfilled = 'partially_fulfilled';
     case Fulfilled = 'fulfilled';
     case Rejected = 'rejected';
+    case Cancelled = 'cancelled';
 
     public function getLabel(): ?string
     {
@@ -20,6 +21,7 @@ enum RequestStatus: string implements HasColor, HasIcon, HasLabel
             self::PartiallyFulfilled => 'Partly Fulfilled',
             self::Fulfilled => 'Fulfilled',
             self::Rejected => 'Rejected',
+            self::Cancelled => 'Cancelled',
         };
     }
 
@@ -30,6 +32,7 @@ enum RequestStatus: string implements HasColor, HasIcon, HasLabel
             self::PartiallyFulfilled => 'info',
             self::Fulfilled => 'success',
             self::Rejected => 'danger',
+            self::Cancelled => 'gray',
         };
     }
 
@@ -40,6 +43,7 @@ enum RequestStatus: string implements HasColor, HasIcon, HasLabel
             self::PartiallyFulfilled => 'heroicon-m-arrow-path',
             self::Fulfilled => 'heroicon-m-check-badge',
             self::Rejected => 'heroicon-m-x-circle',
+            self::Cancelled => 'heroicon-m-no-symbol',
         };
     }
 }

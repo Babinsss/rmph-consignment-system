@@ -11,6 +11,7 @@ use App\Models\Item;
 use App\Models\Request;
 use App\Models\Unit;
 use App\Models\User;
+use App\Services\FulfillmentService;
 use Carbon\Carbon;
 use Database\Seeders\RoleAndPermissionSeeder;
 use Database\Seeders\UnitSeeder;
@@ -196,5 +197,104 @@ class ReportsAndExportsTest extends TestCase
         $this->get('/reports/near-expiry/pdf')->assertStatus(403);
         $this->get('/reports/deliveries/pdf')->assertStatus(403);
         $this->get('/reports/unit-requests/pdf')->assertStatus(403);
+        $this->get('/reports/stock-movements/pdf')->assertStatus(403);
+        $this->get('/reports/stock-movements/csv')->assertStatus(403);
+    }
+
+    public function test_stock_movements_pdf_and_csv_export_successfully(): void
+    {
+        $request = Request::where('request_number', 'REQ-REP-001')->first();
+        $line = $request->lines()->first();
+
+        app(FulfillmentService::class)->fulfillRequest($request, [
+            [
+                'line_id' => $line->id,
+                'batch_id' => $this->batch->id,
+                'quantity' => 25,
+            ],
+        ], $this->custodian);
+
+        $this->actingAs($this->custodian);
+
+        $this->get('/reports/stock-movements/pdf')
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/pdf');
+
+        $csvResponse = $this->get('/reports/stock-movements/csv');
+        $csvResponse->assertStatus(200);
+        $content = $csvResponse->streamedContent();
+        $this->assertStringContainsString('LOT-REP-01', $content);
+        $this->assertStringContainsString('REQ-REP-001', $content);
+    }
+
+    public function test_issue_slip_pdf_is_accessible_to_requesting_unit_and_never_displays_pricing(): void
+    {
+        $request = Request::where('request_number', 'REQ-REP-001')->first();
+        $line = $request->lines()->first();
+
+        app(FulfillmentService::class)->fulfillRequest($request, [
+            [
+                'line_id' => $line->id,
+                'batch_id' => $this->batch->id,
+                'quantity' => 25,
+            ],
+        ], $this->custodian);
+
+        // Requesting CSR unit staff can download issue slip PDF
+        $this->actingAs($this->csrStaff);
+        $this->get("/reports/requests/{$request->id}/issue-slip")
+            ->assertStatus(200)
+            ->assertHeader('Content-Type', 'application/pdf');
+
+        // Another unit's staff (HDU) cannot view CSR's issue slip
+        $hduStaff = User::where('email', 'hdu@rmph.local')->first();
+        $this->actingAs($hduStaff);
+        $this->get("/reports/requests/{$request->id}/issue-slip")
+            ->assertStatus(403);
+
+        // HTML view for issue slip strictly omits unit cost / pricing
+        $requisition = $request->fresh(['unit', 'requestedBy', 'fulfilledBy', 'lines.item']);
+        $html = view('reports.issue-slip', [
+            'requisition' => $requisition,
+            'issuedMovements' => $requisition->getIssuedMovements(),
+            'generatedAt' => Carbon::now('Asia/Manila')->format('F j, Y g:i A'),
+            'generatedBy' => $this->custodian->name,
+        ])->render();
+
+        $this->assertStringContainsString('LOT-REP-01', $html);
+        $this->assertStringNotContainsString('Unit Cost', $html);
+        $this->assertStringNotContainsString('4.50', $html);
+    }
+
+    public function test_cost_columns_included_in_reports_for_custodian_and_scoped_by_category(): void
+    {
+        $drugItem = Item::create([
+            'code' => 'DRG-REP-99',
+            'description' => 'Amoxicillin 500mg Capsule',
+            'category' => ItemCategory::Drug,
+            'unit_of_measure' => 'box of 100',
+            'consignor_id' => $this->item->consignor_id,
+            'minimum_level' => 10,
+            'is_active' => true,
+        ]);
+
+        Batch::create([
+            'delivery_id' => $this->delivery->id,
+            'item_id' => $drugItem->id,
+            'lot_number' => 'LOT-DRG-REP',
+            'expiration_date' => Carbon::today('Asia/Manila')->addDays(60),
+            'quantity_received' => 50,
+            'quantity_remaining' => 50,
+            'unit_cost' => 120.00,
+            'is_active' => true,
+        ]);
+
+        $this->actingAs($this->custodian); // custodian_supplies
+        $content = $this->get('/reports/stock-on-hand/csv')->streamedContent();
+
+        $this->assertStringContainsString('Avg. Unit Cost (PHP)', $content);
+        $this->assertStringContainsString('Total Valuation (PHP)', $content);
+        $this->assertStringContainsString('SUP-001', $content);
+        $this->assertStringNotContainsString('DRG-REP-99', $content);
     }
 }

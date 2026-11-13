@@ -5,10 +5,12 @@ namespace App\Filament\Resources\Batches;
 use App\Filament\Resources\Batches\Pages\ListBatches;
 use App\Filament\Resources\Batches\Tables\BatchesTable;
 use App\Models\Batch;
+use App\Support\CustodianScope;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class BatchResource extends Resource
@@ -22,6 +24,11 @@ class BatchResource extends Resource
     protected static ?string $navigationLabel = 'Depot Batches & Stock';
 
     protected static ?int $navigationSort = 4;
+
+    public static function getEloquentQuery(): Builder
+    {
+        return CustodianScope::applyToBatches(parent::getEloquentQuery());
+    }
 
     public static function canAccess(): bool
     {

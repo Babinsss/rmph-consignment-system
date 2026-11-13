@@ -30,6 +30,16 @@ class RequestResource extends Resource
         return auth()->user()?->hasRole('requesting_unit') ?? false;
     }
 
+    public static function canEdit($record): bool
+    {
+        return false;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return false;
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

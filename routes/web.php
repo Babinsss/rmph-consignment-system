@@ -29,4 +29,9 @@ Route::middleware(['auth'])->prefix('reports')->group(function () {
 
     Route::get('/unit-requests/pdf', [ReportController::class, 'unitRequestsPdf'])->name('reports.unit-requests.pdf');
     Route::get('/unit-requests/csv', [ReportController::class, 'unitRequestsCsv'])->name('reports.unit-requests.csv');
+
+    Route::get('/stock-movements/pdf', [ReportController::class, 'stockMovementsPdf'])->name('reports.stock-movements.pdf');
+    Route::get('/stock-movements/csv', [ReportController::class, 'stockMovementsCsv'])->name('reports.stock-movements.csv');
+
+    Route::get('/requests/{requisition}/issue-slip', [ReportController::class, 'requestIssueSlipPdf'])->name('reports.requests.issue-slip');
 });

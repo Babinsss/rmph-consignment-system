@@ -247,4 +247,137 @@ class FulfillmentAndStockCardTest extends TestCase
         $this->actingAs($this->viewer);
         $this->get('/admin/stock-movements')->assertStatus(200);
     }
+
+    public function test_over_issuance_beyond_pending_quantity_is_blocked(): void
+    {
+        $request = Request::create([
+            'request_number' => 'REQ-OVER-001',
+            'unit_id' => $this->csrUnit->id,
+            'requested_by_id' => $this->csrStaff->id,
+            'request_date' => now(),
+            'is_urgent' => false,
+            'status' => RequestStatus::Pending,
+        ]);
+
+        $line = $request->lines()->create([
+            'item_id' => $this->item->id,
+            'quantity_requested' => 30,
+            'quantity_issued' => 0,
+        ]);
+
+        $this->expectException(ValidationException::class);
+
+        app(FulfillmentService::class)->fulfillRequest($request, [
+            [
+                'line_id' => $line->id,
+                'batch_id' => $this->earlyBatch->id,
+                'quantity' => 50,
+            ],
+        ], $this->custodian);
+    }
+
+    public function test_expired_batch_is_excluded_from_issuable_stock_and_blocked_during_fulfillment(): void
+    {
+        $today = Carbon::today('Asia/Manila');
+        $expiredBatch = Batch::create([
+            'delivery_id' => $this->earlyBatch->delivery_id,
+            'item_id' => $this->item->id,
+            'lot_number' => 'LOT-EXPIRED-99',
+            'expiration_date' => $today->copy()->subDay(),
+            'quantity_received' => 50,
+            'quantity_remaining' => 50,
+            'unit_cost' => 5.00,
+            'is_active' => true,
+        ]);
+
+        // Issuable current_stock excludes the 50 expired units (100 + 500 = 600).
+        $this->assertEquals(600, $this->item->fresh()->current_stock);
+        $this->assertEquals(50, $this->item->fresh()->expired_stock);
+
+        $request = Request::create([
+            'request_number' => 'REQ-EXP-001',
+            'unit_id' => $this->csrUnit->id,
+            'requested_by_id' => $this->csrStaff->id,
+            'request_date' => now(),
+            'is_urgent' => false,
+            'status' => RequestStatus::Pending,
+        ]);
+
+        $line = $request->lines()->create([
+            'item_id' => $this->item->id,
+            'quantity_requested' => 10,
+            'quantity_issued' => 0,
+        ]);
+
+        $this->expectException(ValidationException::class);
+
+        app(FulfillmentService::class)->fulfillRequest($request, [
+            [
+                'line_id' => $line->id,
+                'batch_id' => $expiredBatch->id,
+                'quantity' => 10,
+            ],
+        ], $this->custodian);
+    }
+
+    public function test_category_scoped_custodian_cannot_fulfill_or_adjust_other_category(): void
+    {
+        $drugItem = Item::create([
+            'code' => 'DRG-901',
+            'description' => 'Ceftriaxone 1g Vial',
+            'category' => ItemCategory::Drug,
+            'unit_of_measure' => 'vial',
+            'consignor_id' => $this->item->consignor_id,
+            'minimum_level' => 5,
+            'is_active' => true,
+        ]);
+
+        $drugBatch = Batch::create([
+            'delivery_id' => $this->earlyBatch->delivery_id,
+            'item_id' => $drugItem->id,
+            'lot_number' => 'LOT-DRG-901',
+            'expiration_date' => Carbon::today('Asia/Manila')->addMonths(6),
+            'quantity_received' => 40,
+            'quantity_remaining' => 40,
+            'unit_cost' => 95.00,
+            'is_active' => true,
+        ]);
+
+        $mixedRequest = Request::create([
+            'request_number' => 'REQ-MIX-001',
+            'unit_id' => $this->csrUnit->id,
+            'requested_by_id' => $this->csrStaff->id,
+            'request_date' => now(),
+            'is_urgent' => false,
+            'status' => RequestStatus::Pending,
+        ]);
+
+        $supplyLine = $mixedRequest->lines()->create([
+            'item_id' => $this->item->id,
+            'quantity_requested' => 5,
+            'quantity_issued' => 0,
+        ]);
+
+        $drugLine = $mixedRequest->lines()->create([
+            'item_id' => $drugItem->id,
+            'quantity_requested' => 5,
+            'quantity_issued' => 0,
+        ]);
+
+        $service = app(FulfillmentService::class);
+        $recommendations = $service->getFefoRecommendations($mixedRequest, $this->custodian);
+        $this->assertCount(1, $recommendations);
+        $this->assertArrayHasKey($supplyLine->id, $recommendations);
+        $this->assertEquals($this->item->id, $recommendations[$supplyLine->id]['item_id']);
+
+        $this->expectException(ValidationException::class);
+
+        $service->fulfillRequest($mixedRequest, [
+            [
+                'line_id' => $drugLine->id,
+                'batch_id' => $drugBatch->id,
+                'quantity' => 5,
+            ],
+        ], $this->custodian);
+    }
 }

@@ -5,12 +5,14 @@ namespace App\Filament\Resources\Items\Tables;
 use App\Enums\ItemCategory;
 use App\Models\Item;
 use App\Support\CustodianScope;
+use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
@@ -23,6 +25,7 @@ class ItemsTable
         return $table
             ->modifyQueryUsing(fn (Builder $query) => CustodianScope::applyToItems(
                 $query->with(['consignor', 'batches.delivery.consignor'])
+                    ->withSum('issuableBatches as issuable_stock_sum', 'quantity_remaining')
             ))
             ->striped()
             ->defaultSort('description', 'asc')
@@ -90,7 +93,8 @@ class ItemsTable
             ->filters([
                 SelectFilter::make('category')
                     ->label('Category')
-                    ->options(ItemCategory::class),
+                    ->options(ItemCategory::class)
+                    ->visible(fn (): bool => auth()->user()?->custodianCategory() === null),
                 SelectFilter::make('consignor_id')
                     ->label('Consignor')
                     ->relationship('consignor', 'name')
@@ -112,6 +116,12 @@ class ItemsTable
                     ->boolean()
                     ->trueLabel('Active Items Only')
                     ->falseLabel('Inactive Items Only'),
+                Filter::make('low_stock')
+                    ->label('Low Stock Only (<= Min. Level)')
+                    ->query(fn (Builder $query): Builder => $query->whereRaw(
+                        '(SELECT COALESCE(SUM(b.quantity_remaining), 0) FROM batches b WHERE b.item_id = items.id AND b.is_active = 1 AND b.quantity_remaining > 0 AND b.expiration_date >= ?) <= items.minimum_level',
+                        [Carbon::today('Asia/Manila')->toDateString()]
+                    )),
             ])
             ->recordActions([
                 Action::make('view_batches')

@@ -3,7 +3,7 @@
 @endphp
 
 @if ($urgentRequests->isNotEmpty())
-    <div class="p-4 rounded-xl border border-red-300 bg-red-50 text-red-950 shadow-sm mb-6">
+    <div wire:poll.15s class="p-4 rounded-xl border border-red-300 bg-red-50 text-red-950 shadow-sm mb-6">
         <div class="flex items-center justify-between pb-3 border-b border-red-200">
             <div class="flex items-center gap-2.5">
                 <span class="relative flex h-3 w-3">

@@ -335,4 +335,34 @@ class RequisitionPortalTest extends TestCase
 
         Carbon::setTestNow();
     }
+
+    public function test_ward_staff_can_cancel_own_pending_request_but_not_other_unit_request(): void
+    {
+        $request = Request::create([
+            'request_number' => 'REQ-CSR-CAN-01',
+            'unit_id' => $this->csrUnit->id,
+            'requested_by_id' => $this->csrStaff->id,
+            'request_date' => now(),
+            'is_urgent' => false,
+            'status' => RequestStatus::Pending,
+        ]);
+
+        $service = app(RequestService::class);
+        $cancelled = $service->cancelRequest($request, $this->csrStaff, 'Order no longer needed.');
+
+        $this->assertEquals(RequestStatus::Cancelled, $cancelled->status);
+        $this->assertEquals('Order no longer needed.', $cancelled->rejection_reason);
+
+        $hduRequest = Request::create([
+            'request_number' => 'REQ-HDU-CAN-02',
+            'unit_id' => $this->hduUnit->id,
+            'requested_by_id' => $this->hduStaff->id,
+            'request_date' => now(),
+            'is_urgent' => false,
+            'status' => RequestStatus::Pending,
+        ]);
+
+        $this->expectException(ValidationException::class);
+        $service->cancelRequest($hduRequest, $this->csrStaff);
+    }
 }

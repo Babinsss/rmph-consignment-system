@@ -92,7 +92,10 @@ class CustodianScope
         $category = $user?->custodianCategory();
 
         if ($category instanceof ItemCategory) {
-            $query->whereHas('lines.item', fn (Builder $q) => $q->where('category', $category->value));
+            $query->where(function (Builder $q) use ($category) {
+                $q->whereHas('lines.item', fn (Builder $iq) => $iq->where('category', $category->value))
+                    ->orWhereDoesntHave('lines');
+            });
         }
 
         return $query;

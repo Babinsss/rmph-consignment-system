@@ -3,6 +3,7 @@
 namespace App\Filament\Portal\Resources\Requests\Schemas;
 
 use App\Models\Item;
+use App\Models\Request;
 use App\Services\RequestWindowService;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
@@ -124,6 +125,51 @@ class RequestForm
                             ->addActionLabel('+ Add Another Consigned Item')
                             ->itemLabel(fn (array $state): ?string => isset($state['item_id']) ? Item::find($state['item_id'])?->description : 'New Item Line')
                             ->collapsible(),
+                    ]),
+
+                Section::make('Issued Batches & Lot Numbers')
+                    ->visible(fn (?Request $record): bool => $record !== null && $record->getIssuedMovements()->isNotEmpty())
+                    ->components([
+                        Placeholder::make('issued_batches_summary')
+                            ->hiddenLabel()
+                            ->content(function (?Request $record): HtmlString {
+                                if (! $record) {
+                                    return new HtmlString('');
+                                }
+
+                                $rows = $record->getIssuedMovements()->map(function ($movement): string {
+                                    $itemCode = e($movement->batch?->item?->code ?? 'N/A');
+                                    $itemDesc = e($movement->batch?->item?->description ?? 'Unknown Item');
+                                    $lot = e($movement->batch?->lot_number ?? 'N/A');
+                                    $expiry = e($movement->batch?->expiration_date?->format('Y-m-d') ?? 'N/A');
+                                    $qty = abs((int) $movement->quantity);
+
+                                    return "<tr>
+                                        <td class='px-3 py-2 font-mono text-xs'>{$itemCode}</td>
+                                        <td class='px-3 py-2 text-xs'>{$itemDesc}</td>
+                                        <td class='px-3 py-2 font-mono text-xs'>{$lot}</td>
+                                        <td class='px-3 py-2 text-xs'>{$expiry}</td>
+                                        <td class='px-3 py-2 text-xs font-semibold text-right'>{$qty}</td>
+                                    </tr>";
+                                })->implode('');
+
+                                return new HtmlString(
+                                    "<div class='overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700'>
+                                        <table class='w-full text-left border-collapse'>
+                                            <thead class='bg-gray-50 dark:bg-gray-800 text-xs uppercase text-gray-600 dark:text-gray-300'>
+                                                <tr>
+                                                    <th class='px-3 py-2'>Code</th>
+                                                    <th class='px-3 py-2'>Description</th>
+                                                    <th class='px-3 py-2'>Lot #</th>
+                                                    <th class='px-3 py-2'>Expiry</th>
+                                                    <th class='px-3 py-2 text-right'>Issued</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class='divide-y divide-gray-200 dark:divide-gray-700'>{$rows}</tbody>
+                                        </table>
+                                    </div>"
+                                );
+                            }),
                     ]),
             ]);
     }

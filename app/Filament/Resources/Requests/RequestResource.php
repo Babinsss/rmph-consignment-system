@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class RequestResource extends Resource
@@ -40,6 +41,11 @@ class RequestResource extends Resource
     public static function getNavigationBadgeColor(): ?string
     {
         return 'warning';
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return CustodianScope::applyToRequests(parent::getEloquentQuery());
     }
 
     public static function canAccess(): bool

@@ -5,10 +5,9 @@
     <title>Stock on Hand Report - RMPH HECS</title>
     <style>
         body { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: #1e293b; margin: 20px; }
-        .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #0284c7; padding-bottom: 10px; }
+        .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #0f766e; padding-bottom: 10px; }
         .header h1 { font-size: 16px; margin: 0; color: #0f172a; text-transform: uppercase; }
         .header p { margin: 2px 0; font-size: 9px; color: #475569; }
-        .meta { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 9px; }
         table { width: 100%; border-collapse: collapse; margin-top: 5px; }
         th { background-color: #f1f5f9; color: #334155; text-align: left; padding: 6px 4px; font-size: 8.5px; border-bottom: 1px solid #cbd5e1; }
         td { padding: 5px 4px; border-bottom: 1px solid #e2e8f0; font-size: 8.5px; }
@@ -17,6 +16,7 @@
         .badge-success { color: #15803d; }
         .text-right { text-align: right; }
         .text-center { text-align: center; }
+        .summary-row td { background-color: #f1f5f9; font-weight: bold; border-top: 2px solid #94a3b8; }
         .footer { margin-top: 25px; border-top: 1px solid #cbd5e1; padding-top: 6px; font-size: 8px; color: #64748b; text-align: center; }
     </style>
 </head>
@@ -24,12 +24,12 @@
     <div class="header">
         <h1>Roxas Memorial Provincial Hospital</h1>
         <p>Arnaldo Boulevard, Roxas City, Capiz, Philippines</p>
-        <p><strong>Hospital Consignment Inventory System (HECS) — Central Depot Stock on Hand</strong></p>
+        <p><strong>Hospital Consignment Inventory System (HECS) — Central Depot Stock on Hand{{ !empty($lowStockOnly) ? ' (Low Stock Only)' : '' }}</strong></p>
     </div>
 
     <table style="width: 100%; margin-bottom: 15px; border: none;">
         <tr>
-            <td style="border: none; padding: 0;"><strong>Report Type:</strong> Central Depot Stock on Hand</td>
+            <td style="border: none; padding: 0;"><strong>Report Type:</strong> Issuable Central Depot Stock on Hand</td>
             <td style="border: none; padding: 0; text-align: right;"><strong>Generated On:</strong> {{ $generatedAt }}</td>
         </tr>
         <tr>
@@ -41,17 +41,29 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 10%;">Item Code</th>
-                <th style="width: 30%;">Description</th>
-                <th style="width: 12%;">Category</th>
-                <th style="width: 10%;">Unit of Measure</th>
-                <th style="width: 18%;">Consignor</th>
-                <th style="width: 8%;" class="text-center">Min. Alert</th>
-                <th style="width: 12%;" class="text-right">Stock on Hand</th>
+                <th style="width: 9%;">Item Code</th>
+                <th style="width: {{ !empty($showCosts) ? '25%' : '30%' }};">Description</th>
+                <th style="width: 11%;">Category</th>
+                <th style="width: 10%;">Unit</th>
+                <th style="width: {{ !empty($showCosts) ? '15%' : '18%' }};">Consignor</th>
+                <th style="width: 7%;" class="text-center">Min.</th>
+                <th style="width: 10%;" class="text-right">Stock on Hand</th>
+                @if (!empty($showCosts))
+                    <th style="width: 6%;" class="text-right">Avg. Cost</th>
+                    <th style="width: 7%;" class="text-right">Total Value</th>
+                @endif
             </tr>
         </thead>
         <tbody>
-            @foreach ($items as $item)
+            @php
+                $grandUnits = 0;
+                $grandValue = 0.0;
+            @endphp
+            @forelse ($items as $item)
+                @php
+                    $grandUnits += $item['current_stock'];
+                    $grandValue += $item['total_valuation'];
+                @endphp
                 <tr>
                     <td><strong>{{ $item['code'] }}</strong></td>
                     <td>{{ $item['description'] }}</td>
@@ -65,8 +77,28 @@
                             <br><small style="font-size: 7px; color: #b91c1c;">(Low Stock)</small>
                         @endif
                     </td>
+                    @if (!empty($showCosts))
+                        <td class="text-right">PHP {{ number_format($item['unit_cost'], 2) }}</td>
+                        <td class="text-right"><strong>PHP {{ number_format($item['total_valuation'], 2) }}</strong></td>
+                    @endif
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="{{ !empty($showCosts) ? 9 : 7 }}" class="text-center" style="padding: 20px; color: #64748b;">
+                        No catalog items found matching the selected criteria.
+                    </td>
+                </tr>
+            @endforelse
+            @if (count($items) > 0)
+                <tr class="summary-row">
+                    <td colspan="6" class="text-right">Grand Total</td>
+                    <td class="text-right">{{ number_format($grandUnits) }}</td>
+                    @if (!empty($showCosts))
+                        <td></td>
+                        <td class="text-right">PHP {{ number_format($grandValue, 2) }}</td>
+                    @endif
+                </tr>
+            @endif
         </tbody>
     </table>
 

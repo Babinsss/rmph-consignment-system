@@ -23,6 +23,7 @@ class DesignSystem extends Page
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'viewer']) ?? false;
+        return ! app()->environment('production')
+            && (auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs', 'viewer']) ?? false);
     }
 }

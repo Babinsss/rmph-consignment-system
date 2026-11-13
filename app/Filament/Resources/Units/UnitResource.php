@@ -25,7 +25,7 @@ class UnitResource extends Resource
 
     public static function canAccess(): bool
     {
-        return auth()->user()?->hasAnyRole(['admin', 'custodian']) ?? false;
+        return auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs']) ?? false;
     }
 
     public static function form(Schema $schema): Schema

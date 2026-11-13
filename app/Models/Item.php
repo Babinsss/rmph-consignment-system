@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ItemCategory;
+use Carbon\Carbon;
 use Database\Factories\ItemFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -63,9 +64,33 @@ class Item extends Model
             ->where('is_active', true);
     }
 
+    /**
+     * Active batches that have not expired and can be issued via FEFO.
+     */
+    public function issuableBatches(): HasMany
+    {
+        return $this->activeBatches()
+            ->where('expiration_date', '>=', Carbon::today('Asia/Manila')->toDateString());
+    }
+
     public function getCurrentStockAttribute(): int
     {
-        return (int) $this->batches()->sum('quantity_remaining');
+        if (array_key_exists('issuable_stock_sum', $this->attributes)) {
+            return (int) ($this->attributes['issuable_stock_sum'] ?? 0);
+        }
+
+        return (int) $this->issuableBatches()->sum('quantity_remaining');
+    }
+
+    public function getExpiredStockAttribute(): int
+    {
+        if (array_key_exists('expired_stock_sum', $this->attributes)) {
+            return (int) ($this->attributes['expired_stock_sum'] ?? 0);
+        }
+
+        return (int) $this->activeBatches()
+            ->where('expiration_date', '<', Carbon::today('Asia/Manila')->toDateString())
+            ->sum('quantity_remaining');
     }
 
     public function getIsLowStockAttribute(): bool

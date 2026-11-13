@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Enums\ItemCategory;
+use App\Filament\Resources\Deliveries\DeliveryResource;
 use App\Filament\Resources\Deliveries\Pages\CreateDelivery;
 use App\Models\Batch;
 use App\Models\Consignor;
@@ -292,5 +293,40 @@ class DeliveriesAndBatchesTest extends TestCase
             ])
             ->call('create')
             ->assertHasFormErrors(['batches.0.expiration_date']);
+    }
+
+    public function test_deliveries_are_immutable_after_receipt_and_duplicate_dr_per_consignor_is_rejected(): void
+    {
+        $delivery = Delivery::create([
+            'consignor_id' => $this->consignor->id,
+            'dr_number' => 'DR-IMMUTABLE-01',
+            'delivery_date' => Carbon::today('Asia/Manila'),
+            'received_by_id' => $this->custodian->id,
+        ]);
+
+        $this->actingAs($this->admin);
+        $this->assertFalse(DeliveryResource::canEdit($delivery));
+        $this->assertFalse(DeliveryResource::canDelete($delivery));
+
+        $this->actingAs($this->custodian);
+
+        Livewire::test(CreateDelivery::class)
+            ->fillForm([
+                'consignor_id' => $this->consignor->id,
+                'dr_number' => 'DR-IMMUTABLE-01',
+                'delivery_date' => now()->toDateString(),
+                'received_by_id' => $this->custodian->id,
+                'batches' => [
+                    [
+                        'item_id' => $this->item->id,
+                        'lot_number' => 'LOT-UNIQ-01',
+                        'expiration_date' => now()->addYear()->toDateString(),
+                        'quantity_received' => 10,
+                        'unit_cost' => 25.00,
+                    ],
+                ],
+            ])
+            ->call('create')
+            ->assertHasFormErrors(['dr_number']);
     }
 }

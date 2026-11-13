@@ -160,6 +160,11 @@
                                                 <x-filament::icon icon="heroicon-m-check-badge" class="w-3.5 h-3.5 text-emerald-600" />
                                                 Fulfilled
                                             </span>
+                                        @elseif ($req->status->value === 'cancelled')
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                                                <x-filament::icon icon="heroicon-m-no-symbol" class="w-3.5 h-3.5 text-slate-500" />
+                                                Cancelled
+                                            </span>
                                         @else
                                             <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-red-50 text-red-800 border border-red-200">
                                                 <x-filament::icon icon="heroicon-m-x-circle" class="w-3.5 h-3.5 text-red-600" />

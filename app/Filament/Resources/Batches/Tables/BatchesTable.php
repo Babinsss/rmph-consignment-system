@@ -17,6 +17,8 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Validation\ValidationException;
+use InvalidArgumentException;
 
 class BatchesTable
 {
@@ -145,6 +147,7 @@ class BatchesTable
                 SelectFilter::make('category')
                     ->label('Category')
                     ->options(ItemCategory::class)
+                    ->visible(fn (): bool => auth()->user()?->custodianCategory() === null)
                     ->query(fn (Builder $query, array $data) => filled($data['value']) ? $query->whereHas('item', fn ($q) => $q->where('category', $data['value'])) : $query),
 
                 SelectFilter::make('consignor_id')
@@ -158,7 +161,19 @@ class BatchesTable
                     ->label('Adjust Stock')
                     ->icon('heroicon-o-pencil-square')
                     ->color('warning')
-                    ->visible(fn (): bool => auth()->user()?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs']) ?? false)
+                    ->visible(function (Batch $record): bool {
+                        $user = auth()->user();
+                        if (! ($user?->hasAnyRole(['admin', 'custodian', 'custodian_supplies', 'custodian_drugs']) ?? false)) {
+                            return false;
+                        }
+
+                        $scopedCategory = $user->custodianCategory();
+                        if ($scopedCategory !== null && $record->item?->category !== $scopedCategory) {
+                            return false;
+                        }
+
+                        return true;
+                    })
                     ->modalHeading(fn (Batch $record): string => "Physical Count Adjustment: Lot #{$record->lot_number}")
                     ->modalDescription(fn (Batch $record): string => "Current system stock: {$record->quantity_remaining} units of {$record->item->description}. Enter the verified physical count and mandatory audit reason.")
                     ->schema([
@@ -174,8 +189,17 @@ class BatchesTable
                             ->required(),
                     ])
                     ->action(function (Batch $record, array $data): void {
-                        $fulfillmentService = app(FulfillmentService::class);
-                        $updated = $fulfillmentService->adjustStock($record, (int) $data['new_quantity'], $data['reason'], auth()->user());
+                        try {
+                            $updated = app(FulfillmentService::class)->adjustStock($record, (int) $data['new_quantity'], $data['reason'], auth()->user());
+                        } catch (ValidationException|InvalidArgumentException $exception) {
+                            Notification::make()
+                                ->title('Adjustment Blocked')
+                                ->body($exception->getMessage())
+                                ->danger()
+                                ->send();
+
+                            return;
+                        }
 
                         Notification::make()
                             ->title('Stock Adjusted')

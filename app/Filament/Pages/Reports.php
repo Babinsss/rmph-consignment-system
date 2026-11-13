@@ -2,8 +2,11 @@
 
 namespace App\Filament\Pages;
 
+use App\Enums\RequestStatus;
 use App\Models\Consignor;
+use App\Models\Item;
 use App\Models\Unit;
+use App\Support\CustodianScope;
 use BackedEnum;
 use Filament\Pages\Page;
 use Filament\Support\Icons\Heroicon;
@@ -30,9 +33,15 @@ class Reports extends Page
 
     public function getViewData(): array
     {
+        $itemsQuery = Item::where('is_active', true)->orderBy('description');
+        CustodianScope::applyToItems($itemsQuery);
+
         return [
             'consignors' => Consignor::where('is_active', true)->orderBy('name')->get(),
             'units' => Unit::where('is_active', true)->orderBy('name')->get(),
+            'items' => $itemsQuery->get(),
+            'statuses' => RequestStatus::cases(),
+            'scopedCategory' => auth()->user()?->custodianCategory(),
         ];
     }
 }
