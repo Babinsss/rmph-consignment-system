@@ -8,11 +8,13 @@ use App\Filament\Resources\Items\Pages\ListItems;
 use App\Filament\Resources\Items\Schemas\ItemForm;
 use App\Filament\Resources\Items\Tables\ItemsTable;
 use App\Models\Item;
+use App\Support\CustodianScope;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class ItemResource extends Resource
@@ -26,6 +28,11 @@ class ItemResource extends Resource
     protected static ?string $navigationLabel = 'Item Catalog';
 
     protected static ?int $navigationSort = 2;
+
+    public static function getEloquentQuery(): Builder
+    {
+        return CustodianScope::applyToItems(parent::getEloquentQuery());
+    }
 
     public static function canAccess(): bool
     {

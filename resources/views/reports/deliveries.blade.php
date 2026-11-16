@@ -5,7 +5,7 @@
     <title>Delivery History Report - RMPH HECS</title>
     <style>
         body { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: #1e293b; margin: 20px; }
-        .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #4f46e5; padding-bottom: 10px; }
+        .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #0f766e; padding-bottom: 10px; }
         .header h1 { font-size: 16px; margin: 0; color: #0f172a; text-transform: uppercase; }
         .header p { margin: 2px 0; font-size: 9px; color: #475569; }
         table { width: 100%; border-collapse: collapse; margin-top: 5px; }
@@ -14,6 +14,7 @@
         tr:nth-child(even) { background-color: #f8fafc; }
         .text-right { text-align: right; }
         .text-center { text-align: center; }
+        .summary-row td { background-color: #f1f5f9; font-weight: bold; border-top: 2px solid #94a3b8; }
         .footer { margin-top: 25px; border-top: 1px solid #cbd5e1; padding-top: 6px; font-size: 8px; color: #64748b; text-align: center; }
     </style>
 </head>
@@ -38,16 +39,27 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 16%;">DR Number</th>
-                <th style="width: 14%;">Delivery Date</th>
-                <th style="width: 28%;">Consignor (Supplier)</th>
-                <th style="width: 18%;">Received By</th>
-                <th style="width: 10%;" class="text-center">Batches</th>
-                <th style="width: 14%;" class="text-right">Total Units</th>
+                <th style="width: 15%;">DR Number</th>
+                <th style="width: 12%;">Delivery Date</th>
+                <th style="width: {{ !empty($showCosts) ? '23%' : '28%' }};">Consignor (Supplier)</th>
+                <th style="width: 17%;">Received By</th>
+                <th style="width: 8%;" class="text-center">Batches</th>
+                <th style="width: 11%;" class="text-right">Total Units</th>
+                @if (!empty($showCosts))
+                    <th style="width: 14%;" class="text-right">Total Value</th>
+                @endif
             </tr>
         </thead>
         <tbody>
+            @php
+                $totalUnits = 0;
+                $totalAmount = 0.0;
+            @endphp
             @forelse ($deliveries as $del)
+                @php
+                    $totalUnits += $del['total_units'];
+                    $totalAmount += $del['total_amount'];
+                @endphp
                 <tr>
                     <td><strong>{{ $del['dr_number'] }}</strong></td>
                     <td>{{ $del['delivery_date'] }}</td>
@@ -55,14 +67,26 @@
                     <td>{{ $del['received_by'] }}</td>
                     <td class="text-center">{{ $del['batches_count'] }}</td>
                     <td class="text-right"><strong>{{ number_format($del['total_units']) }}</strong></td>
+                    @if (!empty($showCosts))
+                        <td class="text-right"><strong>PHP {{ number_format($del['total_amount'], 2) }}</strong></td>
+                    @endif
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center" style="padding: 20px; color: #64748b;">
+                    <td colspan="{{ !empty($showCosts) ? 7 : 6 }}" class="text-center" style="padding: 20px; color: #64748b;">
                         No delivery receipts recorded matching the selected criteria.
                     </td>
                 </tr>
             @endforelse
+            @if (count($deliveries) > 0)
+                <tr class="summary-row">
+                    <td colspan="5" class="text-right">Grand Total</td>
+                    <td class="text-right">{{ number_format($totalUnits) }}</td>
+                    @if (!empty($showCosts))
+                        <td class="text-right">PHP {{ number_format($totalAmount, 2) }}</td>
+                    @endif
+                </tr>
+            @endif
         </tbody>
     </table>
 

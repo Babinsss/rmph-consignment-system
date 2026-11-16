@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Near-Expiry Report (90 Days) - RMPH HECS</title>
+    <title>Near-Expiry Report - RMPH HECS</title>
     <style>
         body { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 10px; color: #1e293b; margin: 20px; }
         .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #e11d48; padding-bottom: 10px; }
@@ -16,19 +16,21 @@
         .badge-warning { color: #d97706; font-weight: bold; }
         .text-right { text-align: right; }
         .text-center { text-align: center; }
+        .summary-row td { background-color: #f1f5f9; font-weight: bold; border-top: 2px solid #94a3b8; }
         .footer { margin-top: 25px; border-top: 1px solid #cbd5e1; padding-top: 6px; font-size: 8px; color: #64748b; text-align: center; }
     </style>
 </head>
 <body>
+    @php $windowDays = $days ?? 90; @endphp
     <div class="header">
         <h1>Roxas Memorial Provincial Hospital</h1>
         <p>Arnaldo Boulevard, Roxas City, Capiz, Philippines</p>
-        <p><strong style="color: #b91c1c;">Near-Expiry Consignment Report — Items Expiring within 90 Days</strong></p>
+        <p><strong style="color: #b91c1c;">Near-Expiry Consignment Report — Items Expiring within {{ $windowDays }} Days</strong></p>
     </div>
 
     <table style="width: 100%; margin-bottom: 15px; border: none;">
         <tr>
-            <td style="border: none; padding: 0;"><strong>Criteria:</strong> Batches in depot expiring within 90 days</td>
+            <td style="border: none; padding: 0;"><strong>Criteria:</strong> Batches in depot expiring within {{ $windowDays }} days (or expired)</td>
             <td style="border: none; padding: 0; text-align: right;"><strong>Generated On:</strong> {{ $generatedAt }}</td>
         </tr>
         <tr>
@@ -40,17 +42,29 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 14%;">Lot / Batch #</th>
-                <th style="width: 10%;">Item Code</th>
-                <th style="width: 26%;">Description</th>
-                <th style="width: 14%;">Consignor</th>
-                <th style="width: 12%;">DR Number</th>
-                <th style="width: 12%;">Expiration Date</th>
-                <th style="width: 12%;" class="text-right">Units at Risk</th>
+                <th style="width: 12%;">Lot / Batch #</th>
+                <th style="width: 9%;">Item Code</th>
+                <th style="width: {{ !empty($showCosts) ? '22%' : '26%' }};">Description</th>
+                <th style="width: 13%;">Consignor</th>
+                <th style="width: 11%;">DR Number</th>
+                <th style="width: 13%;">Expiration Date</th>
+                <th style="width: 8%;" class="text-right">Units at Risk</th>
+                @if (!empty($showCosts))
+                    <th style="width: 6%;" class="text-right">Unit Cost</th>
+                    <th style="width: 6%;" class="text-right">Value at Risk</th>
+                @endif
             </tr>
         </thead>
         <tbody>
+            @php
+                $totalUnitsRisk = 0;
+                $totalValueRisk = 0.0;
+            @endphp
             @forelse ($batches as $batch)
+                @php
+                    $totalUnitsRisk += $batch['quantity_remaining'];
+                    $totalValueRisk += $batch['value_at_risk'];
+                @endphp
                 <tr>
                     <td><strong>{{ $batch['lot_number'] }}</strong></td>
                     <td>{{ $batch['item_code'] }}</td>
@@ -64,14 +78,28 @@
                     <td class="text-right">
                         <strong>{{ number_format($batch['quantity_remaining']) }}</strong>
                     </td>
+                    @if (!empty($showCosts))
+                        <td class="text-right">PHP {{ number_format($batch['unit_cost'], 2) }}</td>
+                        <td class="text-right"><strong>PHP {{ number_format($batch['value_at_risk'], 2) }}</strong></td>
+                    @endif
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="text-center" style="padding: 20px; color: #15803d;">
-                        <strong>No batches expiring within the next 90 days. Depot stock is healthy.</strong>
+                    <td colspan="{{ !empty($showCosts) ? 9 : 7 }}" class="text-center" style="padding: 20px; color: #15803d;">
+                        <strong>No batches expiring within the next {{ $windowDays }} days. Depot stock is healthy.</strong>
                     </td>
                 </tr>
             @endforelse
+            @if (count($batches) > 0)
+                <tr class="summary-row">
+                    <td colspan="6" class="text-right">Total at Risk</td>
+                    <td class="text-right">{{ number_format($totalUnitsRisk) }}</td>
+                    @if (!empty($showCosts))
+                        <td></td>
+                        <td class="text-right">PHP {{ number_format($totalValueRisk, 2) }}</td>
+                    @endif
+                </tr>
+            @endif
         </tbody>
     </table>
 

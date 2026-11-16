@@ -16,6 +16,8 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Illuminate\Support\HtmlString;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Unique;
 
 class DeliveryForm
 {
@@ -61,8 +63,13 @@ class DeliveryForm
                             ->required()
                             ->maxLength(100)
                             ->placeholder('e.g. DR-2026-0814')
+                            ->rules([
+                                fn (Get $get): Unique => Rule::unique('deliveries', 'dr_number')
+                                    ->where(fn ($query) => $query->where('consignor_id', $get('consignor_id'))),
+                            ])
                             ->validationMessages([
                                 'required' => 'Please enter the delivery receipt (DR) number.',
+                                'unique' => 'This DR / Invoice # has already been recorded for the selected consignor.',
                             ]),
 
                         DatePicker::make('delivery_date')

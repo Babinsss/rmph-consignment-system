@@ -37,12 +37,18 @@ class FulfillmentService
      *     has_sufficient_stock: bool,
      * }>
      */
-    public function getFefoRecommendations(Request $request): array
+    public function getFefoRecommendations(Request $request, ?User $custodian = null): array
     {
         $today = Carbon::today('Asia/Manila');
+        $scopedCategory = $custodian?->custodianCategory();
+        $request->loadMissing('lines.item');
         $recommendations = [];
 
         foreach ($request->lines as $line) {
+            if ($scopedCategory !== null && $line->item->category !== $scopedCategory) {
+                continue;
+            }
+
             $pending = $line->pending_quantity;
 
             // Fetch available unexpired batches ordered by earliest expiration date first (FEFO)
@@ -103,13 +109,16 @@ class FulfillmentService
             /** @var Request $lockedRequest */
             $lockedRequest = Request::where('id', $request->id)->lockForUpdate()->firstOrFail();
 
-            if ($lockedRequest->isFulfilled() || $lockedRequest->isRejected()) {
+            if ($lockedRequest->isFulfilled() || $lockedRequest->isRejected() || $lockedRequest->isCancelled()) {
                 throw ValidationException::withMessages([
-                    'status' => 'This requisition has already been completed or rejected.',
+                    'status' => 'This requisition has already been completed, rejected, or cancelled.',
                 ]);
             }
 
             $now = Carbon::now('Asia/Manila');
+            $today = $now->copy()->startOfDay();
+            $scopedCategory = $custodian->custodianCategory();
+            $lineAllocatedTotals = [];
 
             foreach ($allocations as $allocation) {
                 $quantityToIssue = (int) ($allocation['quantity'] ?? 0);
@@ -121,9 +130,44 @@ class FulfillmentService
                 $batchId = (int) $allocation['batch_id'];
                 $lineId = (int) $allocation['line_id'];
 
+                // Lock the request line first and enforce ownership, category scope, and no over-issuance
+                /** @var RequestLine $line */
+                $line = RequestLine::with('item')->where('id', $lineId)->lockForUpdate()->firstOrFail();
+
+                if ($line->request_id !== $lockedRequest->id) {
+                    throw ValidationException::withMessages([
+                        'allocations' => 'Invalid requisition line reference.',
+                    ]);
+                }
+
+                if ($scopedCategory !== null && $line->item->category !== $scopedCategory) {
+                    throw ValidationException::withMessages([
+                        'allocations' => "You are only authorized to fulfill {$scopedCategory->getLabel()} items.",
+                    ]);
+                }
+
+                $lineAllocatedTotals[$lineId] = ($lineAllocatedTotals[$lineId] ?? 0) + $quantityToIssue;
+                if ($lineAllocatedTotals[$lineId] > $line->pending_quantity) {
+                    throw ValidationException::withMessages([
+                        'allocations' => "Cannot issue {$lineAllocatedTotals[$lineId]} units of {$line->item->description}; only {$line->pending_quantity} units remain pending.",
+                    ]);
+                }
+
                 // Lock the batch row to prevent race conditions
                 /** @var Batch $batch */
                 $batch = Batch::where('id', $batchId)->lockForUpdate()->firstOrFail();
+
+                if ($batch->item_id !== $line->item_id) {
+                    throw ValidationException::withMessages([
+                        'allocations' => "Batch {$batch->lot_number} does not belong to {$line->item->description}.",
+                    ]);
+                }
+
+                if (! $batch->is_active || $batch->expiration_date->lt($today)) {
+                    throw ValidationException::withMessages([
+                        'allocations' => "Cannot issue expired or inactive batch {$batch->lot_number}.",
+                    ]);
+                }
 
                 if ($batch->quantity_remaining < $quantityToIssue) {
                     throw ValidationException::withMessages([
@@ -148,8 +192,6 @@ class FulfillmentService
                 ]);
 
                 // Increment issued quantity on the request line
-                /** @var RequestLine $line */
-                $line = RequestLine::where('id', $lineId)->lockForUpdate()->firstOrFail();
                 $line->increment('quantity_issued', $quantityToIssue);
             }
 
@@ -175,6 +217,46 @@ class FulfillmentService
     }
 
     /**
+     * Reject a pending requisition with category-scope safety.
+     */
+    public function rejectRequest(Request $request, string $reason, User $custodian): Request
+    {
+        if (blank($reason)) {
+            throw ValidationException::withMessages([
+                'rejection_reason' => 'A reason is required to reject a requisition.',
+            ]);
+        }
+
+        return DB::transaction(function () use ($request, $reason, $custodian) {
+            /** @var Request $lockedRequest */
+            $lockedRequest = Request::with('lines.item')->where('id', $request->id)->lockForUpdate()->firstOrFail();
+
+            if (! $lockedRequest->isPending()) {
+                throw ValidationException::withMessages([
+                    'status' => 'Only pending requisitions can be rejected.',
+                ]);
+            }
+
+            $scopedCategory = $custodian->custodianCategory();
+            if ($scopedCategory !== null) {
+                $hasOtherCategory = $lockedRequest->lines->some(fn (RequestLine $l) => $l->item?->category !== $scopedCategory);
+                if ($hasOtherCategory) {
+                    throw ValidationException::withMessages([
+                        'status' => 'This requisition includes items from another category and must be reviewed with an administrator or general custodian.',
+                    ]);
+                }
+            }
+
+            $lockedRequest->update([
+                'status' => RequestStatus::Rejected,
+                'rejection_reason' => trim($reason),
+            ]);
+
+            return $lockedRequest->fresh(['lines.item', 'unit', 'requestedBy']);
+        });
+    }
+
+    /**
      * Adjust physical batch stock (for breakage, count difference, correction) with row locking and mandatory reason.
      */
     public function adjustStock(Batch $batch, int $newQuantity, string $reason, User $custodian): Batch
@@ -193,7 +275,14 @@ class FulfillmentService
 
         return DB::transaction(function () use ($batch, $newQuantity, $reason, $custodian) {
             /** @var Batch $lockedBatch */
-            $lockedBatch = Batch::where('id', $batch->id)->lockForUpdate()->firstOrFail();
+            $lockedBatch = Batch::with('item')->where('id', $batch->id)->lockForUpdate()->firstOrFail();
+
+            $scopedCategory = $custodian->custodianCategory();
+            if ($scopedCategory !== null && $lockedBatch->item?->category !== $scopedCategory) {
+                throw ValidationException::withMessages([
+                    'batch' => "You are only authorized to adjust {$scopedCategory->getLabel()} batches.",
+                ]);
+            }
 
             $diff = $newQuantity - $lockedBatch->quantity_remaining;
 

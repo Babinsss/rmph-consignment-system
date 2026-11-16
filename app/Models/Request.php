@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\RequestStatus;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,6 +20,8 @@ class Request extends Model
         'requested_by_id',
         'request_date',
         'is_urgent',
+        'is_downtime',
+        'downtime_reference',
         'urgent_reason',
         'status',
         'rejection_reason',
@@ -32,6 +35,7 @@ class Request extends Model
         return [
             'request_date' => 'datetime',
             'is_urgent' => 'boolean',
+            'is_downtime' => 'boolean',
             'status' => RequestStatus::class,
             'fulfilled_at' => 'datetime',
         ];
@@ -90,6 +94,20 @@ class Request extends Model
     public function isRejected(): bool
     {
         return $this->status === RequestStatus::Rejected;
+    }
+
+    public function isCancelled(): bool
+    {
+        return $this->status === RequestStatus::Cancelled;
+    }
+
+    public function getIssuedMovements(): Collection
+    {
+        return StockMovement::with(['batch.item', 'user'])
+            ->where('type', StockMovement::TYPE_ISSUE)
+            ->where('reference_number', $this->request_number)
+            ->orderBy('created_at', 'asc')
+            ->get();
     }
 
     public function getTotalRequestedAttribute(): int

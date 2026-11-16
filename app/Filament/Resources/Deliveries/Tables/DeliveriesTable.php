@@ -4,13 +4,11 @@ namespace App\Filament\Resources\Deliveries\Tables;
 
 use App\Models\Delivery;
 use App\Support\CustodianScope;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class DeliveriesTable
 {
@@ -19,7 +17,7 @@ class DeliveriesTable
         return $table
             ->striped()
             ->defaultSort('delivery_date', 'desc')
-            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => CustodianScope::applyToDeliveries($query))
+            ->modifyQueryUsing(fn (Builder $query) => CustodianScope::applyToDeliveries($query))
             ->emptyStateHeading('No Consignment Deliveries Recorded')
             ->emptyStateDescription('When an accredited supplier arrives at the hospital depot, click "New Delivery" above to log the Delivery Receipt (DR) and register received batches.')
             ->emptyStateIcon('heroicon-o-truck')
@@ -73,12 +71,7 @@ class DeliveriesTable
             ])
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make(),
             ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->toolbarActions([]);
     }
 }

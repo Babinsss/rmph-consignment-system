@@ -4,7 +4,9 @@ namespace App\Filament\Widgets;
 
 use App\Enums\RequestStatus;
 use App\Models\Request;
+use App\Support\CustodianScope;
 use Filament\Widgets\Widget;
+use Illuminate\Database\Eloquent\Collection;
 
 class UrgentRequestsAlertWidget extends Widget
 {
@@ -16,17 +18,23 @@ class UrgentRequestsAlertWidget extends Widget
 
     public static function canView(): bool
     {
-        return Request::where('is_urgent', true)
-            ->where('status', RequestStatus::Pending)
-            ->exists();
+        return CustodianScope::applyToRequests(
+            Request::query()
+                ->where('is_urgent', true)
+                ->where('status', RequestStatus::Pending)
+        )->exists();
     }
 
-    public function getPendingUrgentRequests()
+    /**
+     * @return Collection<int, Request>
+     */
+    public function getPendingUrgentRequests(): Collection
     {
-        return Request::with(['unit', 'requestedBy', 'lines.item'])
-            ->where('is_urgent', true)
-            ->where('status', RequestStatus::Pending)
-            ->orderBy('created_at', 'asc')
-            ->get();
+        return CustodianScope::applyToRequests(
+            Request::with(['unit', 'requestedBy', 'lines.item'])
+                ->where('is_urgent', true)
+                ->where('status', RequestStatus::Pending)
+                ->orderBy('created_at', 'asc')
+        )->get();
     }
 }

@@ -2,10 +2,14 @@
 
 namespace App\Services;
 
+use App\Enums\ItemCategory;
 use App\Models\Batch;
 use App\Models\Delivery;
 use App\Models\Item;
 use App\Models\Request;
+use App\Models\StockMovement;
+use App\Models\User;
+use App\Support\CustodianScope;
 use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -14,7 +18,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class ReportService
 {
     /**
-     * Get stock on hand data for all active catalog items.
+     * Get stock on hand data for active catalog items (unexpired, issuable depot stock).
      *
      * @return array<int, array{
      *     code: string,
@@ -30,16 +34,23 @@ class ReportService
      *     total_valuation: float,
      * }>
      */
-    public function getStockOnHandData(): array
+    public function getStockOnHandData(?string $category = null, bool $lowStockOnly = false, ?User $user = null): array
     {
-        $items = Item::with(['consignor', 'batches' => fn ($q) => $q->where('quantity_remaining', '>', 0)->where('is_active', true)])
-            ->where('is_active', true)
-            ->orderBy('description', 'asc')
-            ->get();
+        $user ??= auth()->user();
 
-        return $items->map(function (Item $item) {
-            $currentStock = (int) $item->batches->sum('quantity_remaining');
-            $totalValuation = (float) $item->batches->sum(fn (Batch $b) => $b->quantity_remaining * (float) $b->unit_cost);
+        $query = Item::with(['consignor', 'issuableBatches'])
+            ->where('is_active', true)
+            ->orderBy('description', 'asc');
+
+        CustodianScope::applyToItems($query, $user);
+
+        if ($category && in_array($category, [ItemCategory::Supply->value, ItemCategory::Drug->value], true)) {
+            $query->where('category', $category);
+        }
+
+        $rows = $query->get()->map(function (Item $item) {
+            $currentStock = (int) $item->issuableBatches->sum('quantity_remaining');
+            $totalValuation = (float) $item->issuableBatches->sum(fn (Batch $b) => $b->quantity_remaining * (float) $b->unit_cost);
             $avgUnitCost = $currentStock > 0 ? ($totalValuation / $currentStock) : 0.0;
 
             return [
@@ -51,29 +62,37 @@ class ReportService
                 'minimum_level' => $item->minimum_level,
                 'current_stock' => $currentStock,
                 'is_low_stock' => $currentStock <= $item->minimum_level,
-                'active_batches_count' => $item->batches->count(),
+                'active_batches_count' => $item->issuableBatches->count(),
                 'unit_cost' => $avgUnitCost,
                 'total_valuation' => $totalValuation,
             ];
-        })->all();
+        });
+
+        if ($lowStockOnly) {
+            $rows = $rows->filter(fn (array $row) => $row['is_low_stock'])->values();
+        }
+
+        return $rows->all();
     }
 
     /**
-     * Get batches expiring within 90 days (or already expired) with depot stock remaining.
+     * Get batches expiring within the given days (or already expired) with depot stock remaining.
      */
-    public function getNearExpiryData(int $days = 90): array
+    public function getNearExpiryData(int $days = 90, ?User $user = null): array
     {
+        $user ??= auth()->user();
         $today = Carbon::today('Asia/Manila');
         $cutoff = $today->copy()->addDays($days);
 
-        $batches = Batch::with(['item.consignor', 'delivery.consignor'])
+        $query = Batch::with(['item.consignor', 'delivery.consignor'])
             ->where('quantity_remaining', '>', 0)
             ->where('is_active', true)
             ->where('expiration_date', '<=', $cutoff)
-            ->orderBy('expiration_date', 'asc')
-            ->get();
+            ->orderBy('expiration_date', 'asc');
 
-        return $batches->map(function (Batch $batch) use ($today) {
+        CustodianScope::applyToBatches($query, $user);
+
+        return $query->get()->map(function (Batch $batch) use ($today) {
             $daysLeft = (int) $today->diffInDays($batch->expiration_date, false);
 
             return [
@@ -97,10 +116,15 @@ class ReportService
     /**
      * Get delivery history data filtered by date and consignor.
      */
-    public function getDeliveryHistoryData(?string $fromDate = null, ?string $toDate = null, ?int $consignorId = null): array
+    public function getDeliveryHistoryData(?string $fromDate = null, ?string $toDate = null, ?int $consignorId = null, ?User $user = null): array
     {
+        $user ??= auth()->user();
+        $scopedCategory = $user?->custodianCategory();
+
         $query = Delivery::with(['consignor', 'receivedBy', 'batches.item'])
             ->orderBy('delivery_date', 'desc');
+
+        CustodianScope::applyToDeliveries($query, $user);
 
         if ($fromDate) {
             $query->whereDate('delivery_date', '>=', $fromDate);
@@ -112,15 +136,19 @@ class ReportService
             $query->where('consignor_id', $consignorId);
         }
 
-        return $query->get()->map(function (Delivery $delivery) {
+        return $query->get()->map(function (Delivery $delivery) use ($scopedCategory) {
+            $batches = $scopedCategory instanceof ItemCategory
+                ? $delivery->batches->filter(fn (Batch $b) => $b->item?->category === $scopedCategory)
+                : $delivery->batches;
+
             return [
                 'dr_number' => $delivery->dr_number,
                 'delivery_date' => $delivery->delivery_date->format('M j, Y'),
                 'consignor' => $delivery->consignor?->name ?? '-',
                 'received_by' => $delivery->receivedBy?->name ?? '-',
-                'batches_count' => $delivery->batches->count(),
-                'total_units' => $delivery->total_units,
-                'total_amount' => $delivery->total_amount,
+                'batches_count' => $batches->count(),
+                'total_units' => (int) $batches->sum('quantity_received'),
+                'total_amount' => (float) $batches->sum(fn (Batch $b) => $b->quantity_received * (float) $b->unit_cost),
                 'notes' => $delivery->notes ?? '',
             ];
         })->all();
@@ -129,10 +157,14 @@ class ReportService
     /**
      * Get unit requisition history filtered by date, unit, status, and urgency.
      */
-    public function getUnitRequestsData(?string $fromDate = null, ?string $toDate = null, ?int $unitId = null, ?string $status = null, ?bool $isUrgent = null): array
+    public function getUnitRequestsData(?string $fromDate = null, ?string $toDate = null, ?int $unitId = null, ?string $status = null, ?bool $isUrgent = null, ?User $user = null): array
     {
+        $user ??= auth()->user();
+
         $query = Request::with(['unit', 'requestedBy', 'fulfilledBy', 'lines.item'])
             ->orderBy('request_date', 'desc');
+
+        CustodianScope::applyToRequests($query, $user);
 
         if ($fromDate) {
             $query->whereDate('request_date', '>=', $fromDate);
@@ -157,12 +189,55 @@ class ReportService
                 'unit' => $req->unit?->name ?? '-',
                 'requested_by' => $req->requestedBy?->name ?? '-',
                 'is_urgent' => $req->is_urgent ? 'STAT (Urgent)' : 'Regular',
+                'is_downtime' => $req->is_downtime ? 'Downtime Slip' : 'Online',
                 'urgent_reason' => $req->urgent_reason ?? '-',
                 'total_requested' => $req->total_requested,
                 'total_issued' => $req->total_issued,
                 'status' => $req->status->getLabel(),
                 'fulfilled_by' => $req->fulfilledBy?->name ?? '-',
                 'fulfilled_at' => $req->fulfilled_at?->format('M j, Y • g:i A') ?? '-',
+            ];
+        })->all();
+    }
+
+    /**
+     * Get immutable stock card movement history filtered by date, movement type, and item.
+     */
+    public function getStockMovementsData(?string $fromDate = null, ?string $toDate = null, ?string $type = null, ?int $itemId = null, ?User $user = null): array
+    {
+        $user ??= auth()->user();
+
+        $query = StockMovement::with(['batch.item', 'user'])
+            ->orderBy('id', 'desc');
+
+        CustodianScope::applyToStockMovements($query, $user);
+
+        if ($fromDate) {
+            $query->whereDate('movement_date', '>=', $fromDate);
+        }
+        if ($toDate) {
+            $query->whereDate('movement_date', '<=', $toDate);
+        }
+        if ($type) {
+            $query->where('type', $type);
+        }
+        if ($itemId) {
+            $query->whereHas('batch', fn ($q) => $q->where('item_id', $itemId));
+        }
+
+        return $query->get()->map(function (StockMovement $movement) {
+            return [
+                'timestamp' => $movement->created_at?->timezone('Asia/Manila')->format('M j, Y • g:i A') ?? '-',
+                'movement_date' => $movement->movement_date?->format('M j, Y') ?? '-',
+                'type' => $movement->type,
+                'reference_number' => $movement->reference_number ?? '-',
+                'item_code' => $movement->batch?->item?->code ?? '-',
+                'item_description' => $movement->batch?->item?->description ?? '-',
+                'lot_number' => $movement->batch?->lot_number ?? '-',
+                'quantity' => $movement->quantity,
+                'balance_after' => $movement->balance_after,
+                'user' => $movement->user?->name ?? '-',
+                'reason' => $movement->reason ?? '-',
             ];
         })->all();
     }

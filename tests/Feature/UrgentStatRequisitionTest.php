@@ -158,4 +158,68 @@ class UrgentStatRequisitionTest extends TestCase
         $response->assertSee('REQ-STAT-002');
         $response->assertSee('STAT (Urgent)');
     }
+
+    public function test_urgent_stat_alert_widget_respects_custodian_category_scope(): void
+    {
+        $drugItem = Item::create([
+            'code' => 'DRG-STAT-01',
+            'description' => 'Epinephrine 1mg/mL Ampule',
+            'category' => ItemCategory::Drug,
+            'unit_of_measure' => 'ampule',
+            'consignor_id' => $this->item->consignor_id,
+            'minimum_level' => 5,
+            'is_active' => true,
+        ]);
+
+        $drugStat = Request::create([
+            'request_number' => 'REQ-STAT-DRG-01',
+            'unit_id' => $this->hduUnit->id,
+            'requested_by_id' => $this->hduStaff->id,
+            'request_date' => now(),
+            'is_urgent' => true,
+            'urgent_reason' => 'Code blue emergency crash cart drug.',
+            'status' => RequestStatus::Pending,
+        ]);
+
+        $drugStat->lines()->create([
+            'item_id' => $drugItem->id,
+            'quantity_requested' => 4,
+            'quantity_issued' => 0,
+        ]);
+
+        $this->actingAs($this->custodian); // custodian_supplies
+        $this->assertFalse(UrgentRequestsAlertWidget::canView());
+
+        $drugCustodian = User::where('email', 'kristine.batan@rmph.local')->first();
+        $this->actingAs($drugCustodian);
+        $this->assertTrue(UrgentRequestsAlertWidget::canView());
+
+        Livewire::test(UrgentRequestsAlertWidget::class)
+            ->assertSee('REQ-STAT-DRG-01');
+    }
+
+    public function test_custodian_can_record_downtime_requisition_outside_regular_schedule_window(): void
+    {
+        // Saturday 11:00 PM (regular window is closed)
+        Carbon::setTestNow(Carbon::create(2026, 11, 14, 23, 0, 0, 'Asia/Manila'));
+
+        $request = app(RequestService::class)->submitDowntimeRequest([
+            'unit_id' => $this->hduUnit->id,
+            'downtime_reference' => 'RIS-PAPER-2026-88',
+            'is_urgent' => false,
+            'notes' => 'Recorded from manual paper slip after network outage.',
+            'lines' => [
+                [
+                    'item_id' => $this->item->id,
+                    'quantity_requested' => 12,
+                ],
+            ],
+        ], $this->custodian);
+
+        $this->assertTrue($request->is_downtime);
+        $this->assertEquals('RIS-PAPER-2026-88', $request->downtime_reference);
+        $this->assertEquals(RequestStatus::Pending, $request->status);
+
+        Carbon::setTestNow();
+    }
 }

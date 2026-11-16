@@ -3,8 +3,8 @@
 namespace App\Filament\Portal\Resources\Requests\Tables;
 
 use App\Enums\RequestStatus;
+use App\Filament\Portal\Resources\Requests\Actions\PortalRequestActions;
 use App\Models\Request;
-use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -74,8 +74,8 @@ class RequestsTable
             ])
             ->recordActions([
                 ViewAction::make(),
-                EditAction::make()
-                    ->visible(fn (Request $record): bool => $record->isPending()),
+                PortalRequestActions::printIssueSlip(),
+                PortalRequestActions::cancel(),
             ])
             ->toolbarActions([]);
     }

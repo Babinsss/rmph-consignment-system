@@ -8,14 +8,23 @@ class RequestWindowService
 {
     /**
      * Check if the regular requisition window is currently open.
-     * Regular window: Monday to Friday, closing at 5:00 PM.
+     * Regular window: Configured weekdays (default Monday to Friday) before cutoff hour (default 5:00 PM),
+     * excluding configured hospital holidays.
      */
     public function isRegularWindowOpen(?Carbon $now = null): bool
     {
-        $now = $now ?? Carbon::now('Asia/Manila');
+        $timezone = config('consignment.timezone', 'Asia/Manila');
+        $now = ($now ?? Carbon::now($timezone))->copy()->setTimezone($timezone);
 
-        // Weekday (Monday = 1, Friday = 5) and before 17:00 (5:00 PM)
-        return $now->isWeekday() && $now->hour < 17;
+        $allowedDays = config('consignment.regular_window_days', [1, 2, 3, 4, 5]);
+        $cutoffHour = (int) config('consignment.regular_window_cutoff_hour', 17);
+        $holidays = config('consignment.holidays', []);
+
+        if (in_array($now->toDateString(), $holidays, true)) {
+            return false;
+        }
+
+        return in_array($now->dayOfWeekIso, $allowedDays, true) && $now->hour < $cutoffHour;
     }
 
     /**

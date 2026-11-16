@@ -14,7 +14,8 @@ class ItemsTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->with(['consignor', 'batches.delivery.consignor']))
+            ->modifyQueryUsing(fn (Builder $query) => $query->with(['consignor', 'batches.delivery.consignor'])
+                ->withSum('issuableBatches as issuable_stock_sum', 'quantity_remaining'))
             ->striped()
             ->defaultSort('description', 'asc')
             ->emptyStateHeading('No Consignment Items Available')

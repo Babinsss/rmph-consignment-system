@@ -5,10 +5,12 @@ namespace App\Filament\Resources\StockMovements;
 use App\Filament\Resources\StockMovements\Pages\ListStockMovements;
 use App\Filament\Resources\StockMovements\Tables\StockMovementsTable;
 use App\Models\StockMovement;
+use App\Support\CustodianScope;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class StockMovementResource extends Resource
@@ -22,6 +24,11 @@ class StockMovementResource extends Resource
     protected static ?string $navigationLabel = 'Stock Card (History)';
 
     protected static ?int $navigationSort = 6;
+
+    public static function getEloquentQuery(): Builder
+    {
+        return CustodianScope::applyToStockMovements(parent::getEloquentQuery());
+    }
 
     public static function canAccess(): bool
     {
